@@ -2,7 +2,7 @@
 
 {
     'name': 'Contabilidad Paraguay',
-    'version': '13.0.0.0.0',
+    'version': '13.0.0.0.1',
     'author': 'TecnoproPy',
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
@@ -21,9 +21,10 @@
         'data/account_chart_template_data.xml',
     ],
     'demo': [
-#        'demo/account_bank_statement_demo.xml',
-#        'demo/account_invoice_demo.xml',
-#        'demo/account_reconcile_model.xml',
+        'demo/account_bank_statement_demo.xml',
+        'demo/account_invoice_demo.xml',
+        'demo/account_reconcile_model.xml',
+        'data/account_chart_template_data.xml',
     ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
