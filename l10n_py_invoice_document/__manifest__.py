@@ -27,7 +27,8 @@
         'views/res_partner_view.xml'
     ],
     'demo': [
-        'demo/account_timbrado_demo.xml'
+        'demo/account_timbrado_demo.xml',
+        'demo/base_res_partner.xml'
     ],
     'installable': True,
 }
