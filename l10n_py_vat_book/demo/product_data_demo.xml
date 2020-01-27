@@ -11,6 +11,8 @@
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_10')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_10')])]"/>
         </record>
+
+<!--
         <record id="product.product_product_24_product_template" model="product.template">
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_10')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_10')])]"/>
@@ -19,8 +21,9 @@
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_10')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_10')])]"/>
         </record>
+-->
 
-        <!-- productos con IVA 5 -->
+        <!-- productos con IVA 5
         <record id="product.product_product_8_product_template" model="product.template">
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_5')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_5')])]"/>
@@ -37,7 +40,8 @@
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_5')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_5')])]"/>
         </record>
-        <!-- productos con iva excento -->
+        -->
+        <!-- productos con iva excento
 
         <record id="product.product_order_01_product_template" model="product.template">
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_exempt')])]"/>
@@ -55,6 +59,7 @@
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_exempt')])]"/>
             <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_exempt')])]"/>
         </record>
+        -->
     </data>
 </odoo>
 
