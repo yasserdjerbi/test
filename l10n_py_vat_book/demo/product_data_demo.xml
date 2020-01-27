@@ -5,11 +5,11 @@
         <!-- FURN_9001 -->
         <record id="product.product_product_20_product_template" model="product.template">
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_10')])]"/>
-            <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_10')])]"/>
+            <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_5')])]"/>
         </record>
         <record id="product.consu_delivery_03_product_template" model="product.template">
             <field name="taxes_id" eval="[(6, 0, [ref('l10n_py.sale_tax_template_10')])]"/>
-            <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_10')])]"/>
+            <field name="supplier_taxes_id" eval="[(6, 0, [ref('l10n_py.purchase_tax_template_5')])]"/>
         </record>
 
 <!--
