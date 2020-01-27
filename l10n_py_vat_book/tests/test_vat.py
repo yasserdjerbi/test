@@ -19,6 +19,7 @@
 #
 
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
 
 
 class DocumentTestCase(TransactionCase):
@@ -30,7 +31,8 @@ class DocumentTestCase(TransactionCase):
             journal.write({'l10n_latam_use_documents': True})
 
     def validate_invoices(self):
-        invoices = self.env['account.move'].search([])
+        domain = [('id', '!=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        invoices = self.env['account.move'].search(domain)
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
         # Validar todas las facturas
@@ -110,6 +112,15 @@ class DocumentTestCase(TransactionCase):
         self.assertAlmostEqual(self.avl2.total, -143.64, places=1)
         self.assertAlmostEqual(self.avl3.total, -220.55, places=1)
         self.assertAlmostEqual(self.avl4.total, -595.70, places=1)
+
+    def test_09_no_vat_exception(self):
+        # me traigo la factura mal hecha (le falta iva en la segunda linea)
+        domain = [('id', '=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        invoices = self.env['account.move'].search(domain)
+
+        # valido la factura y tiene que fallar porque le falta esa linea
+        with self.assertRaises(UserError):
+            invoices[0].action_post()
 
     """
     def test_print(self):
