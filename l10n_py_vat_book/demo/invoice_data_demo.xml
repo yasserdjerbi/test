@@ -118,7 +118,7 @@
         ]"/>
     </record>
 
-[ff    <!-- factura mal hecha, le falta iva en una linea -->
+    <!-- factura mal hecha, le falta iva en una linea -->
     <record id="demo_vat_invoice_bad" model="account.move">
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
