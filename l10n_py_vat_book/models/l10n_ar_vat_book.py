@@ -6,7 +6,6 @@ from odoo.tools.misc import format_date
 class L10nARVatBook(models.AbstractModel):
 
     _name = "l10n_py.vat.book"
-#    _inherit = "account.report"
     _description = "Libro de IVA Paraguay"
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
