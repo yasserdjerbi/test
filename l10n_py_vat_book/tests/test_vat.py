@@ -108,10 +108,10 @@ class DocumentTestCase(TransactionCase):
     def test_08_check_total(self):
         self.validate_invoices()
         # Testear total
-        self.assertAlmostEqual(self.avl1.total, -169.53, places=1)
-        self.assertAlmostEqual(self.avl2.total, -143.64, places=1)
-        self.assertAlmostEqual(self.avl3.total, -220.55, places=1)
-        self.assertAlmostEqual(self.avl4.total, -595.70, places=1)
+        self.assertAlmostEqual(self.avl1.total, -178.00, places=1)
+        self.assertAlmostEqual(self.avl2.total, -158.00, places=1)
+        self.assertAlmostEqual(self.avl3.total, -233.00, places=1)
+        self.assertAlmostEqual(self.avl4.total, -614.00, places=1)
 
     def test_09_no_vat_exception(self):
         # me traigo la factura mal hecha (le falta iva en la segunda linea)

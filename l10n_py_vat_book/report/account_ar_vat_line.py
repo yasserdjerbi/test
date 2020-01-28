@@ -133,7 +133,7 @@ SELECT
     sum(CASE WHEN btg.name = 'IVA 10%' THEN aml.balance ELSE Null END) as base_10,
     sum(CASE WHEN btg.name = 'IVA 5%' THEN aml.balance ELSE Null END) as base_5,
     sum(CASE WHEN btg.name = 'IVA Excento' THEN aml.balance ELSE Null END) as not_taxed,
-    sum(CASE WHEN btg.name = 'IVA Excento' or btg.name = 'IVA 5%' or btg.name = 'IVA 10%' THEN aml.balance ELSE Null END) as total,
+    sum(aml.balance) as total,
     rp.ruc as ruc,
     am.name as move_name,
     rp.name as partner_name,
