@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
         <record id="partner_type_data_1" model="partner.type">
+            <field name="applied_to">sale</field>
             <field name="type">local_customer</field>
+            <field name="ruc_required_person" eval="False"/>
+            <field name="ruc_required_company" eval="True"/>
+            <field name="consolidated_ruc">44444401-7</field>
+            <field name="default_account" eval="False"/>
         </record>
     </data>
 </odoo>
