@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="demo_vat_journal" model="account.journal">
+        <field name="name">Demo Vat Journal</field>
+        <field name="code">DMJ</field>
+        <field name="type">sale</field>
+        <field name="l10n_latam_use_documents" eval="True"/>
+    </record>
+
     <!-- factura 001 -->
     <record id="demo_vat_invoice_1" model="account.move">
+        <field name="journal_id" ref="demo_vat_journal"/>
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
         <field name="invoice_user_id" ref="base.user_demo"/>
@@ -27,6 +35,7 @@
 
     <!-- factura 002 -->
     <record id="demo_vat_invoice_2" model="account.move">
+        <field name="journal_id" ref="demo_vat_journal"/>
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
         <field name="invoice_user_id" ref="base.user_demo"/>
@@ -52,6 +61,7 @@
 
     <!-- factura 003 -->
     <record id="demo_vat_invoice_3" model="account.move">
+        <field name="journal_id" ref="demo_vat_journal"/>
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
         <field name="invoice_user_id" ref="base.user_demo"/>
@@ -83,6 +93,7 @@
 
     <!-- factura 004 -->
     <record id="demo_vat_invoice_4" model="account.move">
+        <field name="journal_id" ref="demo_vat_journal"/>
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
         <field name="invoice_user_id" ref="base.user_demo"/>
@@ -120,6 +131,7 @@
 
     <!-- factura mal hecha, le falta iva en una linea -->
     <record id="demo_vat_invoice_bad" model="account.move">
+        <field name="journal_id" ref="demo_vat_journal"/>
         <field name="type">out_invoice</field>
         <field name="partner_id" ref="base.res_partner_12"/>
         <field name="invoice_user_id" ref="base.user_demo"/>
