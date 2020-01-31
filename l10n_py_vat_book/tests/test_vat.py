@@ -26,11 +26,14 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
+        print('antes del loading',self.user.company_id.chart_template_id.name)
+
+        import wdb;wdb.set_trace()
         # Force user Paraguay country.
-        # self.env.user.company_id = self.env['res.company'].create({'name': 'MyCompany'})
         self.env.user.company_id.country_id = self.env.ref('base.py')
         self.env.ref('l10n_py.py_chart_template').try_loading()
-        # self.partner_id = self.env['res.partner'].create({'name': 'TestUser', 'vat': 'BE0123456789'})
+
+        print('despues del loading',self.user.company_id.chart_template_id.name)
 
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
         journals = self.env['account.journal'].search(
@@ -38,16 +41,16 @@ class DocumentTestCase(TransactionCase):
         for journal in journals:
             journal.write({'l10n_latam_use_documents': True})
 
-        print('***************************************************************')
+        print('**************************************************************')
 
         print('Pais',self.env.user.company_id.country_id.name)
         print('Journal', journals[0].name)
 
-        print('***************************************************************')
+        print('**************************************************************')
         tax = self.env['account.tax'].search([])
         for t in tax:
             print(t.name)
-        print('***************************************************************')
+        print('**************************************************************')
 
 
 
