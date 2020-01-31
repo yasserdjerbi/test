@@ -37,11 +37,17 @@ class DocumentTestCase(TransactionCase):
                   ('journal_id', '=', demo_journal.id)]
 
         invoices = self.env['account.move'].search(domain)
+
+
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
+
+        print('***************************************************************')
 
         # Validar todas las facturas
         for invoice in invoices:
+            print(invoice.name, invoice.journal_id.name)
             invoice.action_post()
+            print(invoice.name, invoice.journal_id.name)
 
         avl_obj = self.env['account.ar.vat.line']
 
