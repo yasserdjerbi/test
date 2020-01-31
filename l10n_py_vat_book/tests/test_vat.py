@@ -32,7 +32,10 @@ class DocumentTestCase(TransactionCase):
 
     def validate_invoices(self):
         bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
-        domain = [('id', '!=', bad_invoice.id)]
+        demo_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        domain = [('id', '!=', bad_invoice.id),
+                  ('journal_id', '=', demo_journal.id)]
+
         invoices = self.env['account.move'].search(domain)
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
