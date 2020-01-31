@@ -26,9 +26,9 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
-#        journals = self.env['account.journal'].search([])
-#        for journal in journals:
-#            journal.write({'l10n_latam_use_documents': True})
+    #        journals = self.env['account.journal'].search([])
+    #        for journal in journals:
+    #            journal.write({'l10n_latam_use_documents': True})
 
     def validate_invoices(self):
         bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
@@ -38,14 +38,19 @@ class DocumentTestCase(TransactionCase):
 
         invoices = self.env['account.move'].search(domain)
 
-
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
-        print('***************************************************************')
+        print('**************************************************************')
+        import wdb;        wdb.set_trace()
+
+        aa = self.env['account.tax'].search([])
+        for a in aa:
+            print('tax>', a.id, a.name, a.amount)
 
         # Validar todas las facturas
         for invoice in invoices:
             print(invoice.name, invoice.journal_id.name)
+
             invoice.action_post()
             print(invoice.name, invoice.journal_id.name)
 
