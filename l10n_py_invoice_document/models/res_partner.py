@@ -17,6 +17,11 @@ class Partner(models.Model):
         string='RUC'
     )
 
+    partner_type_id = fields.Many2one(
+        'partner.type',
+        string='Tipo de Socio de Negocio'
+    )
+
     @api.constrains('ruc')
     def check_ruc(self):
         for rec in self:

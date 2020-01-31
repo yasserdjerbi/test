@@ -26,9 +26,17 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
-    #        journals = self.env['account.journal'].search([])
-    #        for journal in journals:
-    #            journal.write({'l10n_latam_use_documents': True})
+        # Force user Paraguay country.
+        # self.env.user.company_id = self.env['res.company'].create({'name': 'MyCompany'})
+        self.env.user.company_id.country_id = self.env.ref('base.py')
+        self.env.ref('l10n_py.py_chart_template').try_loading()
+        # self.partner_id = self.env['res.partner'].create({'name': 'TestUser', 'vat': 'BE0123456789'})
+
+        vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        journals = self.env['account.journal'].search(
+            [('id', '=', vat_journal.id)])
+        for journal in journals:
+            journal.write({'l10n_latam_use_documents': True})
 
     def validate_invoices(self):
         bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
@@ -40,22 +48,9 @@ class DocumentTestCase(TransactionCase):
 
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
-        print('**************************************************************')
-
-        aa = self.env['account.tax'].search([])
-        for a in aa:
-            print('tax>', a.id, a.name, a.amount)
-
-        aa = self.env['account.account'].search([])
-        for a in aa:
-            print('account>', a.id, a.code, a.name)
-
         # Validar todas las facturas
         for invoice in invoices:
-            print(invoice.name, invoice.journal_id.name)
-
             invoice.action_post()
-            print(invoice.name, invoice.journal_id.name)
 
         avl_obj = self.env['account.ar.vat.line']
 

@@ -4,7 +4,6 @@
         <field name="name">Demo Vat Journal</field>
         <field name="code">DMJ</field>
         <field name="type">sale</field>
-        <field name="l10n_latam_use_documents" eval="True"/>
     </record>
 
     <!-- factura 001 -->
