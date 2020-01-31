@@ -4,7 +4,6 @@ from odoo.tools.misc import format_date
 
 
 class L10nARVatBook(models.AbstractModel):
-
     _name = "l10n_py.vat.book"
     _description = "Libro de IVA Paraguay"
 
@@ -47,8 +46,12 @@ class L10nARVatBook(models.AbstractModel):
         else:
             sign = -1.0
 
-        totals = {}.fromkeys(['taxed', 'not_taxed', 'vat_5', 'vat_10', 'other_taxes', 'total'], 0)
-        domain = [('journal_id.type', '=', journal_type), ('journal_id.l10n_latam_use_documents', '=', True),
+        totals = {}.fromkeys(['taxed', 'not_taxed',
+                              'vat_5', 'vat_10',
+                              'other_taxes', 'total'], 0)
+
+        domain = [('journal_id.type', '=', journal_type),
+                  ('journal_id.l10n_latam_use_documents', '=', True),
                   ('company_id', 'in', company_ids)]
         state = context.get('state')
         if state and state.lower() != 'all':

@@ -122,17 +122,30 @@ class AccountArVatLine(models.Model):
     def init(self):
         cr = self._cr
         tools.drop_view_if_exists(cr, self._table)
-        # we use tax_ids for base amount instead of tax_base_amount for two reasons:
-        # * zero taxes do not create any aml line so we can't get base for them with tax_base_amount
-        # * we use same method as in odoo tax report to avoid any possible discrepancy with the computed tax_base_amount
+        # we use tax_ids for base amount instead of tax_base_amount for two
+        # reasons:
+        # * zero taxes do not create any aml line so we can't get base for
+        #   them with tax_base_amount
+        # * we use same method as in odoo tax report to avoid any possible
+        #   discrepancy with the computed tax_base_amount
         query = """
 SELECT
     am.id,
-    sum(CASE WHEN ntg.name = 'IVA 10%' THEN aml.balance ELSE Null END) as vat_10,
-    sum(CASE WHEN ntg.name = 'IVA 5%' THEN aml.balance ELSE Null END) as vat_5,
-    sum(CASE WHEN btg.name = 'IVA 10%' THEN aml.balance ELSE Null END) as base_10,
-    sum(CASE WHEN btg.name = 'IVA 5%' THEN aml.balance ELSE Null END) as base_5,
-    sum(CASE WHEN btg.name = 'IVA Excento' THEN aml.balance ELSE Null END) as not_taxed,
+    sum(CASE
+            WHEN ntg.name = 'IVA 10%'
+            THEN aml.balance ELSE Null END) as vat_10,
+    sum(CASE
+            WHEN ntg.name = 'IVA 5%'
+            THEN aml.balance ELSE Null END) as vat_5,
+    sum(CASE
+            WHEN btg.name = 'IVA 10%'
+            THEN aml.balance ELSE Null END) as base_10,
+    sum(CASE
+            WHEN btg.name = 'IVA 5%'
+            THEN aml.balance ELSE Null END) as base_5,
+    sum(CASE
+            WHEN btg.name = 'IVA Excento'
+            THEN aml.balance ELSE Null END) as not_taxed,
     sum(aml.balance) as total,
     rp.ruc as ruc,
     am.name as move_name,

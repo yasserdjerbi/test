@@ -31,7 +31,8 @@ class DocumentTestCase(TransactionCase):
             journal.write({'l10n_latam_use_documents': True})
 
     def validate_invoices(self):
-        domain = [('id', '!=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        domain = [('id', '!=', bad_invoice.id)]
         invoices = self.env['account.move'].search(domain)
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
@@ -115,30 +116,10 @@ class DocumentTestCase(TransactionCase):
 
     def test_09_no_vat_exception(self):
         # me traigo la factura mal hecha (le falta iva en la segunda linea)
-        domain = [('id', '=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        domain = [('id', '=', bad_invoice.id)]
         invoices = self.env['account.move'].search(domain)
 
         # valido la factura y tiene que fallar porque le falta esa linea
         with self.assertRaises(UserError):
             invoices[0].action_post()
-
-    """
-    def test_print(self):
-        print()
-        self.validate_invoices()
-        avl = self.env['account.ar.vat.line'].search([])
-        for line in avl:
-            print(
-                '{} {} {} {} B5={:8} B10={:8} IV5={:8} IV10={:8} EX={:8} TOT={:8}'.format(
-                    line.date,
-                    line.move_id,
-                    line.partner_id,
-                    line.ruc,
-                    line.base_5,
-                    line.base_10,
-                    line.vat_5,
-                    line.vat_10,
-                    line.not_taxed,
-                    line.total))
-        print()
-    """
