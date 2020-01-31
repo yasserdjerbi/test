@@ -7,16 +7,17 @@ from odoo.exceptions import ValidationError
 
 class PartnerType(models.Model):
     _name = 'partner.type'
+    _description = 'Definicion de tipos de partner'
 
     type = fields.Selection([
         ('local_customer', 'Clientes Locales'),
         ('foreign', 'Extranjeros'),
-        ('Export', 'Exportacion'),
+        ('export', 'Exportacion'),
         ('diplomats', 'Diplomaticos'),
         ('state_client', 'Clientes del Estado'),
         ('local_vendor', 'Proveedores Locales'),
         ('local_creditor', 'Acreedores Locales'),
-        ('foreign_customer', 'Proveedore del Exterior')],
+        ('foreign_vendor', 'Proveedore del Exterior')],
         help='Tipo de cliente',
         required=True
     )
