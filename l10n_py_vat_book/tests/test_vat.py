@@ -41,7 +41,6 @@ class DocumentTestCase(TransactionCase):
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
         print('**************************************************************')
-        import wdb;        wdb.set_trace()
 
         aa = self.env['account.tax'].search([])
         for a in aa:
