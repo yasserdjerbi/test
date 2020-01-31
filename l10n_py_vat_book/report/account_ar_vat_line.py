@@ -1,5 +1,5 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-from odoo import tools, models, fields, api, _
+from odoo import tools, models, fields
 
 
 class AccountArVatLine(models.Model):
