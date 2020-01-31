@@ -24,7 +24,8 @@
         'security/ir.model.access.csv',
         'views/account_move_view.xml',
         'data/ir_cron_data.xml',
-        'views/res_partner_view.xml'
+        'views/res_partner_view.xml',
+        'data/partner_type_data.xml',
     ],
     'demo': [
         'demo/account_timbrado_demo.xml',

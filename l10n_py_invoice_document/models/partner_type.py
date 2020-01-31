@@ -22,3 +22,8 @@ class PartnerType(models.Model):
     )
     ruc_required_person = fields.Boolean()
     ruc_required_company = fields.Boolean()
+    consolidated_ruc = fields.Char()
+    default_account = fields.Many2one(
+        'account.account',
+        string='Cuenta Predeterminada',
+    )

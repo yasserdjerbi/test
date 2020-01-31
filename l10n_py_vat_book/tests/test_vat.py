@@ -46,6 +46,10 @@ class DocumentTestCase(TransactionCase):
         for a in aa:
             print('tax>', a.id, a.name, a.amount)
 
+        aa = self.env['account.account'].search([])
+        for a in aa:
+            print('account>', a.id, a.code, a.name)
+
         # Validar todas las facturas
         for invoice in invoices:
             print(invoice.name, invoice.journal_id.name)
