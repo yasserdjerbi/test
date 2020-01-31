@@ -9,18 +9,18 @@
         <field name="invoice_date" eval="time.strftime('%Y-%m')+'-01'"/>
         <field name="l10n_latam_document_type_id" ref="l10n_py_invoice_document.dc_fac"/>
         <field name="timbrado_id" ref="l10n_py_invoice_document.timbrado_1"/>
-        <field name="invoice_line_ids" eval="[
+        <field name="invoice_line_ids" model="account.move.line" eval="[
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 35.0,
                 'quantity': 2,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_5')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 5),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 36,
                 'quantity': 3,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_5')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 5),limit=1]).ids)]
                 }),
         ]"/>
     </record>
@@ -34,18 +34,18 @@
         <field name="invoice_date" eval="time.strftime('%Y-%m')+'-01'"/>
         <field name="l10n_latam_document_type_id" ref="l10n_py_invoice_document.dc_fac"/>
         <field name="timbrado_id" ref="l10n_py_invoice_document.timbrado_1"/>
-        <field name="invoice_line_ids" eval="[
+        <field name="invoice_line_ids" model="account.move.line" eval="[
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 17.0,
                 'quantity': 4,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_10')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 10),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 18.0,
                 'quantity': 5,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_10')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 10),limit=1]).ids)]
                 }),
         ]"/>
     </record>
@@ -59,24 +59,24 @@
         <field name="invoice_date" eval="time.strftime('%Y-%m')+'-01'"/>
         <field name="l10n_latam_document_type_id" ref="l10n_py_invoice_document.dc_fac"/>
         <field name="timbrado_id" ref="l10n_py_invoice_document.timbrado_1"/>
-        <field name="invoice_line_ids" eval="[
+        <field name="invoice_line_ids" model="account.move.line" eval="[
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 10.0,
                 'quantity': 6,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_10')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 10),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 11.0,
                 'quantity': 7,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_10')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 10),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 12.0,
                 'quantity': 8,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_exempt')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 0),limit=1]).ids)]
                 }),
         ]"/>
     </record>
@@ -90,30 +90,30 @@
         <field name="invoice_date" eval="time.strftime('%Y-%m')+'-01'"/>
         <field name="l10n_latam_document_type_id" ref="l10n_py_invoice_document.dc_fac"/>
         <field name="timbrado_id" ref="l10n_py_invoice_document.timbrado_1"/>
-        <field name="invoice_line_ids" eval="[
+        <field name="invoice_line_ids" model="account.move.line" eval="[
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 13.0,
                 'quantity': 9,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_5')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 5),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 14.0,
                 'quantity': 10,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_10')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 10),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 15.0,
                 'quantity': 11,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_exempt')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 0),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 16.0,
                 'quantity': 12,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_exempt')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 0),limit=1]).ids)]
                 }),
         ]"/>
     </record>
@@ -127,12 +127,12 @@
         <field name="invoice_date" eval="time.strftime('%Y-%m')+'-01'"/>
         <field name="l10n_latam_document_type_id" ref="l10n_py_invoice_document.dc_fac"/>
         <field name="timbrado_id" ref="l10n_py_invoice_document.timbrado_1"/>
-        <field name="invoice_line_ids" eval="[
+        <field name="invoice_line_ids" model="account.move.line" eval="[
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 13.0,
                 'quantity': 9,
-                'tax_ids': [(6, 0, [ref('l10n_py.sale_tax_template_5')])]
+                'tax_ids': [(6, 0, obj().search([('type_tax_use', '=', 'sale'),('amount','=', 5),limit=1]).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
