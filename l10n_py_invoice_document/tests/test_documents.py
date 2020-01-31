@@ -53,5 +53,8 @@ class DocumentTestCase(TransactionCase):
         self.assertTrue(partner._check_ruc(False))
 
     def test_calc_dv(self):
+        """ Verifica calculo del digito verificador
+        """
         partner = self.env['res.partner']
         self.assertEqual(partner._calc_dv('80028764'), 9)
+

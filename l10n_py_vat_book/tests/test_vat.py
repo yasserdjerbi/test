@@ -38,14 +38,10 @@ class DocumentTestCase(TransactionCase):
         for journal in journals:
             journal.write({'l10n_latam_use_documents': True})
 
-    def validate_invoices(self):
-        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
-        demo_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
-        domain = [('id', '!=', bad_invoice.id),
-                  ('journal_id', '=', demo_journal.id)]
+        print('***************************************************************')
 
-        invoices = self.env['account.move'].search(domain)
-        self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
+        print('Pais',self.env.user.company_id.country_id.name)
+        print('Journal', journals[0].name)
 
         print('***************************************************************')
         tax = self.env['account.tax'].search([])
@@ -54,6 +50,17 @@ class DocumentTestCase(TransactionCase):
         print('***************************************************************')
 
 
+
+
+
+    def validate_invoices(self):
+        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        demo_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        domain = [('id', '!=', bad_invoice.id),
+                  ('journal_id', '=', demo_journal.id)]
+
+        invoices = self.env['account.move'].search(domain)
+        self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
         # Validar todas las facturas
         for invoice in invoices:
