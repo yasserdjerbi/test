@@ -3,11 +3,11 @@
 {
     'name': 'Contabilidad Paraguay',
     'version': '13.0.0.0.2',
-    'author': 'TecnoproPy',
+    'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'license': 'Other OSI approved licence',
-    'website': 'TecnoproPy.com',
+    'website': 'tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',
     'depends': [
         'account',

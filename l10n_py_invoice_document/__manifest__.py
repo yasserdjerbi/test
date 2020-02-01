@@ -1,10 +1,10 @@
 {
-    'name': 'Tipos de documentos Paraguay',
+    'name': 'Tipos de documentos (facturacion) Paraguay',
     'version': '13.0.0.0.3',
     'category': 'Localizacion',
     'sequence': 14,
-    'author': 'TecnoproPy',
-    'website': 'TecnoproPy.com',
+    'author': 'Tecnopro',
+    'website': 'tecnopro.com.py',
     'license': 'Other OSI approved licence',
     'summary': 'Definicion de tipos de documento',
     "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"

@@ -97,5 +97,19 @@ class Partner(models.Model):
 
     @api.onchange('partner_type_id')
     def onchange_partner_type_id(self):
+        """ Cuando cambia el tipo de partner, poner el ruc consolidado y las
+            cuentas contables.
+        """
         for rec in self:
-            rec.ruc = rec.partner_type_id.consolidated_ruc
+            partner_type = rec.partner_type_id
+            # poner el ruc consolidado correspondiente
+            rec.ruc = partner_type.consolidated_ruc
+
+            # poner la cuenta por defecto si esta definida
+            if partner_type.default_account:
+                if partner_type.applied_to == 'sale':
+                    rec.property_account_receivable_id = \
+                        partner_type.default_account
+                if partner_type.applied_to == 'purchase':
+                    rec.property_account_payable_id = \
+                        partner_type.default_account
