@@ -45,7 +45,7 @@ class DocumentTestCase(TransactionCase):
 
         ii = self.env['account.move'].search([])
         for i in ii:
-            print('-----------------',i.name, i.journal_id.name)
+            print('-----------------', i.name, i.journal_id.name)
             for line in i.invoice_line_ids:
                 print(line.product_id.name,line.tax_ids.name)
 

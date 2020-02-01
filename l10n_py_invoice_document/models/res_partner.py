@@ -25,7 +25,10 @@ class Partner(models.Model):
     @api.constrains('ruc')
     def check_ruc(self):
         for rec in self:
-            if not self._check_ruc(rec.ruc):
+            if not rec.ruc and rec.partner_type_id.ruc_required(rec.company_type):
+                raise ValidationError(rec.partner_type_id.msg())
+
+            if not rec._check_ruc(rec.ruc):
                 raise ValidationError(_("El RUC es invalido"))
 
     def _check_ruc(self, ruc):
