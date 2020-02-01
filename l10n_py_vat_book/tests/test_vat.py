@@ -24,6 +24,35 @@ from datetime import datetime
 
 
 class DocumentTestCase(TransactionCase):
+
+    def setup_invoices(self):
+        tax_00 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 0)],limit=1)
+        tax_05 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)],limit=1)
+        tax_10 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 10)],limit=1)
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_1')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = tax_05
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_2')
+        inv.invoice_line_ids[0].tax_ids = tax_10
+        inv.invoice_line_ids[1].tax_ids = tax_10
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_3')
+        inv.invoice_line_ids[0].tax_ids = tax_10
+        inv.invoice_line_ids[1].tax_ids = tax_10
+        inv.invoice_line_ids[2].tax_ids = tax_00
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_4')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = tax_10
+        inv.invoice_line_ids[2].tax_ids = tax_00
+        inv.invoice_line_ids[3].tax_ids = tax_00
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = False
+
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
@@ -34,9 +63,7 @@ class DocumentTestCase(TransactionCase):
         self.env.ref('l10n_py.py_chart_template').try_loading()
 
         #import wdb;wdb.set_trace()
-        prod = self.env.ref('product.product_product_20_product_template')
-        print('IMPUESTO *****************>>> ',prod.taxes_id.name)
-
+        self.setup_invoices()
 
 
         print('**************************************************************')
