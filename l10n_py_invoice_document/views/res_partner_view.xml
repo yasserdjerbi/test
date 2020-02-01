@@ -13,7 +13,7 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="ruc"/>
                 <field name="ci"/>
-                <field name="partner_type_id" domain="[]"/>
+                <field name="partner_type_id"/>
             </xpath>
         </field>
     </record>
