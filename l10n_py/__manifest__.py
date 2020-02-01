@@ -20,7 +20,9 @@
         'data/l10n_py_post.xml',
         'data/account_chart_template_data.xml',
     ],
-    'demo': [],
+    'demo': [
+        'demo/force_paraguay.xml'
+    ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
 }

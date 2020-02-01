@@ -90,3 +90,8 @@ class Partner(models.Model):
             return basemax - resto
         else:
             return 0
+
+    @api.onchange('partner_type_id')
+    def onchange_partner_type_id(self):
+        for rec in self:
+            rec.ruc = rec.consolidated_ruc

@@ -20,42 +20,18 @@
 
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+from datetime import datetime
 
 
 class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
-        company = self.env['res.company'].search([])
-        print('antes del loading',company.chart_template_id.name)
-
-        #import wdb;wdb.set_trace()
-        # Force user Paraguay country.
-        self.env.user.company_id.country_id = self.env.ref('base.py')
-        self.env.ref('l10n_py.py_chart_template').try_loading()
-
-        print('despues del loading',company.chart_template_id.name)
-
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
         journals = self.env['account.journal'].search(
             [('id', '=', vat_journal.id)])
         for journal in journals:
             journal.write({'l10n_latam_use_documents': True})
-
-        print('**************************************************************')
-
-        print('Pais',self.env.user.company_id.country_id.name)
-        print('Journal', journals[0].name)
-
-        print('**************************************************************')
-        tax = self.env['account.tax'].search([])
-        for t in tax:
-            print(t.name)
-        print('**************************************************************')
-
-
-
-
 
     def validate_invoices(self):
         bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
@@ -84,10 +60,11 @@ class DocumentTestCase(TransactionCase):
     def test_01_check_date(self):
         self.validate_invoices()
 
-        self.assertEqual(self.avl1.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl2.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl3.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl4.date.strftime('%Y-%m-%d'), '2020-01-01')
+        date = datetime.today().strftime('%Y-%m')+'-01'
+        self.assertEqual(self.avl1.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl2.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl3.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl4.date.strftime('%Y-%m-%d'), date)
 
     def test_02_check_ruc(self):
         self.validate_invoices()

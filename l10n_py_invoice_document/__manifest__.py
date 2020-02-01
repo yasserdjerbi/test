@@ -10,6 +10,7 @@
     "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
         'base',
+        'l10n_py',
         'account',
         'l10n_latam_invoice_document'
     ],
