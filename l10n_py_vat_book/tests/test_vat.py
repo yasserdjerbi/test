@@ -20,18 +20,79 @@
 
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+from datetime import datetime
 
 
 class DocumentTestCase(TransactionCase):
+
+    def setup_invoices(self):
+        tax_00 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 0)],limit=1)
+        tax_05 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)],limit=1)
+        tax_10 = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 10)],limit=1)
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_1')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = tax_05
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_2')
+        inv.invoice_line_ids[0].tax_ids = tax_10
+        inv.invoice_line_ids[1].tax_ids = tax_10
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_3')
+        inv.invoice_line_ids[0].tax_ids = tax_10
+        inv.invoice_line_ids[1].tax_ids = tax_10
+        inv.invoice_line_ids[2].tax_ids = tax_00
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_4')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = tax_10
+        inv.invoice_line_ids[2].tax_ids = tax_00
+        inv.invoice_line_ids[3].tax_ids = tax_00
+
+        inv = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        inv.invoice_line_ids[0].tax_ids = tax_05
+        inv.invoice_line_ids[1].tax_ids = False
+
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
-        journals = self.env['account.journal'].search([])
+        # Forzar pais Paraguay en el usuario y cargar el template
+        _ = self.env['res.company'].create({'name': 'MyCompany'})
+        self.env.user.company_id = _
+        self.env.user.company_id.country_id = self.env.ref('base.py')
+        self.env.ref('l10n_py.py_chart_template').try_loading()
+
+        #import wdb;wdb.set_trace()
+        self.setup_invoices()
+
+
+#        print('**************************************************************')
+#        print('Pais', self.env.user.company_id.country_id.name)
+#        print('**************************************************************')
+#        print('impuestos')
+#        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)])
+#        for a in aa:
+#            print(a.name)
+
+#        ii = self.env['account.move'].search([])
+#        for i in ii:
+#            print('-----------------', i.name, i.journal_id.name)
+#            for line in i.invoice_line_ids:
+#                print(line.product_id.name,line.tax_ids.name)
+
+        vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        vat_journal.company_id.country_id = self.env.ref('base.py')
+        journals = self.env['account.journal'].search(
+            [('id', '=', vat_journal.id)])
         for journal in journals:
             journal.write({'l10n_latam_use_documents': True})
 
     def validate_invoices(self):
-        domain = [('id', '!=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        demo_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        domain = [('id', '!=', bad_invoice.id),
+                  ('journal_id', '=', demo_journal.id)]
+
         invoices = self.env['account.move'].search(domain)
         self.assertEqual(len(invoices), 4, 'Debe haber solo cuatro registros')
 
@@ -53,10 +114,11 @@ class DocumentTestCase(TransactionCase):
     def test_01_check_date(self):
         self.validate_invoices()
 
-        self.assertEqual(self.avl1.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl2.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl3.date.strftime('%Y-%m-%d'), '2020-01-01')
-        self.assertEqual(self.avl4.date.strftime('%Y-%m-%d'), '2020-01-01')
+        date = datetime.today().strftime('%Y-%m') + '-01'
+        self.assertEqual(self.avl1.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl2.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl3.date.strftime('%Y-%m-%d'), date)
+        self.assertEqual(self.avl4.date.strftime('%Y-%m-%d'), date)
 
     def test_02_check_ruc(self):
         self.validate_invoices()
@@ -115,30 +177,10 @@ class DocumentTestCase(TransactionCase):
 
     def test_09_no_vat_exception(self):
         # me traigo la factura mal hecha (le falta iva en la segunda linea)
-        domain = [('id', '=', self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad').id)]
+        bad_invoice = self.env.ref('l10n_py_vat_book.demo_vat_invoice_bad')
+        domain = [('id', '=', bad_invoice.id)]
         invoices = self.env['account.move'].search(domain)
 
         # valido la factura y tiene que fallar porque le falta esa linea
         with self.assertRaises(UserError):
             invoices[0].action_post()
-
-    """
-    def test_print(self):
-        print()
-        self.validate_invoices()
-        avl = self.env['account.ar.vat.line'].search([])
-        for line in avl:
-            print(
-                '{} {} {} {} B5={:8} B10={:8} IV5={:8} IV10={:8} EX={:8} TOT={:8}'.format(
-                    line.date,
-                    line.move_id,
-                    line.partner_id,
-                    line.ruc,
-                    line.base_5,
-                    line.base_10,
-                    line.vat_5,
-                    line.vat_10,
-                    line.not_taxed,
-                    line.total))
-        print()
-    """
