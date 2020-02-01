@@ -11,15 +11,15 @@ class Partner(models.Model):
         help='Cedula de Identidad',
         string='CI'
     )
-
     ruc = fields.Char(
         help="Registro Unico de Contribuyentes",
         string='RUC'
     )
-
     partner_type_id = fields.Many2one(
         'partner.type',
-        string='Tipo de Socio de Negocio'
+        string='Tipo de Socio de Negocio',
+        required=True,
+#        default=lambda self: self.env.ref('partner_type_data_1'),
     )
 
     @api.constrains('ruc')
