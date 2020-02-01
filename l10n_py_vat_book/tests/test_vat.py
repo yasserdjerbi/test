@@ -37,9 +37,10 @@ class DocumentTestCase(TransactionCase):
         print('Pais', self.env.user.company_id.country_id.name)
         print('**************************************************************')
         print('impuestos')
-        aa = self.env['account.tax'].search([])
+        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'),('amount','=', 5)])
         for a in aa:
             print(a.name)
+
 
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
         journals = self.env['account.journal'].search(

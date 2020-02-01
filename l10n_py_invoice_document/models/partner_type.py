@@ -42,3 +42,6 @@ class PartnerType(models.Model):
         string='Aplicacion',
         required=True
     )
+
+    def ruc_required(self, company=False):
+        return False
