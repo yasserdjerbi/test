@@ -27,6 +27,12 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
+
+        print('**************************************************************')
+        print('Pais',self.env.user.company_id.country_id.name)
+        print('**************************************************************')
+
+
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
         journals = self.env['account.journal'].search(
             [('id', '=', vat_journal.id)])
