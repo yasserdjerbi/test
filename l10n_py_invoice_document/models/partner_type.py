@@ -8,15 +8,7 @@ class PartnerType(models.Model):
     _name = 'partner.type'
     _description = 'Definicion de tipos de partner'
 
-    type = fields.Selection([
-        ('local_customer', 'Clientes Locales'),
-        ('foreign', 'Extranjeros'),
-        ('export', 'Exportacion'),
-        ('diplomats', 'Diplomaticos'),
-        ('state_client', 'Clientes del Estado'),
-        ('local_vendor', 'Proveedores Locales'),
-        ('local_creditor', 'Acreedores Locales'),
-        ('foreign_vendor', 'Proveedore del Exterior')],
+    name = fields.Char(
         help='Tipo de cliente',
         required=True
     )

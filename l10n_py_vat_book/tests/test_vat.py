@@ -66,13 +66,13 @@ class DocumentTestCase(TransactionCase):
         self.setup_invoices()
 
 
-        print('**************************************************************')
-        print('Pais', self.env.user.company_id.country_id.name)
-        print('**************************************************************')
-        print('impuestos')
-        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)])
-        for a in aa:
-            print(a.name)
+#        print('**************************************************************')
+#        print('Pais', self.env.user.company_id.country_id.name)
+#        print('**************************************************************')
+#        print('impuestos')
+#        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)])
+#        for a in aa:
+#            print(a.name)
 
 #        ii = self.env['account.move'].search([])
 #        for i in ii:

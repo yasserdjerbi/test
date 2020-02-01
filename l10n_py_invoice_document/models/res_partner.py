@@ -18,6 +18,7 @@ class Partner(models.Model):
     partner_type_id = fields.Many2one(
         'partner.type',
         string='Tipo de Socio de Negocio',
+        ondelete='restrict',
         required=True,
     )
 
@@ -25,7 +26,7 @@ class Partner(models.Model):
     def check_ruc(self):
         for rec in self:
             chk = rec.partner_type_id.ruc_required
-            if chk(rec.company_type):
+            if chk(rec.company_type) and not rec.ruc:
                 raise ValidationError(_('El RUC es requerido, no puede quedar '
                                         'en blanco'))
 
@@ -97,4 +98,4 @@ class Partner(models.Model):
     @api.onchange('partner_type_id')
     def onchange_partner_type_id(self):
         for rec in self:
-            rec.ruc = rec.consolidated_ruc
+            rec.ruc = rec.partner_type_id.consolidated_ruc
