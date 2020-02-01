@@ -27,12 +27,17 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
-
         # Forzar pais Paraguay en el usuario y cargar el template
         _ = self.env['res.company'].create({'name': 'MyCompany'})
         self.env.user.company_id = _
         self.env.user.company_id.country_id = self.env.ref('base.py')
         self.env.ref('l10n_py.py_chart_template').try_loading()
+
+        #import wdb;wdb.set_trace()
+        prod = self.env.ref('product.product_product_20_product_template')
+        print('IMPUESTO *****************>>> ',prod.taxes_id.name)
+
+
 
         print('**************************************************************')
         print('Pais', self.env.user.company_id.country_id.name)
@@ -41,7 +46,6 @@ class DocumentTestCase(TransactionCase):
         aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)])
         for a in aa:
             print(a.name)
-
 
 #        ii = self.env['account.move'].search([])
 #        for i in ii:
