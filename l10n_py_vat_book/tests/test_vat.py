@@ -27,6 +27,10 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
+        # Forzar pais Paraguay en el usuario y cargar el template
+        self.env.user.company_id = self.env['res.company'].create({'name': 'MyCompany'})
+        self.env.user.company_id.country = self.env.ref('base.py')
+        self.env.ref('l10n_py.py_chart_template').try_loading()
 
         print('**************************************************************')
         print('Pais',self.env.user.company_id.country_id.name)
