@@ -27,6 +27,7 @@ class DocumentTestCase(TransactionCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 
+
         # Forzar pais Paraguay en el usuario y cargar el template
         _ = self.env['res.company'].create({'name': 'MyCompany'})
         self.env.user.company_id = _
@@ -37,21 +38,19 @@ class DocumentTestCase(TransactionCase):
         print('Pais', self.env.user.company_id.country_id.name)
         print('**************************************************************')
         print('impuestos')
-        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'),('amount','=', 5)])
+        aa = self.env['account.tax'].search([('type_tax_use', '=', 'sale'), ('amount','=', 5)])
         for a in aa:
             print(a.name)
 
-        #import wdb;wdb.set_trace()
 
-        ii = self.env['account.move'].search([])
-        for i in ii:
-            print('-----------------', i.name, i.journal_id.name)
-            for line in i.invoice_line_ids:
-                print(line.product_id.name,line.tax_ids.name)
-
-
+#        ii = self.env['account.move'].search([])
+#        for i in ii:
+#            print('-----------------', i.name, i.journal_id.name)
+#            for line in i.invoice_line_ids:
+#                print(line.product_id.name,line.tax_ids.name)
 
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
+        vat_journal.company_id.country_id = self.env.ref('base.py')
         journals = self.env['account.journal'].search(
             [('id', '=', vat_journal.id)])
         for journal in journals:

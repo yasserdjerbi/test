@@ -19,14 +19,15 @@ class Partner(models.Model):
         'partner.type',
         string='Tipo de Socio de Negocio',
         required=True,
-#        default=lambda self: self.env.ref('partner_type_data_1'),
     )
 
     @api.constrains('ruc')
     def check_ruc(self):
         for rec in self:
-            if not rec.ruc and rec.partner_type_id.ruc_required(rec.company_type):
-                raise ValidationError(rec.partner_type_id.msg())
+            chk = rec.partner_type_id.ruc_required
+            if chk(rec.company_type):
+                raise ValidationError(_('El RUC es requerido, no puede quedar '
+                                        'en blanco'))
 
             if not rec._check_ruc(rec.ruc):
                 raise ValidationError(_("El RUC es invalido"))
@@ -57,8 +58,7 @@ class Partner(models.Model):
 
     @staticmethod
     def _calc_dv(ruc):
-        """
-            Función que calcula el dígito verificador en Python
+        """ Función que calcula el dígito verificador en Python
             autor: Blas Isaias Fernández Cáceres
             https://github.com/BlasFerna/py-ruc-calc
         """

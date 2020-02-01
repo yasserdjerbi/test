@@ -43,10 +43,8 @@ class PartnerType(models.Model):
         required=True
     )
 
-    @staticmethod
-    def ruc_required(company_type):
-        return False
-
-    @staticmethod
-    def msg():
-        return 'se requiere ruc, (y mejorar este mensaje)'
+    def ruc_required(self, company_type):
+        if company_type == 'company':
+            return self.ruc_required_company
+        if company_type == 'individual':
+            return self.ruc_required_person

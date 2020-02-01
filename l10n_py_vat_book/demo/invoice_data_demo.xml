@@ -22,13 +22,13 @@
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 35.0,
                 'quantity': 2,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 36,
                 'quantity': 3,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)]
                 }),
         ]"/>
     </record>
@@ -48,13 +48,13 @@
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 17.0,
                 'quantity': 4,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 18.0,
                 'quantity': 5,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)]
                 }),
         ]"/>
     </record>
@@ -74,19 +74,19 @@
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 10.0,
                 'quantity': 6,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 11.0,
                 'quantity': 7,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 12.0,
                 'quantity': 8,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)]
                 }),
         ]"/>
     </record>
@@ -106,25 +106,25 @@
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 13.0,
                 'quantity': 9,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 14.0,
                 'quantity': 10,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 10)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 15.0,
                 'quantity': 11,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 16.0,
                 'quantity': 12,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 0)],limit=1).ids)]
                 }),
         ]"/>
     </record>
@@ -144,13 +144,13 @@
                 'product_id': ref('product.product_product_20_product_template'),
                 'price_unit': 13.0,
                 'quantity': 9,
-                'tax_ids': (6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)
+                'tax_ids': [(6, 0, obj().tax_ids.search([('type_tax_use', '=', 'sale'),('amount','=', 5)],limit=1).ids)]
                 }),
             (0, 0, {
                 'product_id': ref('product.consu_delivery_03_product_template'),
                 'price_unit': 14.0,
                 'quantity': 10,
-                'tax_ids': (5, 0, 0)
+                'tax_ids': [(5, 0, 0)]
                 }),
         ]"/>
     </record>
