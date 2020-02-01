@@ -19,7 +19,6 @@
         'security/security.xml'
     ],
     'demo': [
-        'demo/force_paraguay.xml',
         'demo/product_data_demo.xml',
         'demo/invoice_data_demo.xml'
     ],

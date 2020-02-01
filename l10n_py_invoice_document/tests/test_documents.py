@@ -57,4 +57,3 @@ class DocumentTestCase(TransactionCase):
         """
         partner = self.env['res.partner']
         self.assertEqual(partner._calc_dv('80028764'), 9)
-

@@ -28,12 +28,13 @@ class DocumentTestCase(TransactionCase):
         super().setUp(*args, **kwargs)
 
         # Forzar pais Paraguay en el usuario y cargar el template
-        self.env.user.company_id = self.env['res.company'].create({'name': 'MyCompany'})
-        self.env.user.company_id.country = self.env.ref('base.py')
+        _ = self.env['res.company'].create({'name': 'MyCompany'})
+        self.env.user.company_id = _
+        self.env.user.company_id.country_id = self.env.ref('base.py')
         self.env.ref('l10n_py.py_chart_template').try_loading()
 
         print('**************************************************************')
-        print('Pais',self.env.user.company_id.country_id.name)
+        print('Pais', self.env.user.company_id.country_id.name)
         print('**************************************************************')
         print('impuestos')
         aa = self.env['account.tax'].search([])
@@ -73,7 +74,7 @@ class DocumentTestCase(TransactionCase):
     def test_01_check_date(self):
         self.validate_invoices()
 
-        date = datetime.today().strftime('%Y-%m')+'-01'
+        date = datetime.today().strftime('%Y-%m') + '-01'
         self.assertEqual(self.avl1.date.strftime('%Y-%m-%d'), date)
         self.assertEqual(self.avl2.date.strftime('%Y-%m-%d'), date)
         self.assertEqual(self.avl3.date.strftime('%Y-%m-%d'), date)
