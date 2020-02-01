@@ -91,6 +91,23 @@ class AccountJournal(models.Model):
         self.ensure_one()
         if self.type in ['out_invoice', 'out_refund']:
 
+            # verificar el tipo de cliente
+            partner_type = self.partner_id.partner_type_id
+            if partner_type.applied_to != 'sale':
+                raise ValidationError('El tipo de cliente "%s" no esta '
+                                      'habilitado para ventas' % self.name)
+
+            # verificar si tengo cuenta por defecto y aplicarla
+            if partner_type.default_account:
+                for line in self.invoice_line_ids:
+                    if not partner_type.default_account.reconcile:
+                        raise ValidationError(
+                            'Se quiere aplicar la cuenta %s a esta '
+                            'operacion.\nEsto no es posible porque la cuenta '
+                            'no es reconciliable.'
+                            '' % partner_type.default_account.display_name)
+                    line.account_id = partner_type.default_account
+
             # obtener las secuencias definidas en el diario
             sequence_ids = self.journal_id.l10n_py_sequence_ids
 
