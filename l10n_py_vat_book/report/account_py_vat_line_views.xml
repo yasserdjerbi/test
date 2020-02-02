@@ -67,7 +67,7 @@
     </record>
 
     <record id="action_account_ar_vat_line" model="ir.actions.act_window">
-        <field name="name">Libros de IVA</field>
+        <field name="name">Analisis de IVA</field>
         <field name="res_model">account.ar.vat.line</field>
         <field name="view_mode">tree,pivot</field>
         <field name="context">{'search_default_posted': 1, 'time_ranges': {'field': 'date', 'range': 'last_month'}}</field>

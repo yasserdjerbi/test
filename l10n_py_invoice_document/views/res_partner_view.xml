@@ -13,7 +13,10 @@
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="ruc"/>
                 <field name="ci"/>
-                <field name="partner_type_id" options="{'no_open': False,'no_create':True}"/>
+                <field name="partner_type_id"
+                       options="{'no_open': False,'no_create':True}"
+                       required="True"
+                />
             </xpath>
         </field>
     </record>

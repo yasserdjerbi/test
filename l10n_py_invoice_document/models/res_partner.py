@@ -19,7 +19,6 @@ class Partner(models.Model):
         'partner.type',
         string='Tipo de Socio de Negocio',
         ondelete='restrict',
-        required=True,
     )
 
     @api.constrains('ruc')
