@@ -115,6 +115,10 @@ class AccountArVatLine(models.Model):
         readonly=True
     )
 
+    document_type = fields.Char(
+        related='document_type_id.display_name'
+    )
+
     def open_journal_entry(self):
         self.ensure_one()
         return self.move_id.get_formview_action()
@@ -186,7 +190,6 @@ LEFT JOIN
     res_partner AS rp
     ON rp.id = am.partner_id
 WHERE
---    (aml.tax_line_id is not null) and
     account_internal_type <> 'receivable' and
     am.type in ('out_invoice', 'in_invoice', 'out_refund', 'in_refund')
 

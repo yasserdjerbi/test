@@ -17,14 +17,14 @@ class L10nARVatBook(models.AbstractModel):
             {'name': _("Document")},
             {'name': _("Name")},
             {'name': _("R.U.C.")},
-            {'name': _("IVA")},
-            {'name': _('Taxed'), 'class': 'number'},
-            {'name': _('Not Taxed'), 'class': 'number'},
-            {'name': _('Base 5'), 'class': 'number'},
+            {'name': _("Base 5"), 'class': 'number'},
             {'name': _('Base 10'), 'class': 'number'},
+            {'name': _('Taxed'), 'class': 'number'},
+            {'name': _('Not taxed'), 'class': 'number'},
             {'name': _('IVA 5%'), 'class': 'number'},
             {'name': _('IVA 10%'), 'class': 'number'},
-            {'name': _('Total'), 'class': 'number'},
+            {'name': _('TOTAL'), 'class': 'number'},
+            {'name': _('Tipo Documento')},
         ]
 
     @api.model
@@ -51,8 +51,7 @@ class L10nARVatBook(models.AbstractModel):
             sign = -1.0
 
         totals = {}.fromkeys(['taxed', 'not_taxed','base_5','base_10',
-                              'vat_5', 'vat_10',
-                              'total'], 0)
+                              'vat_5', 'vat_10', 'total'], 0)
 
         domain = [('journal_id.type', '=', journal_type),
                   ('journal_id.l10n_latam_use_documents', '=', True),
@@ -91,15 +90,15 @@ class L10nARVatBook(models.AbstractModel):
                     {'name': rec['move_name']},
                     {'name': rec['partner_name']},
                     {'name': rec['ruc']},
-                    {'name': self.format_value(sign * taxed)},
-                    {'name': self.format_value(sign * rec['not_taxed'])},
 
                     {'name': self.format_value(sign * rec['base_5'])},
                     {'name': self.format_value(sign * rec['base_10'])},
-
+                    {'name': self.format_value(sign * taxed)},
+                    {'name': self.format_value(sign * rec['not_taxed'])},
                     {'name': self.format_value(sign * rec['vat_5'])},
                     {'name': self.format_value(sign * rec['vat_10'])},
                     {'name': self.format_value(sign * rec['total'])},
+                    {'name': rec['document_type']},
                 ],
             })
             line_id += 1
@@ -113,14 +112,15 @@ class L10nARVatBook(models.AbstractModel):
                 {'name': ''},
                 {'name': ''},
                 {'name': ''},
-                {'name': ''},
-                {'name': self.format_value(sign * totals['taxed'])},
-                {'name': self.format_value(sign * totals['not_taxed'])},
                 {'name': self.format_value(sign * totals['base_5'])},
                 {'name': self.format_value(sign * totals['base_10'])},
+                {'name': self.format_value(sign * totals['taxed'])},
+                {'name': self.format_value(sign * totals['not_taxed'])},
                 {'name': self.format_value(sign * totals['vat_5'])},
                 {'name': self.format_value(sign * totals['vat_10'])},
                 {'name': self.format_value(sign * totals['total'])},
+                {'name': ''},
+
             ],
         })
         return lines
