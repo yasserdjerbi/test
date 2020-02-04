@@ -12,11 +12,11 @@ class AccountJournal(models.Model):
         help="Numero de timbrado que habilita la factura",
         string='Timbrado'
     )
-    l10n_py_trade_code = fields.Integer(
+    l10n_py_trade_code = fields.Char(
         related='journal_id.l10n_py_trade_code',
         help='Campo tecnico para relacionar con el timbrado'
     )
-    l10n_py_shipping_point = fields.Integer(
+    l10n_py_shipping_point = fields.Char(
         related='journal_id.l10n_py_shipping_point',
         help='Campo tecnico para relacionar con el timbrado'
     )
@@ -47,7 +47,8 @@ class AccountJournal(models.Model):
     document_number = fields.Char(
         help="Campo tecnico con la ultima parte del numero de factura, se usa"
              "para mandar a imprimir cuando es preimpreso",
-        compute='_compute_document_number'
+        compute='_compute_document_number',
+        string='Ultima parte del Nro de Factura'
     )
 
     def _compute_document_number(self):
@@ -74,8 +75,8 @@ class AccountJournal(models.Model):
         """
         for rec in self:
             domain = [
-                ('trade_code', '=', rec.l10n_py_shipping_point),
-                ('shipping_point', '=', rec.l10n_py_trade_code),
+                ('shipping_point', '=', rec.l10n_py_shipping_point),
+                ('trade_code', '=', rec.l10n_py_trade_code),
                 ('document_type_id.code', '=', rec.document_type_code),
                 ('state', '=', 'active')
             ]

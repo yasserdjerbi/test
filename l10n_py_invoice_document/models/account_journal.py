@@ -7,13 +7,15 @@ from odoo import fields, models, api, _
 class AccountJournal(models.Model):
     _inherit = "account.journal"
 
-    l10n_py_shipping_point = fields.Integer(
+    l10n_py_shipping_point = fields.Char(
         'Sucursal',
         help='Numero de sucursal que representa este diario',
+        copy=False
     )
-    l10n_py_trade_code = fields.Integer(
+    l10n_py_trade_code = fields.Char(
         'Punto de Expedición',
         help='Punto de expedición que representa este diario',
+        copy=False
     )
     l10n_py_sequence_ids = fields.One2many(
         'ir.sequence',
@@ -26,6 +28,24 @@ class AccountJournal(models.Model):
          'unique(l10n_py_shipping_point,l10n_py_trade_code,type)',
          "Otro diario ya tiene los mismos codigos de sucursal y expedicion!!")
     ]
+
+    @staticmethod
+    def _format(value):
+        try:
+            intvalue = int(value)
+        except ValueError:
+            raise ValidationError('Esperabamos un numero')
+        return '{0:03}'.format(intvalue)
+
+    @api.onchange('l10n_py_shipping_point')
+    def onchange_point(self):
+        self.ensure_one()
+        self.l10n_py_shipping_point = self._format(self.l10n_py_shipping_point)
+
+    @api.onchange('l10n_py_trade_code')
+    def onchange_code(self):
+        self.ensure_one()
+        self.l10n_py_trade_code = self._format(self.l10n_py_trade_code)
 
     def _get_journal_codes(self):
         self.ensure_one()
