@@ -5,24 +5,27 @@ from odoo import fields, models, api, _
 
 
 class AccountJournal(models.Model):
-
     _inherit = "account.journal"
 
     l10n_py_shipping_point = fields.Integer(
         'Sucursal',
         help='Numero de sucursal que representa este diario',
-        default=1
     )
     l10n_py_trade_code = fields.Integer(
         'Punto de Expedición',
         help='Punto de expedición que representa este diario',
-        default=1
     )
     l10n_py_sequence_ids = fields.One2many(
         'ir.sequence',
         'l10n_latam_journal_id',
         string="Sequences"
     )
+
+    _sql_constraints = [
+        ('diario-unico-sucursal-expedicion-type',
+         'unique(l10n_py_shipping_point,l10n_py_trade_code,type)',
+         "Otro diario ya tiene los mismos codigos de sucursal y expedicion!!")
+    ]
 
     def _get_journal_codes(self):
         self.ensure_one()
@@ -70,11 +73,11 @@ class AccountJournal(models.Model):
             [('journal_id', '=', self.id),
              ('state', '!=', 'draft')])
         if invoices:
+            inv = invoices[:5]
             raise ValidationError(_(
                 'No puede cambiar la configuracion de un diario que ya tiene'
-                'facturas validadas' +
-                ':<br/><br/> - %s' % ('<br/>- '.join(invoices.mapped(
-                    'display_name')))))
+                'facturas validadas, mostramos algunas:\n' +
+                '- %s' % ('\n- '.join(inv.mapped('display_name')))))
 
     def _l10n_py_create_document_sequences(self):
         """ IF Configuration change try to review if this can be done and then
@@ -101,7 +104,7 @@ class AccountJournal(models.Model):
         documents = self.env['l10n_latam.document.type'].search(domain)
         for document in documents:
             if self.l10n_py_sequence_ids.filtered(
-               lambda x: x.id == document.id):
+                lambda x: x.id == document.id):
                 continue
 
             sequences |= self.env['ir.sequence'].create(
