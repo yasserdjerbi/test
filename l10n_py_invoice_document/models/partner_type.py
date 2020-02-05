@@ -22,7 +22,6 @@ class PartnerType(models.Model):
     )
     consolidated_ruc = fields.Char(
         string='RUC Consolidado',
-        required=True
     )
     default_account = fields.Many2one(
         'account.account',

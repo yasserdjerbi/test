@@ -34,21 +34,21 @@
             <field name="name">Clientes del Estado</field>
             <field name="ruc_required_person" eval="False"/>
             <field name="ruc_required_company" eval="True"/>
-            <field name="consolidated_ruc"/>
+            <field name="consolidated_ruc" eval="False"/>
         </record>
         <record id="partner_type_data_6" model="partner.type">
             <field name="applied_to">purchase</field>
             <field name="name">Proveedores Locales</field>
             <field name="ruc_required_person" eval="False"/>
             <field name="ruc_required_company" eval="True"/>
-            <field name="consolidated_ruc"/>
+            <field name="consolidated_ruc" eval="False"/>
         </record>
         <record id="partner_type_data_7" model="partner.type">
             <field name="applied_to">purchase</field>
             <field name="name">Acreedores Locales</field>
             <field name="ruc_required_person" eval="False"/>
             <field name="ruc_required_company" eval="True"/>
-            <field name="consolidated_ruc"/>
+            <field name="consolidated_ruc" eval="False"/>
         </record>
         <record id="partner_type_data_8" model="partner.type">
             <field name="applied_to">purchase</field>

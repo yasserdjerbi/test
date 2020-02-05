@@ -2,7 +2,7 @@
 
 {
     'name': 'Contabilidad Paraguay',
-    'version': '13.0.0.0.2',
+    'version': '13.0.0.0.3',
     'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"

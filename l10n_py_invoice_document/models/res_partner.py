@@ -13,7 +13,8 @@ class Partner(models.Model):
     )
     ruc = fields.Char(
         help="Registro Unico de Contribuyentes",
-        string='RUC'
+        string='RUC',
+        copy=False
     )
     partner_type_id = fields.Many2one(
         'partner.type',
