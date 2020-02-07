@@ -45,7 +45,7 @@ class Partner(models.Model):
 
         # obtengo el numero antes del guion y el dv despues del guion
         numero = ruc[:ruc.find('-')]
-        dv = ruc[ruc.find('-')+1:]
+        dv = ruc[ruc.find('-') + 1:]
 
         # verifico que los dos sean numeros, sino ya es invalido
         try:
@@ -113,3 +113,29 @@ class Partner(models.Model):
                 if partner_type.applied_to == 'purchase':
                     rec.property_account_payable_id = \
                         partner_type.default_account
+
+    def _name_search(self, name, args=None, operator='ilike', limit=100,
+        name_get_uid=None):
+        if not args:
+            args = []
+        if name:
+            positive_operators = ['=', 'ilike', '=ilike', 'like', '=like']
+            partner_ids = []
+            if operator in positive_operators:
+                partner_ids = self._search(
+                    [('ruc', 'ilike', name)] + args, limit=limit,
+                    access_rights_uid=name_get_uid)
+                if not partner_ids:
+                    partner_ids = self._search(
+                        [('ci', 'ilike', name)] + args, limit=limit,
+                        access_rights_uid=name_get_uid)
+                    if not partner_ids:
+                        partner_ids = self._search(
+                            [('name', 'ilike', name)] + args, limit=limit,
+                            access_rights_uid=name_get_uid)
+        else:
+            partner_ids = self._search(args, limit=limit,
+                                       access_rights_uid=name_get_uid)
+
+        return models.lazy_name_get(self.browse(partner_ids).with_user(
+            name_get_uid))
