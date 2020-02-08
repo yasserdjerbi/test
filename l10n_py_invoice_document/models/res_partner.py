@@ -16,20 +16,22 @@ class Partner(models.Model):
         string='RUC',
         copy=False
     )
-    partner_type_id = fields.Many2one(
+    partner_type_sale_id = fields.Many2one(
         'partner.type',
-        string='Tipo de Socio de Negocio',
+        string='Tipo de cliente',
         ondelete='restrict',
+        domain=[('applied_to', '=', 'sale')]
+    )
+    partner_type_purchase_id = fields.Many2one(
+        'partner.type',
+        string='Tipo de proveedor',
+        ondelete='restrict',
+        domain=[('applied_to', '=', 'purchase')]
     )
 
     @api.constrains('ruc')
     def check_ruc(self):
         for rec in self:
-            chk = rec.partner_type_id.ruc_required
-            if chk(rec.company_type) and not rec.ruc:
-                raise ValidationError(_('El RUC es requerido, no puede quedar '
-                                        'en blanco'))
-
             if not rec._check_ruc(rec.ruc):
                 raise ValidationError(_("El RUC es invalido"))
 
@@ -95,21 +97,30 @@ class Partner(models.Model):
         else:
             return 0
 
-    @api.onchange('partner_type_id')
-    def onchange_partner_type_id(self):
-        """ Cuando cambia el tipo de partner, poner el ruc consolidado y las
-            cuentas contables.
+    @api.onchange('partner_type_sale_id')
+    def onchange_partner_type_sale_id(self):
+        """ Cuando cambia el tipo de partner en ventas, corregir las cuentas
+            contables.
         """
         for rec in self:
-            partner_type = rec.partner_type_id
-            # poner el ruc consolidado correspondiente
-            rec.ruc = partner_type.consolidated_ruc
+            partner_type = rec.partner_type_sale_id
 
             # poner la cuenta por defecto si esta definida
             if partner_type.default_account:
                 if partner_type.applied_to == 'sale':
                     rec.property_account_receivable_id = \
                         partner_type.default_account
+
+    @api.onchange('partner_type_purchase_id')
+    def onchange_partner_type_purchase_id(self):
+        """ Cuando cambia el tipo de partner en compras, corregir las cuentas
+            contables.
+        """
+        for rec in self:
+            partner_type = rec.partner_type_purchase_id
+
+            # poner la cuenta por defecto si esta definida
+            if partner_type.default_account:
                 if partner_type.applied_to == 'purchase':
                     rec.property_account_payable_id = \
                         partner_type.default_account

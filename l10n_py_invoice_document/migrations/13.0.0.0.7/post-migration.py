@@ -13,11 +13,5 @@ def migrate(env, version):
     _logger.info('Migration -> poner partner type en clientes locales')
     env.cr.execute("""
     UPDATE res_partner
-    SET partner_type_id = 1;
-    """)
-
-    _logger.info('Migration -> mover los datos vat - ruc')
-    env.cr.execute("""
-    UPDATE res_partner
-    SET ruc = vat;
+    SET partner_type_sale_id = partner_type_id;
     """)

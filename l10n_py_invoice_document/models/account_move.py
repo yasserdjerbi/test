@@ -92,8 +92,18 @@ class AccountJournal(models.Model):
         self.ensure_one()
         if self.type in ['out_invoice', 'out_refund']:
 
+            # verificar si tiene instalado
+            if not self.partner_type_sale_id:
+                raise ValidationError(_('Debe definir el tipo de socio de '
+                                        'negocio en el cliente'))
+
+            chk = self.partner_type_sale_id.ruc_required
+            if chk(self.company_type) and not self.ruc:
+                raise ValidationError(_('El RUC es requerido, no puede quedar '
+                                        'en blanco'))
+
             # verificar el tipo de cliente
-            partner_type = self.partner_id.partner_type_id
+            partner_type = self.partner_id.partner_type_sale_id
             if partner_type.applied_to != 'sale':
                 raise ValidationError('El tipo de cliente "%s" no esta '
                                       'habilitado para ventas' % self.name)
