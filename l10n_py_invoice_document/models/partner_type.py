@@ -10,28 +10,43 @@ class PartnerType(models.Model):
 
     name = fields.Char(
         help='Tipo de cliente',
-        required=True
+        required=True,
+        readonly=True
     )
     ruc_required_person = fields.Boolean(
         string='Obligatorio para individuos',
-        required=True
+        required=True,
+        help='Indica si el Cliente/Proveedor debe tener su RUC definido '
+             'cuando es un individuo.\n'
+             'Si no es obligatorio, entonces al facturar se tomará el RUC '
+             'consolidado.'
     )
     ruc_required_company = fields.Boolean(
         string='Obligatorio para empresas',
-        required=True
+        required=True,
+        help='Indica si el Cliente/Proveedor debe tener su RUC definido '
+             'cuando es una empresa.\n'
+             'Si no es obligatorio, entonces al facturar se tomará el RUC '
+             'consolidado.'
     )
     consolidated_ruc = fields.Char(
         string='RUC Consolidado',
+        help='En ciertos casos, cuando se permite tener el RUC en blanco se '
+             'usara este RUC consolidado.'
     )
     default_account = fields.Many2one(
         'account.account',
         string='Cuenta Predeterminada',
+        help='Cuenta contable que se utilizará para este tipo de '
+             'Cliente/Proveedor'
     )
     applied_to = fields.Selection([
         ('sale', 'Ventas'),
         ('purchase', 'Compras')],
         string='Aplicacion',
-        required=True
+        required=True,
+        help='Indica si este tipo de Cliente/Proveedor aplica para venta o ' \
+             'para compra'
     )
 
     def ruc_required(self, company_type):
