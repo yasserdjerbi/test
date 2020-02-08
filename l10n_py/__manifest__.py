@@ -5,7 +5,7 @@
     'version': '13.0.0.0.3',
     'author': 'Tecnopro',
     'category': 'Localizacion',
-    "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
+    "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"
     'license': 'Other OSI approved licence',
     'website': 'tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',

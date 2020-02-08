@@ -1,6 +1,6 @@
 {
     'name': 'Tipos de documentos (facturacion) Paraguay',
-    'version': '13.0.0.0.6',
+    'version': '13.0.0.0.7',
     'category': 'Localizacion',
     'sequence': 14,
     'author': 'Tecnopro',
