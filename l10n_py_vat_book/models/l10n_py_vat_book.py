@@ -3,7 +3,7 @@ from odoo import _, api, models
 from odoo.tools.misc import format_date
 
 
-class L10nARVatBook(models.AbstractModel):
+class L10nPYVatBook(models.AbstractModel):
     _name = "l10n_py.vat.book"
     _inherit = "account.report"
     _description = "Libro de IVA Paraguay"

@@ -93,31 +93,26 @@ class AccountJournal(models.Model):
         if self.type in ['out_invoice', 'out_refund']:
 
             # verificar si tiene instalado
-            if not self.partner_type_sale_id:
+            if not self.partner_id.partner_type_sale_id:
                 raise ValidationError(_('Debe definir el tipo de socio de '
                                         'negocio en el cliente'))
 
-            chk = self.partner_type_sale_id.ruc_required
-            if chk(self.company_type) and not self.ruc:
-                raise ValidationError(_('El RUC es requerido, no puede quedar '
-                                        'en blanco'))
+            # verificar si tiene definido el tipo de partner
+            if not self.partner_id.partner_type_sale_id:
+                raise ValidationError(_('Debe definir el tipo de Cliente '
+                                        'en el Formulario de Cliente'))
 
-            # verificar el tipo de cliente
+            # verificar que el tipo de cliente se para ventas
             partner_type = self.partner_id.partner_type_sale_id
             if partner_type.applied_to != 'sale':
-                raise ValidationError('El tipo de cliente "%s" no esta '
-                                      'habilitado para ventas' % self.name)
+                raise ValidationError(_('El tipo de cliente "%s" no esta '
+                                      'habilitado para '
+                                      'ventas' % partner_type.name))
 
-            # verificar si tengo cuenta por defecto y aplicarla
-            if partner_type.default_account:
-                for line in self.invoice_line_ids:
-                    if not partner_type.default_account.reconcile:
-                        raise ValidationError(
-                            'Se quiere aplicar la cuenta %s a esta '
-                            'operacion.\nEsto no es posible porque la cuenta '
-                            'no es reconciliable.'
-                            '' % partner_type.default_account.display_name)
-                    line.account_id = partner_type.default_account
+            chk = self.partner_id.partner_type_sale_id.ruc_required
+            if chk(self.partner_id.company_type) and not self.partner_id.ruc:
+                raise ValidationError(_('El RUC es requerido, en este caso no '
+                                        'puede quedar en blanco'))
 
             # obtener las secuencias definidas en el diario
             sequence_ids = self.journal_id.l10n_py_sequence_ids

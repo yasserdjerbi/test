@@ -152,7 +152,10 @@ SELECT
             WHEN btg.name = 'IVA Excento'
             THEN aml.balance ELSE Null END) as not_taxed,
     sum(aml.balance) as total,
-    rp.ruc as ruc,
+    CASE
+        WHEN am.type in ('out_invoice','out_refund')
+        THEN rp.sale_ruc
+        ELSE rp.purchase_ruc END as ruc,
     am.name as move_name,
     rp.name as partner_name,
     am.id as move_id,

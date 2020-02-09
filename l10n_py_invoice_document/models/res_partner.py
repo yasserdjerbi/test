@@ -16,18 +16,58 @@ class Partner(models.Model):
         string='RUC',
         copy=False
     )
+    # TODO: ver porque no puedo poner ref aca
+    # default=lambda self: self.env.ref('l10n_py_invoice_document.partner_type_data_1').id
     partner_type_sale_id = fields.Many2one(
         'partner.type',
         string='Tipo de cliente',
         ondelete='restrict',
-        domain=[('applied_to', '=', 'sale')]
+        domain=[('applied_to', '=', 'sale')],
+        default=lambda self: self.env['partner.type'].search(
+            [('name', '=', 'Clientes Locales')]).id
     )
     partner_type_purchase_id = fields.Many2one(
         'partner.type',
         string='Tipo de proveedor',
         ondelete='restrict',
-        domain=[('applied_to', '=', 'purchase')]
+        domain=[('applied_to', '=', 'purchase')],
+        default=lambda self: self.env['partner.type'].search(
+            [('name', '=', 'Proveedores Locales')]).id
     )
+    sale_ruc = fields.Char(
+        help='campo tecnico que contiene el ruc real para venta',
+        compute='compute_rucs',
+        readonly=True,
+        store=True
+    )
+    purchase_ruc = fields.Char(
+        help='campo tecnico que contiene el ruc real para venta',
+        compute='compute_rucs',
+        readonly=True,
+        store=True
+    )
+
+    @api.depends('ruc', 'partner_type_sale_id',
+                 'partner_type_sale_id.consolidated_ruc')
+    def compute_rucs(self):
+        """ define cual va a ser el ruc real de acuerdo a si es compra o venta
+        """
+
+        for rec in self:
+            # si tiene un ruc puesto es ese
+            if rec.ruc:
+                s_ruc = p_ruc = rec.ruc
+            else:
+                s_ruc = p_ruc = False
+                if rec.partner_type_sale_id:
+                    s_ruc = rec.partner_type_sale_id.consolidated_ruc
+                if rec.partner_type_purchase_id:
+                    p_ruc = rec.partner_type_purchase_id.consolidated_ruc
+
+            rec.write({
+                'sale_ruc': s_ruc,
+                'purchase_ruc': p_ruc,
+            })
 
     @api.constrains('ruc')
     def check_ruc(self):

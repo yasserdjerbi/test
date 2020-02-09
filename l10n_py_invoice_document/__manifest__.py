@@ -17,6 +17,7 @@
     'external_dependencies': {
     },
     'data': [
+        'data/partner_type_data.xml',
         'data/payment_terms.xml',
         'data/l10n_latam.document.type.csv',
         'views/l10n_latam_document_type_view.xml',
@@ -26,7 +27,6 @@
         'views/account_move_view.xml',
         'data/ir_cron_data.xml',
         'views/res_partner_view.xml',
-        'data/partner_type_data.xml',
         'views/partner_type_view.xml',
     ],
     'demo': [
