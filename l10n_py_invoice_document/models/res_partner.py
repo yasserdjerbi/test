@@ -17,7 +17,8 @@ class Partner(models.Model):
         copy=False
     )
     # TODO: ver porque no puedo poner ref aca
-    # default=lambda self: self.env.ref('l10n_py_invoice_document.partner_type_data_1').id
+    # default=lambda self: self.env.ref(
+    # 'l10n_py_invoice_document.partner_type_data_1').id
     partner_type_sale_id = fields.Many2one(
         'partner.type',
         string='Tipo de cliente',
@@ -165,8 +166,8 @@ class Partner(models.Model):
                     rec.property_account_payable_id = \
                         partner_type.default_account
 
-    def _name_search(self, name, args=None, operator='ilike', limit=100,
-        name_get_uid=None):
+    def _name_search(self, name, args=None, operator='ilike',
+                     limit=100, name_get_uid=None):
         if not args:
             args = []
         if name:

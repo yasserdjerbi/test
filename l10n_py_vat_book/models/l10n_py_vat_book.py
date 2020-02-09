@@ -32,9 +32,9 @@ class L10nPYVatBook(models.AbstractModel):
         journal_type = self.env.context.get('journal_type')
         # when printing report there is no key on context
         return {
-                'sale': _('Libro IVA Ventas'),
-                'purchase': _('Libro IVA Compras')
-               }.get(journal_type, _('Libro IVA'))
+            'sale': _('Libro IVA Ventas'),
+            'purchase': _('Libro IVA Compras')
+        }.get(journal_type, _('Libro IVA'))
 
     @api.model
     def _get_lines(self, options, line_id=None):
@@ -50,7 +50,7 @@ class L10nPYVatBook(models.AbstractModel):
         else:
             sign = -1.0
 
-        totals = {}.fromkeys(['taxed', 'not_taxed','base_5','base_10',
+        totals = {}.fromkeys(['taxed', 'not_taxed', 'base_5', 'base_10',
                               'vat_5', 'vat_10', 'total'], 0)
 
         domain = [('journal_id.type', '=', journal_type),

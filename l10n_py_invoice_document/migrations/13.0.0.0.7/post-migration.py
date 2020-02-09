@@ -1,10 +1,9 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
+from openupgradelib import openupgrade
 import logging
 
 _logger = logging.getLogger(__name__)
-
-from openupgradelib import openupgrade
 
 
 @openupgrade.migrate()

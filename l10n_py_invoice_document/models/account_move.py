@@ -106,8 +106,8 @@ class AccountJournal(models.Model):
             partner_type = self.partner_id.partner_type_sale_id
             if partner_type.applied_to != 'sale':
                 raise ValidationError(_('El tipo de cliente "%s" no esta '
-                                      'habilitado para '
-                                      'ventas' % partner_type.name))
+                                        'habilitado para '
+                                        'ventas' % partner_type.name))
 
             chk = self.partner_id.partner_type_sale_id.ruc_required
             if chk(self.partner_id.company_type) and not self.partner_id.ruc:
