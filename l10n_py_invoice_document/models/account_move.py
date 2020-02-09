@@ -92,11 +92,6 @@ class AccountJournal(models.Model):
         self.ensure_one()
         if self.type in ['out_invoice', 'out_refund']:
 
-            # verificar si tiene instalado
-            if not self.partner_id.partner_type_sale_id:
-                raise ValidationError(_('Debe definir el tipo de socio de '
-                                        'negocio en el cliente'))
-
             # verificar si tiene definido el tipo de partner
             if not self.partner_id.partner_type_sale_id:
                 raise ValidationError(_('Debe definir el tipo de Cliente '
@@ -109,6 +104,7 @@ class AccountJournal(models.Model):
                                         'habilitado para '
                                         'ventas' % partner_type.name))
 
+            # verificar si el ruc del cliente es requerido
             chk = self.partner_id.partner_type_sale_id.ruc_required
             if chk(self.partner_id.company_type) and not self.partner_id.ruc:
                 raise ValidationError(_('El RUC es requerido, en este caso no '
@@ -153,3 +149,13 @@ class AccountJournal(models.Model):
 
         # llamar al metodo original
         super().action_post()
+
+        # Chequear que la fecha de la factura este dentro de la validez
+        # del timbrado. Hay que chequear despues del post porque antes puede
+        # no existir la fecha de la factura.
+        start = self.timbrado_id.validity_start
+        end = self.timbrado_id.validity_end
+        if not (start <= self.invoice_date <= end):
+            raise ValidationError(
+                _('La fecha de la factura no esta dentro del rango de '
+                  'validez del timbrado.'))
