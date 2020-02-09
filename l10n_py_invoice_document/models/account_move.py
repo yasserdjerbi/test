@@ -147,15 +147,32 @@ class AccountJournal(models.Model):
             # poner el numero de documento
             self.l10n_latam_document_number = seq.next_by_id()
 
-        # llamar al metodo original
-        super().action_post()
+            # llamar al metodo original
+            super().action_post()
 
-        # Chequear que la fecha de la factura este dentro de la validez
-        # del timbrado. Hay que chequear despues del post porque antes puede
-        # no existir la fecha de la factura.
-        start = self.timbrado_id.validity_start
-        end = self.timbrado_id.validity_end
-        if not (start <= self.invoice_date <= end):
-            raise ValidationError(
-                _('La fecha de la factura no esta dentro del rango de '
-                  'validez del timbrado.'))
+            # Chequear que la fecha de la factura este dentro de la validez
+            # del timbrado. Hay que chequear despues del post porque antes puede
+            # no existir la fecha de la factura.
+            start = self.timbrado_id.validity_start
+            end = self.timbrado_id.validity_end
+            if not (start <= self.invoice_date <= end):
+                raise ValidationError(
+                    _('La fecha de la factura no esta dentro del rango de '
+                      'validez del timbrado.'))
+
+        if self.type in ['in_invoice', 'in_refund']:
+            # chequear la longitud y tipo de timbrado
+
+            if len(self.l10n_py_timbrado) != 8:
+                raise ValidationError(_('La longitud del timbrado debe ser de '
+                                        'ocho digitos'))
+            try:
+                int(self.l10n_py_timbrado)
+            except ValueError:
+                raise ValidationError(_('El timbrado debe ser numerico'))
+
+            if self.invoice_date > self.l10n_py_validity_end:
+                raise ValidationError(_('La fecha de la factura es posterior '
+                                        'a la validez del timbrado'))
+            # llamar al metodo original
+            super().action_post()
