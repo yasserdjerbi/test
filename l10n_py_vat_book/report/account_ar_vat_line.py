@@ -119,6 +119,9 @@ class AccountArVatLine(models.Model):
         related='document_type_id.display_name',
         string='Tipo de documento'
     )
+    payment_term = fields.Char(
+        string='Contado/Credito',
+    )
 
     def open_journal_entry(self):
         self.ensure_one()
@@ -167,7 +170,11 @@ SELECT
     am.name,
     am.l10n_latam_document_type_id as document_type_id,
     am.state,
-    am.company_id
+    am.company_id,
+    CASE
+        WHEN am.invoice_payment_term_id = 1
+        THEN 'Contado'
+        ELSE 'Crédito' END as payment_term
 FROM
     account_move_line aml
 LEFT JOIN

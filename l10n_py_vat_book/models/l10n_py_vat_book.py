@@ -25,6 +25,7 @@ class L10nPYVatBook(models.AbstractModel):
             {'name': _('IVA 10%'), 'class': 'number'},
             {'name': _('TOTAL'), 'class': 'number'},
             {'name': _('Tipo Documento')},
+            {'name': _('Contado/Credito')},
         ]
 
     @api.model
@@ -99,6 +100,7 @@ class L10nPYVatBook(models.AbstractModel):
                     {'name': self.format_value(sign * rec['vat_10'])},
                     {'name': self.format_value(sign * rec['total'])},
                     {'name': rec['document_type']},
+                    {'name': rec['payment_term']},
                 ],
             })
             line_id += 1
@@ -120,7 +122,7 @@ class L10nPYVatBook(models.AbstractModel):
                 {'name': self.format_value(sign * totals['vat_10'])},
                 {'name': self.format_value(sign * totals['total'])},
                 {'name': ''},
-
+                {'name': ''},
             ],
         })
         return lines

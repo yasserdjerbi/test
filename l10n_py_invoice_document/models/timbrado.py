@@ -12,7 +12,6 @@ class TimbradoData(models.Model):
         string='Número de Timbrado',
         required=True
     )
-
     validity_start = fields.Date(
         help='Fecha a partir de la cual esta vigente el timbrado',
         string='Inicio Vigencia',
