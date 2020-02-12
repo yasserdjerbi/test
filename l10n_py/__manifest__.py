@@ -21,7 +21,7 @@
         'data/account_chart_template_data.xml',
     ],
     'demo': [
-
+        'demo/res_user_settings.xml'
     ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
