@@ -31,6 +31,8 @@ class AccountJournal(models.Model):
 
     @staticmethod
     def _format(value):
+        """ Formatea los numeros de sucursal y expedicion
+        """
         try:
             intvalue = int(value)
         except ValueError:
