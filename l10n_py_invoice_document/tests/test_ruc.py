@@ -15,7 +15,7 @@
 #
 #   Arrancar el test con:
 #
-#   oe -Q l10n_py_invoice_document -c test13e -d test13e_test
+#   oe -Q l10n_py_invoice_document -c tatakua -d tatakua_test
 #
 
 from odoo.tests.common import SavepointCase
@@ -25,17 +25,6 @@ import datetime
 class DocumentTestCase(SavepointCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
-
-    def test_01_timbrado_check(self):
-        """ Verifica que se testee la validez de los timbrados
-        """
-        timbrados = self.env['timbrado.data'].search([])
-        date = datetime.date(2019, 12, 5)
-        timbrados.validate_timbrado_all(date)
-
-        self.assertEqual(timbrados[0].state, 'no_active')
-        self.assertEqual(timbrados[1].state, 'active')
-        self.assertEqual(timbrados[2].state, 'no_active')
 
     def test_ruc(self):
         """ Verifica chequeo de ruc
@@ -57,3 +46,4 @@ class DocumentTestCase(SavepointCase):
         """
         partner = self.env['res.partner']
         self.assertEqual(partner._calc_dv('80028764'), 9)
+

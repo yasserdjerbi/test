@@ -34,6 +34,8 @@
                             <field name="qty"/>
                             <field name="document_type_id"/>
                             <field name="print_system"/>
+                            <field name="next_number"/>
+                            <field name="sequence_id"/>
                         </group>
                     </group>
                 </group>

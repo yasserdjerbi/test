@@ -110,49 +110,19 @@ class AccountJournal(models.Model):
                 raise ValidationError(_('El RUC es requerido, en este caso no '
                                         'puede quedar en blanco'))
 
-            # obtener las secuencias definidas en el diario
-            sequence_ids = self.journal_id.l10n_py_sequence_ids
-
-            # filtrar la secuencia por el tipo de documento
-            type_id = self.l10n_latam_document_type_id
-            seq = sequence_ids.filtered(
-                lambda x: x.l10n_latam_document_type_id == type_id)
-
-            proximo = seq.number_next
-            # chequear numero a validar es mayor que el maximo
-            if proximo > self.timbrado_id.end_number:
-                raise ValidationError(
-                    _('El timbrado ya no es valido, el numero de documento '
-                      'que quiere validar esta mas alla del rango.\n'
-                      'El proximo numero de factura es %s mientras que el '
-                      'rango de validez del timbrado es [%s - %s]') %
-                    (proximo, self.timbrado_id.start_number,
-                     self.timbrado_id.end_number))
-
-            # chequear numero a validar es menor que el minimo
-            if proximo < self.timbrado_id.start_number:
-                raise ValidationError(
-                    _('El timbrado no es valido. Intenta validar un numero de '
-                      'documento que es menor al minimo valido para este '
-                      'timbrado.\n'
-                      'El proximo numero de factura es %s mientras que el '
-                      'rango de validez del timbrado es [%s - %s]') %
-                    (proximo, self.timbrado_id.start_number,
-                     self.timbrado_id.end_number))
-
-            # numero a validar es igual al maximo, invalidar timbrado
-            if proximo == self.timbrado_id.end_number:
-                self.timbrado_id.state = 'no_active'
+            # obtener la secuencia definida en el tipo de documento
+            dt = self.l10n_latam_document_type_id
+            number = dt.next_sequence_number(self.timbrado_id)
 
             # poner el numero de documento
-            self.l10n_latam_document_number = seq.next_by_id()
+            self.l10n_latam_document_number = number
 
             # llamar al metodo original
             super().action_post()
 
             # Chequear que la fecha de la factura este dentro de la validez
-            # del timbrado. Hay que chequear despues del post porque antes puede
-            # no existir la fecha de la factura.
+            # del timbrado. Hay que chequear despues del post porque antes
+            # puede no existir la fecha de la factura.
             start = self.timbrado_id.validity_start
             end = self.timbrado_id.validity_end
             if not (start <= self.invoice_date <= end):
