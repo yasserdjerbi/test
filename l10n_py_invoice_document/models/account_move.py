@@ -42,7 +42,7 @@ class AccountJournal(models.Model):
         compute='_compute_payment'
     )
     remision = fields.Char(
-        string='Nro de remito'
+        string='Nro de remision'
     )
     document_number = fields.Char(
         help="Campo tecnico con la ultima parte del numero de factura, se usa"

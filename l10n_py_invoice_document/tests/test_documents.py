@@ -18,11 +18,11 @@
 #   oe -Q l10n_py_invoice_document -c test13e -d test13e_test
 #
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 import datetime
 
 
-class DocumentTestCase(TransactionCase):
+class DocumentTestCase(SavepointCase):
     def setUp(self, *args, **kwargs):
         super().setUp(*args, **kwargs)
 

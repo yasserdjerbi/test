@@ -25,8 +25,8 @@
                         <group>
                             <field name="validity_start"/>
                             <field name="validity_end"/>
-                            <field name="trade_code"/>
                             <field name="shipping_point"/>
+                            <field name="trade_code"/>
                         </group>
                         <group>
                             <field name="start_number"/>
@@ -49,8 +49,8 @@
                 <field name="name"/>
                 <field name="validity_start"/>
                 <field name="validity_end"/>
-                <field name="trade_code"/>
                 <field name="shipping_point"/>
+                <field name="trade_code"/>
                 <field name="qty"/>
                 <field name="range"/>
                 <field name="document_type_id"/>
