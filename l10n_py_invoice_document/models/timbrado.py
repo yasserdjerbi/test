@@ -22,14 +22,14 @@ class TimbradoData(models.Model):
         string='Fin Vigencia',
         required=True
     )
-    trade_code = fields.Char(
-        required=True,
-        string='Código del establecimiento',
-        default='001'
-    )
     shipping_point = fields.Char(
         required=True,
-        string='Punto de expedición',
+        string='Establecimiento',
+        default='001'
+    )
+    trade_code = fields.Char(
+        required=True,
+        string='Expedición',
         default='001'
     )
     document_type_id = fields.Many2one(

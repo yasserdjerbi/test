@@ -8,12 +8,12 @@ class AccountJournal(models.Model):
     _inherit = "account.journal"
 
     l10n_py_shipping_point = fields.Char(
-        'Sucursal',
+        'Esablecimiento',
         help='Numero de sucursal que representa este diario',
         copy=False
     )
     l10n_py_trade_code = fields.Char(
-        'Punto de Expedición',
+        'Expedición',
         help='Punto de expedición que representa este diario',
         copy=False
     )
