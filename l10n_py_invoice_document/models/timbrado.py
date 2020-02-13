@@ -73,6 +73,17 @@ class TimbradoData(models.Model):
         default='draft',
         string="Estado"
     )
+    next_number = fields.Integer(
+        related='document_type_id.sequence_id.number_next'
+    )
+    sequence_id = fields.Many2one(
+        'ir.sequence',
+        related='document_type_id.sequence_id'
+    )
+
+    _sql_constraints = [
+        ('name_unique', 'unique (name)', 'El timbrado ya existe...!')
+    ]
 
     @staticmethod
     def _format(value):
@@ -115,7 +126,33 @@ class TimbradoData(models.Model):
             rec.qty = rec.end_number - rec.start_number + 1
 
     def button_activate(self):
+        """ Activar el timbrado,
+            Hay que verificar que no haya otro activo
+        """
         for rec in self:
+            # verificar la vigencia del timbrado
+            if not rec.validity_start < fields.Date.today() < rec.validity_end:
+                raise ValidationError('El timbrando no se puede activar '
+                                      'porque las fechas no son validas')
+
+            # verificar que no haya otro timbrado activo para el mismo
+            # shiping_point / trade_code / document_type_id
+            duplicate = self.search([
+                ('shipping_point', '=', rec.shipping_point),
+                ('trade_code', '=', rec.trade_code),
+                ('document_type_id', '=', rec.document_type_id.id),
+                ('state', '=', 'active')
+            ])
+            if duplicate:
+                raise ValidationError('Ya existe un timbrado activo para el '
+                                      'mismo Establecimiento / Expedicion y '
+                                      'Tipo de documento')
+
+            # verificar que el documento asociado a este timbrado tiene una
+            # secuencia, si no la tiene la crea.
+            rec.document_type_id.check_sequence(rec.shipping_point,
+                                                rec.trade_code)
+
             rec.state = 'active'
 
     def name_get(self):
@@ -133,6 +170,13 @@ class TimbradoData(models.Model):
             today = fields.Date.today()
         for rec in self:
             if rec.validity_start <= today <= rec.validity_end:
-                rec.state = 'active'
+                rec.button_activate()
             else:
-                rec.state = 'no_active'
+                rec.deactivate()
+
+    def deactivate(self):
+        """ Desactivar el timbrado
+        """
+        # desacoplar la secuencia del documento
+        self.document_type_id.sequence_id = False
+        self.state = 'no_active'

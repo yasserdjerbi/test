@@ -1,5 +1,5 @@
 from odoo import models, fields, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class L10nLatamDocumentType(models.Model):
@@ -18,24 +18,75 @@ class L10nLatamDocumentType(models.Model):
     venta = fields.Boolean(
         help='si esta tildado el documento aplica para ventas'
     )
+    sequence_id = fields.Many2one(
+        'ir.sequence',
+        help='Secuencia habilitada para este diario'
+    )
 
-    def _get_document_sequence_vals(self, journal):
-        """ Values to create the sequences """
-        values = super()._get_document_sequence_vals(journal)
-        if self.country_id != self.env.ref('base.py'):
-            return values
+    def next_sequence_number(self, timbrado_id):
+        """ Devuelve el proximo numero de secuencia para este documento
+        """
+        self.ensure_one()
 
-        values.update(
-            {'padding': 7,
-             'implementation': 'no_gap',
-             'prefix': "%s-%s-" % (journal.l10n_py_shipping_point,
-                                   journal.l10n_py_trade_code),
-             'l10n_latam_journal_id': journal.id}
-        )
+        if not self.sequence_id:
+            raise ValueError('Este docuento no tiene secuencia, verifique la '
+                             'configuracion')
+        next_number = self.sequence_id.number_next
 
-        values.update({'name': '%s - %s' % (journal.name, self.name),
-                       'l10n_latam_document_type_id': self.id})
-        return values
+        # chequear numero a validar es mayor que el maximo
+        if next_number > timbrado_id.end_number:
+            raise ValidationError(
+                _('El timbrado ya no es valido, el numero de documento '
+                  'que quiere validar esta mas alla del rango.\n'
+                  'El proximo numero es %s mientras que el '
+                  'rango de validez del timbrado es [%s - %s]') %
+                (next_number, timbrado_id.start_number,
+                 timbrado_id.end_number))
+
+        # chequear numero a validar es menor que el minimo
+        if next_number < timbrado_id.start_number:
+            raise ValidationError(
+                _('El timbrado no es valido. Intenta validar un numero de '
+                  'documento que es menor al minimo valido para este '
+                  'timbrado.\n'
+                  'El proximo numero es %s mientras que el '
+                  'rango de validez del timbrado es [%s - %s]') %
+                (next_number, timbrado_id.start_number,
+                 timbrado_id.end_number))
+
+        # numero a validar es igual al maximo, invalidar timbrado
+        if next_number == timbrado_id.end_number:
+            timbrado_id.deactivate()
+
+        return self.sequence_id.next_by_id()
+
+    def check_sequence(self, est, exp):
+        # El documento no tiene secuencia, puede ser que sea la continuacion
+        # de otro timbrado entonces busco la secuencia y si la encuentro la
+        # relaciono con el documento
+        if not self.sequence_id:
+            self.search_sequence(est, exp)
+
+        # No encontre la secuencia entonces debe ser que es la primera vez que
+        # se activa un timbrado de este tipo, creo la secuencia.
+        if not self.sequence_id:
+            self.create_sequence(est, exp)
+
+    def search_sequence(self,est,exp):
+        """ Buscar una secuencia para este documento
+        """
+        domain = [('l10n_latam_document_type_id', '=', self.id)]
+        self.sequence_id = self.env['ir.sequence'].search(domain)
+
+    def create_sequence(self, est, exp):
+        vals = {
+            'name': self.name,
+            'implementation': 'no_gap',
+            'padding': 7,
+            'prefix': "%s-%s-" % (est, exp),
+            'l10n_latam_document_type_id': self.id
+        }
+        self.sequence_id = self.env['ir.sequence'].create(vals)
 
     def _format_document_number(self, document_number):
         """ Make validation of Import Dispatch Number

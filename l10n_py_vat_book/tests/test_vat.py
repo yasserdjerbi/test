@@ -64,7 +64,6 @@ class DocumentTestCase(TransactionCase):
         self.env.user.company_id.country_id = self.env.ref('base.py')
         self.env.ref('l10n_py.py_chart_template').try_loading()
 
-        # import wdb;wdb.set_trace()
         self.setup_invoices()
 
         vat_journal = self.env.ref('l10n_py_vat_book.demo_vat_journal')
