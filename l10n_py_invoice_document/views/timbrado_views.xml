@@ -18,7 +18,8 @@
                     <group col="1">
                         <label for="name"/>
                         <h1>
-                            <field name="name" placeholder="Debe ser un numero de ocho digitos"/>
+                            <field name="name"
+                                   placeholder="Debe ser un numero de ocho digitos"/>
                         </h1>
                     </group>
                     <group col="2">
@@ -47,7 +48,9 @@
         <field name="name">L10N_PY_INVOICE_DOCUMENT timbrado</field>
         <field name="model">timbrado.data</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree
+                    decoration-success="state=='active'"
+                    decoration-muted="state=='draft'">
                 <field name="name"/>
                 <field name="validity_start"/>
                 <field name="validity_end"/>

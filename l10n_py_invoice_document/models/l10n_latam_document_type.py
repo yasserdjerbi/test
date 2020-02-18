@@ -63,20 +63,20 @@ class L10nLatamDocumentType(models.Model):
     def check_sequence(self, est, exp):
         # El documento no tiene secuencia, puede ser que sea la continuacion
         # de otro timbrado entonces busco la secuencia y si la encuentro la
-        # relaciono con el documento
+        # elimino
         if not self.sequence_id:
-            self.search_sequence(est, exp)
+            self.search_delete_sequence(est, exp)
 
-        # No encontre la secuencia entonces debe ser que es la primera vez que
-        # se activa un timbrado de este tipo, creo la secuencia.
+        # creo la secuencia.
         if not self.sequence_id:
             self.create_sequence(est, exp)
 
-    def search_sequence(self,est,exp):
-        """ Buscar una secuencia para este documento
+    def search_delete_sequence(self, est, exp):
+        """ Buscar una secuencia para este documento y eliminarla
         """
         domain = [('l10n_latam_document_type_id', '=', self.id)]
-        self.sequence_id = self.env['ir.sequence'].search(domain)
+        seq = self.env['ir.sequence'].search(domain)
+        seq.unlink()
 
     def create_sequence(self, est, exp):
         vals = {
