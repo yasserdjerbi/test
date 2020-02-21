@@ -6,7 +6,7 @@
     'author': 'Tecnopro',
     'website': 'tecnopro.com.py',
     'license': 'Other OSI approved licence',
-    'summary': 'Reportes, Facturas, Notas de credito, etc',
+    'summary': 'Reportes, Facturas, Notas de credito, Recibos',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
         'account',
