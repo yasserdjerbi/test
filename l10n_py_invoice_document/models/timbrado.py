@@ -125,14 +125,14 @@ class TimbradoData(models.Model):
         for rec in self:
             rec.qty = rec.end_number - rec.start_number + 1
 
-    def button_activate(self):
+    def _button_activate(self,today):
         """ Activar el timbrado,
             Hay que verificar que no haya otro activo
         """
         for rec in self:
             # verificar la vigencia del timbrado
-            if not rec.validity_start < fields.Date.today() < rec.validity_end:
-                raise ValidationError('El timbrando no se puede activar '
+            if not rec.validity_start < today < rec.validity_end:
+                raise ValidationError('El timbrado no se puede activar '
                                       'porque las fechas no son validas')
 
             # verificar que no haya otro timbrado activo para el mismo
@@ -155,6 +155,13 @@ class TimbradoData(models.Model):
 
             rec.state = 'active'
 
+    def button_activate(self):
+        """ Para poder chequear con los tests el metodo button_activate lo
+            separamos y le pasamos today, el test el pasa una fecha fija para
+            testear
+        """
+        self._button_activate(fields.Date.today())
+
     def name_get(self):
         ret_list = list()
         for rec in self:
@@ -163,14 +170,15 @@ class TimbradoData(models.Model):
         return ret_list
 
     def validate_timbrado_all(self, today=False):
-        """ Chequear la validez de todos los timbrados
-            el parametro today=False es para los tests
+        """ Chequear la validez de todos los timbrados, si today es False lo
+            estan llamando desde el cron, si today tiene una fecha lo estan
+            llamando desde un test.
         """
         if not today:
             today = fields.Date.today()
         for rec in self:
             if rec.validity_start <= today <= rec.validity_end:
-                rec.button_activate()
+                rec._button_activate(today)
             else:
                 rec.deactivate()
 

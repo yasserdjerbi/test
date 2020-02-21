@@ -146,3 +146,22 @@ class AccountJournal(models.Model):
                                         'a la validez del timbrado'))
             # llamar al metodo original
             super().action_post()
+
+    def _get_l10n_latam_documents_domain(self):
+        """ Esto sobreescribe un metodo de l10n_latam_invoice_document para
+            filtrar los tipos de documento por ventas y compras
+        """
+        self.ensure_one()
+        if self.type in ['out_refund', 'in_refund']:
+            internal_types = ['credit_note']
+        else:
+            internal_types = ['invoice', 'debit_note']
+
+        domain = [('internal_type', 'in', internal_types),
+                  ('country_id', '=', self.company_id.country_id.id)]
+
+        if self.type in ['out_invoice', 'out_refund']:
+            domain += [('venta', '=', True)]
+        else:
+            domain += [('compra', '=', True)]
+        return domain
