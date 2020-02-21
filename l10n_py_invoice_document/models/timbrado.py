@@ -90,7 +90,7 @@ class TimbradoData(models.Model):
         try:
             intvalue = int(value)
         except ValueError:
-            raise ValidationError('Esperabamos un numero')
+            raise ValidationError(_('Esperabamos un numero'))
         return '{0:03}'.format(intvalue)
 
     @api.onchange('shipping_point')
@@ -109,7 +109,7 @@ class TimbradoData(models.Model):
             try:
                 int(rec.name)
             except ValueError:
-                raise ValidationError('Se esperaba un numero')
+                raise ValidationError(_('Esperabamos un numero'))
 
             if len(rec.name) != 8:
                 raise ValidationError(_('El Timbrado debe tener 8 digitos'))
@@ -125,15 +125,15 @@ class TimbradoData(models.Model):
         for rec in self:
             rec.qty = rec.end_number - rec.start_number + 1
 
-    def _button_activate(self,today):
+    def _button_activate(self, today):
         """ Activar el timbrado,
             Hay que verificar que no haya otro activo
         """
         for rec in self:
             # verificar la vigencia del timbrado
             if not rec.validity_start < today < rec.validity_end:
-                raise ValidationError('El timbrado no se puede activar '
-                                      'porque las fechas no son validas')
+                raise ValidationError(_('El timbrado no se puede activar '
+                                        'porque las fechas no son validas'))
 
             # verificar que no haya otro timbrado activo para el mismo
             # shiping_point / trade_code / document_type_id
@@ -144,9 +144,9 @@ class TimbradoData(models.Model):
                 ('state', '=', 'active')
             ])
             if duplicate:
-                raise ValidationError('Ya existe un timbrado activo para el '
-                                      'mismo Establecimiento / Expedicion y '
-                                      'Tipo de documento')
+                raise ValidationError(_('Ya existe un timbrado activo para el '
+                                        'mismo Establecimiento / Expedicion y '
+                                        'Tipo de documento'))
 
             # verificar que el documento asociado a este timbrado tiene una
             # secuencia, si no la tiene la crea.
@@ -170,15 +170,19 @@ class TimbradoData(models.Model):
         return ret_list
 
     def validate_timbrado_all(self, today=False):
-        """ Chequear la validez de todos los timbrados, si today es False lo
-            estan llamando desde el cron, si today tiene una fecha lo estan
-            llamando desde un test.
+        """ Chequear la validez de todos los timbrados
+            Cuando se llama desde Cron today=False si se llama desde un test
+            se le pasa la fecha
         """
         if not today:
             today = fields.Date.today()
+
         for rec in self:
             if rec.validity_start <= today <= rec.validity_end:
-                rec._button_activate(today)
+                try:
+                    rec._button_activate(today)
+                except:
+                    pass
             else:
                 rec.deactivate()
 
