@@ -37,20 +37,20 @@ class Partner(models.Model):
     )
     sale_ruc = fields.Char(
         help='campo tecnico que contiene el ruc real para venta',
-        compute='compute_rucs',
+        compute='_compute_rucs',
         readonly=True,
         store=True
     )
     purchase_ruc = fields.Char(
         help='campo tecnico que contiene el ruc real para venta',
-        compute='compute_rucs',
+        compute='_compute_rucs',
         readonly=True,
         store=True
     )
 
     @api.depends('ruc', 'partner_type_sale_id',
                  'partner_type_sale_id.consolidated_ruc')
-    def compute_rucs(self):
+    def _compute_rucs(self):
         """ define cual va a ser el ruc real de acuerdo a si es compra o venta
         """
 

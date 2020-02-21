@@ -1,4 +1,3 @@
-Reportes de la localizacion
+Implementa la impresion de documentos en la localizacion
 
-- Facturas, notas de credito, etc.
-- Libros de iva
+- Facturas, notas de credito

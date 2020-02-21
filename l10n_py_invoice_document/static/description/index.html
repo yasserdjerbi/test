@@ -374,101 +374,80 @@ ul.auto-toc {
 <li>Gestion de timbrados</li>
 <li>Agregado de datos necesarios a los formularios como ser Facturas, Contactos, Diarios, etc.</li>
 </ul>
-<p><strong>Tipos de cliente</strong></p>
-<p>El tipo de cliente se define en el partner, cada tipo de cliente tiene reglas
-para decidir si el ruc es obligatorio y ademas define los ruc consolidados y si
-se usa para compra o para venta.</p>
+<p><strong>Tipos de Cliente/Proveedor</strong></p>
+<p>En Contabilidad / Tipos de socios de negocio se definen los tipos de Cliente/Proveedor, por ejemplo:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="12%" />
-<col width="19%" />
+<col width="10%" />
+<col width="1%" />
+<col width="18%" />
 <col width="16%" />
 <col width="19%" />
 <col width="16%" />
 <col width="19%" />
 </colgroup>
 <tbody valign="top">
-<tr><td colspan="2">&nbsp;</td>
-<td colspan="3">RUC</td>
-<td>&nbsp;</td>
-</tr>
-<tr><td>Aplica a</td>
-<td>Tipo</td>
+<tr><td colspan="3">Aplica | Tipo</td>
 <td>Oblig indiv</td>
 <td>Oblig empresa</td>
 <td>Consolidado</td>
 <td>Cuenta predet</td>
 </tr>
 <tr><td>Venta</td>
-<td>Cliente Local</td>
+<td colspan="2">Cliente Local</td>
 <td>NO</td>
 <td>SI</td>
-<td>123456-0</td>
+<td>44444401-7</td>
 <td>10.25.33.120</td>
+</tr>
+<tr><td colspan="3">…..  | …..</td>
+<td><!--  -->
+</td>
+<td><!--  -->
+</td>
+<td colspan="2">…..       | …..</td>
 </tr>
 </tbody>
 </table>
-<p>Por otro lado se definen cuentas contables predeterminadas, si la cuenta esta
-en blanco funciona en forma standard, si tiene una cuenta, toma esa cuenta.</p>
-<p>Las cuentas se usan en dos lugares, cuando se hace una factura y cuando se
-hace un pago.</p>
+<p>Luego en el partner se define el tipo de cliente o de proveedor, y se utilizan las reglas para determinar si el ruc
+es requerido o no dependiendo si es un individuo o una empresa.
+Si el ruc esta en blanco y la regla lo permite se usa el ruc consolidado para la factura y el libro de iva</p>
+<p>Por otro lado se definen cuentas contables predeterminadas, para las compras y las ventas segun el caso.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#installation" id="id3">Installation</a></li>
-<li><a class="reference internal" href="#configuration" id="id4">Configuration</a></li>
-<li><a class="reference internal" href="#usage" id="id5">Usage</a></li>
-<li><a class="reference internal" href="#known-issues-roadmap" id="id6">Known issues / Roadmap</a></li>
-<li><a class="reference internal" href="#changelog" id="id7">Changelog</a><ul>
-<li><a class="reference internal" href="#id1" id="id8">13.0.0.0.0 (2019-12-01)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#bug-tracker" id="id9">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id10">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id11">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id12">Contributors</a></li>
-<li><a class="reference internal" href="#other-credits" id="id13">Other credits</a></li>
-<li><a class="reference internal" href="#maintainers" id="id14">Maintainers</a></li>
+<li><a class="reference internal" href="#installation" id="id1">Installation</a></li>
+<li><a class="reference internal" href="#configuration" id="id2">Configuration</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id7">Contributors</a></li>
+<li><a class="reference internal" href="#other-credits" id="id8">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="id9">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="installation">
-<h1><a class="toc-backref" href="#id3">Installation</a></h1>
-<p>Este modulo es autoinstalabe, no se requiere su instalacion.</p>
+<h1><a class="toc-backref" href="#id1">Installation</a></h1>
 </div>
 <div class="section" id="configuration">
-<h1><a class="toc-backref" href="#id4">Configuration</a></h1>
+<h1><a class="toc-backref" href="#id2">Configuration</a></h1>
 <ul class="simple">
 <li>Se requiere cargar los timbrados correspondientes para los documentos a emitir en Contabilidad / Gestion de timbrados</li>
 <li>En los diarios de compra y venta tildar “Usa Documentos”</li>
 </ul>
 </div>
 <div class="section" id="usage">
-<h1><a class="toc-backref" href="#id5">Usage</a></h1>
+<h1><a class="toc-backref" href="#id3">Usage</a></h1>
 <ul class="simple">
 <li>Agregar los timbrados para tener numeros de factura disponibles.</li>
 <li>Al generar una factura seleccionar el tipo de documento y el timbrado.</li>
 </ul>
 </div>
-<div class="section" id="known-issues-roadmap">
-<h1><a class="toc-backref" href="#id6">Known issues / Roadmap</a></h1>
-<ul class="simple">
-<li>Testeo</li>
-</ul>
-</div>
-<div class="section" id="changelog">
-<h1><a class="toc-backref" href="#id7">Changelog</a></h1>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id8">13.0.0.0.0 (2019-12-01)</a></h2>
-<ul class="simple">
-<li>[ADD] version inicial del modulo.
-(<a class="reference external" href="https://github.com/TecnoproPy/odoo-paraguay/issues/29">#29</a>)</li>
-</ul>
-</div>
-</div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#id9">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#id4">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/TecnoproPy/odoo-paraguay/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -476,25 +455,25 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#id10">Credits</a></h1>
+<h1><a class="toc-backref" href="#id5">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id11">Authors</a></h2>
+<h2><a class="toc-backref" href="#id6">Authors</a></h2>
 <ul class="simple">
 <li>Tecnopro</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#id12">Contributors</a></h2>
+<h2><a class="toc-backref" href="#id7">Contributors</a></h2>
 <ul class="simple">
 <li>Jorge Obiols &lt;<a class="reference external" href="mailto:jorge.obiols&#64;gmail.com">jorge.obiols&#64;gmail.com</a>&gt; (www.jeosoft.com.ar)</li>
 </ul>
 </div>
 <div class="section" id="other-credits">
-<h2><a class="toc-backref" href="#id13">Other credits</a></h2>
+<h2><a class="toc-backref" href="#id8">Other credits</a></h2>
 <p>Tecnopro</p>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#id14">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#id9">Maintainers</a></h2>
 <p>This module is part of the <a class="reference external" href="https://github.com/TecnoproPy/odoo-paraguay/tree/13.0/l10n_py_invoice_document">TecnoproPy/odoo-paraguay</a> project on GitHub.</p>
 <p>You are welcome to contribute.</p>
 </div>

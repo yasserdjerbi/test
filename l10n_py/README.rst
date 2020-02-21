@@ -7,9 +7,9 @@ Contabilidad Paraguay
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Alpha
 .. |badge2| image:: https://img.shields.io/badge/github-TecnoproPy%2Fodoo--paraguay-lightgray.png?logo=github
     :target: https://github.com/TecnoproPy/odoo-paraguay/tree/13.0/l10n_py
     :alt: TecnoproPy/odoo-paraguay
@@ -22,6 +22,11 @@ Contabilidad Paraguay
 - Genera las cuentas contables del plan.
 - Define las cuentas por defecto para ventas y compras.
 - Define los impuestos por defecto iva compras y ventas 5% y 10%
+
+.. IMPORTANT::
+   This is an alpha version, the data model and design can change at any time without warning.
+   Only for development or testing purpose, do not use in production.
+   `More details on development status <https://odoo-community.org/page/development-status>`_
 
 **Table of contents**
 

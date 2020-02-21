@@ -30,7 +30,7 @@ class AccountJournal(models.Model):
         try:
             intvalue = int(value)
         except ValueError:
-            raise ValidationError('Esperabamos un numero')
+            raise ValidationError(_('Esperabamos un numero'))
         return '{0:03}'.format(intvalue)
 
     @api.onchange('l10n_py_shipping_point')

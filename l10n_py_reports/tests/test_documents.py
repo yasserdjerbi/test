@@ -22,7 +22,8 @@ from odoo.tests.common import TransactionCase
 
 
 class DocumentTestCase(TransactionCase):
-    def test_01_timbrado_check(self):
-        """ Verifica que se testee la validez de los timbrados
+
+    def test_01_invoice(self):
+        """ validar una factura
         """
         self.assertEqual(1, 1)

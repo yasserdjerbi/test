@@ -1,7 +1,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -63,5 +63,5 @@ class PartnerType(models.Model):
     @api.constrains('default_account')
     def constraint_default_account(self):
         if not self.default_account.reconcile:
-            raise ValidationError('La cuenta predeterminada debe ser '
-                                  'conciliable.')
+            raise ValidationError(_('La cuenta predeterminada debe ser '
+                                  'conciliable.'))

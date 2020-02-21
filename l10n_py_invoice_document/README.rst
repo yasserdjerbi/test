@@ -22,25 +22,23 @@ Tipos de documentos (facturacion) Paraguay
 - Gestion de timbrados
 - Agregado de datos necesarios a los formularios como ser Facturas, Contactos, Diarios, etc.
 
-**Tipos de cliente**
+**Tipos de Cliente/Proveedor**
 
-El tipo de cliente se define en el partner, cada tipo de cliente tiene reglas
-para decidir si el ruc es obligatorio y ademas define los ruc consolidados y si
-se usa para compra o para venta.
+En Contabilidad / Tipos de socios de negocio se definen los tipos de Cliente/Proveedor, por ejemplo:
 
-+--------------------------+-------------------------------------------+---------------+
-|                          | RUC                                       |               |
-+----------+---------------+-------------+---------------+-------------+---------------+
-| Aplica a | Tipo          | Oblig indiv | Oblig empresa | Consolidado | Cuenta predet |
-+----------+---------------+-------------+---------------+-------------+---------------+
-| Venta    | Cliente Local |          NO |     SI        |   123456-0  | 10.25.33.120  |
-+----------+---------------+-------------+---------------+-------------+---------------+
++-------------------------+-------------+---------------+-------------+---------------+
+| Aplica | Tipo           | Oblig indiv | Oblig empresa | Consolidado | Cuenta predet |
++--------+----------------+-------------+---------------+-------------+---------------+
+| Venta  | Cliente Local  |          NO |     SI        | 44444401-7  | 10.25.33.120  |
++--------+----------------+-------------+---------------+-------------+---------------+
+| .....  | .....          |          .. |     ..        |   	.....       | .....   |
++----------+--------------+-------------+---------------+-------------+---------------+
 
-Por otro lado se definen cuentas contables predeterminadas, si la cuenta esta
-en blanco funciona en forma standard, si tiene una cuenta, toma esa cuenta.
+Luego en el partner se define el tipo de cliente o de proveedor, y se utilizan las reglas para determinar si el ruc
+es requerido o no dependiendo si es un individuo o una empresa.
+Si el ruc esta en blanco y la regla lo permite se usa el ruc consolidado para la factura y el libro de iva
 
-Las cuentas se usan en dos lugares, cuando se hace una factura y cuando se
-hace un pago.
+Por otro lado se definen cuentas contables predeterminadas, para las compras y las ventas segun el caso.
 
 
 
@@ -52,7 +50,7 @@ hace un pago.
 Installation
 ============
 
-Este modulo es autoinstalabe, no se requiere su instalacion.
+
 
 Configuration
 =============
@@ -65,20 +63,6 @@ Usage
 
 - Agregar los timbrados para tener numeros de factura disponibles.
 - Al generar una factura seleccionar el tipo de documento y el timbrado.
-
-Known issues / Roadmap
-======================
-
-- Testeo
-
-Changelog
-=========
-
-13.0.0.0.0 (2019-12-01)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [ADD] version inicial del modulo.
-  (`#29 <https://github.com/TecnoproPy/odoo-paraguay/issues/29>`_)
 
 Bug Tracker
 ===========
