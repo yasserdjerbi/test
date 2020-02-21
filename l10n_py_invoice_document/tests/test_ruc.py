@@ -19,7 +19,6 @@
 #
 
 from odoo.tests.common import SavepointCase
-import datetime
 
 
 class DocumentTestCase(SavepointCase):
@@ -46,4 +45,3 @@ class DocumentTestCase(SavepointCase):
         """
         partner = self.env['res.partner']
         self.assertEqual(partner._calc_dv('80028764'), 9)
-

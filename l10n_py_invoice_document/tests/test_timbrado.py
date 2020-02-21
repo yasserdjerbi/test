@@ -105,27 +105,3 @@ class DocumentTestCase(TransactionCase):
         self.assertEqual(self.timbrados[0].state, 'no_active')
         self.assertEqual(self.timbrados[1].state, 'active')
         self.assertEqual(self.timbrados[2].state, 'no_active')
-
-    """
-    def test_05_factura_venta(self):
-        " "" Se valida una factura de venta
-        " ""
-        # validar timbrados
-
-        date = datetime.date(2019, 12, 5)
-        self.timbrados.validate_timbrado_all(date)
-        import wdb;wdb.set_trace()
-
-        #crear factura
-        vals = {
-            'partner_id': self.env.ref('base.res_partner_2').id,
-            'journal_id': self.env.ref('l10n_py_vat_book.demo_vat_journal').id,
-            'timbrado_id': self.env['timbrado.data'].search([('name','=','12345677')]).id,
-            'invoice_date': '2019-12-05',
-            'l10n_latam_document_type_id':self.env.ref('l10n_py_invoice_document.dc_fac').id,
-        }
-
-        invoice = self.env['account.move'].create(vals)
-
-
-    """
