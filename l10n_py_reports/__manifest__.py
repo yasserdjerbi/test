@@ -22,7 +22,7 @@
         'templates/report_invoice.xml',
         'data/report_paperformat_data.xml',
         'templates/report_payment_receipt.xml',
-        #'views/res_config_settings_view.xml'
+        # 'views/res_config_settings_view.xml'
     ],
     'installable': True,
 }

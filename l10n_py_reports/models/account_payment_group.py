@@ -11,7 +11,7 @@ class AccountPaymentGroup(models.Model):
         return self.env.ref(action).report_action(self)
 
         # ############################################################################# # noqa
-        # Falta migrar el modulo account_withholding, account_withholding_automatic
+        # Falta migrar el modulo account_withholding, account_withholding_automatic # noqa
         checks = self.mapped('payment_ids.check_ids')
         # withholdings = self.payment_ids.filtered(lambda x: x.tax_withholding_id)   # noqa
         payments = self.payment_ids.filtered(lambda x: not x.check_ids)
