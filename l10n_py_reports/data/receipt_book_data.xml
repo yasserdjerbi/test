@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="automatic_receipt_sequence" model="ir.sequence">
+            <field name="name">Secuencia para Recibo Automatico</field>
+            <field name="implementation">no_gap</field>
+            <field name="padding">7</field>
+            <field name="prefix">A  </field>
+        </record>
+
+        <record id="automatic_receipt" model="account.payment.receiptbook">
+            <field name="name">Recibo Automatico</field>
+            <field name="partner_type">customer</field>
+            <field name="sequence_type">automatic</field>
+            <field name="prefix">A  </field>
+            <field name="document_type_id" search="[('name','=','RECIBOS X')]" model="l10n_latam.document.type"/>
+            <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="manual_receipt" model="account.payment.receiptbook">
+            <field name="name">Recibo Manual</field>
+            <field name="partner_type">customer</field>
+            <field name="sequence_type">manual</field>
+            <field name="padding">7</field>
+            <field name="prefix">B  </field>
+            <field name="document_type_id" search="[('name','=','RECIBOS X')]" model="l10n_latam.document.type"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</odoo>
+

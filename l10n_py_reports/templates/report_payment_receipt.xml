@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="action_report_payment_group_receipt"
+        model="account.payment.group"
+        string="Payment Group Receipt"
+        report_type="qweb-pdf"
+        name="l10n_py_reports.report_payment_group_receipt"
+        file="l10n_py_reports.report_payment_group_receipt"
+        menu="True"
+    />
+
+    <template id="report_payment_group_receipt_document">
+        <t t-call="web.external_layout">
+
+            <style type="text/css">
+                .bottom {
+                    width:100%;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+            </style>
+            <t t-set="o" t-value="o.with_context(lang=lang)"/>
+            <div class="page">
+
+                <div class="row mt32">
+                    <div class="col-6">
+                        <div t-if="o.payment_date">
+                            <strong>Fecha: </strong> <span t-field="o.payment_date"/>
+                        </div>
+                        <div t-if="o.partner_type">
+                            <t t-if="o.partner_type == 'customer'">
+                                <strong>Cliente: </strong>
+                            </t>
+                            <t t-if="o.partner_type == 'supplier'">
+                                <strong>Proveedor: </strong>
+                            </t><span t-field="o.partner_id"/>
+                        </div>
+                    </div>
+                    <div class="col-6" align="center">
+                        <t t-if="o.partner_type == 'customer'">
+                            <h3>RECIBO DE DINERO</h3>
+                        </t>
+                        <t t-if="o.partner_type == 'supplier'">
+                            <h3>ORDEN DE PAGO</h3>
+                        </t>
+                        <h4>Nº <span t-field="o.document_number"/></h4>
+                    </div>
+                </div>
+
+
+                <!-- Medios de pago -->
+                <t t-set="checks" t-value="o.mapped('payment_ids.check_ids')"/>
+                <t t-set="payments" t-value="o.payment_ids.filtered(lambda x: not x.check_ids)"/>
+                <div t-if="checks or payments">
+                    <h4>Medios de pago</h4>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="width: 70%"> </th>
+                                <th class="text-right"><span>Importe</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="checks" t-as="chk">
+                                <td><span t-esc="'Cheque nro %s - %s - Venc. %s' % (chk.name, chk.bank_id.name or chk.journal_id.name, chk.payment_date)"/></td>
+                                <td class="text-right"><span t-field="chk.amount"/></td>
+                            </tr>
+                            <tr t-foreach="payments" t-as="pay">
+                                <td><span t-esc="'%s%s' % (pay.journal_id.name, pay.other_currency and ' (%s %s)' % (pay.signed_amount, pay.currency_id.name) or '')"/></td>
+                                <td class="text-right"><span t-field="pay.signed_amount_company_currency"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Comprobantes imputados -->
+                <t t-set="documents" t-value="o.with_context(payment_group_id=o.id).matched_move_line_ids"/>
+                <t t-set="unmatched_amount" t-value="o.unmatched_amount"/>
+                <div t-if="documents or unmatched_amount">
+                    <h4>Comprobantes imputados</h4>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-right"><span>Fecha Venc.</span></th>
+                                <th class="text-right"><span>Importe Orig.</span></th>
+                                <th class="text-right"><span>Importe Imput.</span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr t-foreach="documents" t-as="doc">
+                                <td><span t-field="doc.move_id.display_name"/></td>
+                                <td class="text-right"><span t-field="doc.date_maturity"/></td>
+                                <td class="text-right"><span t-esc="(o.partner_type == 'supplier' and -1.0 or 1.0) * doc.balance" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id or doc.company_id.currency_id}"/></td>
+                                <td class="text-right"><span t-esc="(o.partner_type == 'supplier' and -1.0 or 1.0) * doc.payment_group_matched_amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id or doc.company_id.currency_id}"/></td>
+                            </tr>
+                            <t t-if="unmatched">
+                                <td><span>A cuenta</span></td>
+                                <td class="text-right"> </td>
+                                <td class="text-right"> </td>
+                                <td class="text-right"><span t-field="o.unmatched_amount"/></td>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Comprobantes pendientes
+                <t t-set="unmatched" t-value="o.unmatched_amount"/>
+                <t t-set="documents" t-value="(o.partner_type=='customer' and o.partner_id.commercial_partner_id.receivable_debt_ids or o.partner_id.commercial_partner_id.payable_debt_ids).filtered(lambda x: x.company_id == o.company_id)"/>
+                <div t-if="o.partner_type=='customer'">
+                    <h3><span>Comprobantes Pendientes al</span> <span t-field="fields.Date.today()"/></h3>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="text-right"><span>Fecha Venc.</span></th>
+                                <th class="text-right"><span>Importe Orig.</span></th>
+                                <th class="text-right"><span>Saldo</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="documents" t-as="doc">
+                                <td><span t-field="doc.document_number"/></td>
+                                <td class="text-right"><span t-field="doc.date_maturity"/></td>
+                                <td class="text-right"><span t-field="doc.amount"/></td>
+                                <td class="text-right"><span t-field="doc.amount_residual"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+-->
+
+            <hr/>
+            <br/>
+            <div class="row mt32">
+                <div class="col-6">
+                    <span>Observaciones:</span>
+                    <span t-field="o.notes" />
+                </div>
+
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <center>..................................................</center>
+                        </div>
+                        <div class="col-6">
+                            <center>..................................................</center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <center>Firma</center>
+                        </div>
+                        <div class="col-6">
+                            <center>Aclaracion</center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </t>
+    </template>
+
+    <template id="report_payment_group_receipt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="l10n_py_reports.report_payment_group_receipt_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

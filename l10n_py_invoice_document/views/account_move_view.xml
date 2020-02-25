@@ -31,7 +31,7 @@
                                 ('shipping_point','=',l10n_py_shipping_point),
                                  ('code','=',document_type_code)
                                 ]"
-                       options="{'no_open': True, 'no_create': True}"
+                       options="{'no_create': True}"
                 />
             </field>
             <!-- Timbrado y fecha de vencimiento que aparece en la factura del proveedor -->

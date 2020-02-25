@@ -6,11 +6,12 @@
     'author': 'Tecnopro',
     'website': 'tecnopro.com.py',
     'license': 'Other OSI approved licence',
-    'summary': 'Reportes, Facturas, Notas de credito, etc',
+    'summary': 'Reportes, Facturas, Notas de credito, Recibos',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
         'account',
-        'l10n_py_invoice_document'
+        'l10n_py_invoice_document',
+        'account_payment_group'
     ],
     'external_dependencies': {
         'python': [
@@ -19,7 +20,10 @@
     },
     'data': [
         'templates/report_invoice.xml',
-        'data/report_paperformat_data.xml'
+        'data/report_paperformat_data.xml',
+        'data/receipt_book_data.xml',
+        'templates/report_payment_receipt.xml',
+        # 'views/res_config_settings_view.xml'
     ],
     'installable': True,
 }
