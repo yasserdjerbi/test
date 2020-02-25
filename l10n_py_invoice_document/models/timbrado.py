@@ -74,11 +74,12 @@ class TimbradoData(models.Model):
         string="Estado"
     )
     next_number = fields.Integer(
-        related='document_type_id.sequence_id.number_next'
+        related='sequence_id.number_next',
+        readonly=True
     )
     sequence_id = fields.Many2one(
         'ir.sequence',
-        related='document_type_id.sequence_id'
+        help='Secuencia del timbrado'
     )
 
     _sql_constraints = [
@@ -125,6 +126,25 @@ class TimbradoData(models.Model):
         for rec in self:
             rec.qty = rec.end_number - rec.start_number + 1
 
+    def get_sequence(self):
+        """ Generar una secuencia
+        """
+        self.ensure_one()
+        est = self.shipping_point
+        exp = self.trade_code
+        start_number = self.start_number
+
+        vals = {
+            'name': '%s %s-%s' % (self.document_type_id.name, est, exp),
+            'implementation': 'no_gap',
+            'padding': 7,
+            'prefix': "%s-%s-" % (est, exp),
+            'l10n_latam_document_type_id': self.document_type_id.id,
+            'number_next_actual': start_number,
+            'code': '%s-%s-%s' % (self.document_type_id.name, est, exp)
+        }
+        return self.env['ir.sequence'].create(vals)
+
     def _button_activate(self, today):
         """ Activar el timbrado,
             Hay que verificar que no haya otro activo
@@ -137,7 +157,7 @@ class TimbradoData(models.Model):
 
             # verificar que no haya otro timbrado activo para el mismo
             # shiping_point / trade_code / document_type_id
-            duplicate = self.search([
+            duplicate = self.env['timbrado.data'].search([
                 ('shipping_point', '=', rec.shipping_point),
                 ('trade_code', '=', rec.trade_code),
                 ('document_type_id', '=', rec.document_type_id.id),
@@ -148,14 +168,19 @@ class TimbradoData(models.Model):
                                         'mismo Establecimiento / Expedicion y '
                                         'Tipo de documento'))
 
-            # verificar que el documento asociado a este timbrado tiene una
-            # secuencia, si no la tiene la crea.
-            rec.document_type_id.check_sequence(rec.shipping_point,
-                                                rec.trade_code)
-
+            # ponerle la secuencia al timbrado
+            seq = self.get_sequence()
+            rec.sequence_id = seq
             rec.state = 'active'
 
-    def button_activate(self):
+    def action_draft(self):
+        """ Pasar a borrador, se borra la secuencia.
+        """
+        for rec in self:
+            rec.sequence_id.unlink()
+            rec.state = 'draft'
+
+    def action_activate(self):
         """ Para poder chequear con los tests el metodo button_activate lo
             separamos y le pasamos today, el test el pasa una fecha fija para
             testear
@@ -187,8 +212,7 @@ class TimbradoData(models.Model):
                 rec.deactivate()
 
     def deactivate(self):
-        """ Desactivar el timbrado
+        """ Desactivar el timbrado, ya no sirve mas. Se borra la secuencia
         """
-        # desacoplar la secuencia del documento
-        self.document_type_id.sequence_id = False
-        self.state = 'no_active'
+        for rec in self:
+            rec.sequence_id.unlink()

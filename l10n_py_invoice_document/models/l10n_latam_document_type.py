@@ -20,6 +20,7 @@ class L10nLatamDocumentType(models.Model):
     )
     sequence_id = fields.Many2one(
         'ir.sequence',
+        ondelete='set null',
         help='Secuencia habilitada para este diario'
     )
 
@@ -59,34 +60,6 @@ class L10nLatamDocumentType(models.Model):
             timbrado_id.deactivate()
 
         return self.sequence_id.next_by_id()
-
-    def check_sequence(self, est, exp):
-        # El documento no tiene secuencia, puede ser que sea la continuacion
-        # de otro timbrado entonces busco la secuencia y si la encuentro la
-        # elimino
-        if not self.sequence_id:
-            self.search_delete_sequence(est, exp)
-
-        # creo la secuencia.
-        if not self.sequence_id:
-            self.create_sequence(est, exp)
-
-    def search_delete_sequence(self, est, exp):
-        """ Buscar una secuencia para este documento y eliminarla
-        """
-        domain = [('l10n_latam_document_type_id', '=', self.id)]
-        seq = self.env['ir.sequence'].search(domain)
-        seq.unlink()
-
-    def create_sequence(self, est, exp):
-        vals = {
-            'name': self.name,
-            'implementation': 'no_gap',
-            'padding': 7,
-            'prefix': "%s-%s-" % (est, exp),
-            'l10n_latam_document_type_id': self.id
-        }
-        self.sequence_id = self.env['ir.sequence'].create(vals)
 
     def _format_document_number(self, document_number):
         """ Make validation of Import Dispatch Number
