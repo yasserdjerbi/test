@@ -66,16 +66,6 @@ class DocumentTestCase(TransactionCase):
         with self.assertRaises(Exception):
             self.timbrados.create(vals)
 
-    def test_02_timbrado(self):
-        """ Activar un timbrado para que cree la secuencia
-            Verificar que la secuencia fue creada
-        """
-        date = datetime.date(2019, 6, 1)
-        timbrado = self.timbrados[0]
-        timbrado._button_activate(date)
-        seq = timbrado.document_type_id.sequence_id
-        self.assertTrue(len(seq), 1)
-
     def test_03_timbrado(self):
         """ Verifica que no se puede activar un timbrado si ya existe otro
             igual
@@ -102,6 +92,16 @@ class DocumentTestCase(TransactionCase):
         date = datetime.date(2019, 12, 5)
         self.timbrados.validate_timbrado_all(date)
 
-        self.assertEqual(self.timbrados[0].state, 'no_active')
+        self.assertEqual(self.timbrados[0].state, 'draft')
         self.assertEqual(self.timbrados[1].state, 'active')
-        self.assertEqual(self.timbrados[2].state, 'no_active')
+        self.assertEqual(self.timbrados[2].state, 'draft')
+
+    def test_05_timbrado(self):
+        """ Activar un timbrado para que cree la secuencia
+            Verificar que la secuencia fue creada
+        """
+        date = datetime.date(2019, 6, 1)
+        timbrado = self.timbrados[0]
+        timbrado._button_activate(date)
+        seq = timbrado.sequence_id
+        self.assertTrue(len(seq), 1)

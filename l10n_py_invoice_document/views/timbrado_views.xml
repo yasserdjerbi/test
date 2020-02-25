@@ -8,10 +8,15 @@
             <form string="Document Type">
                 <field name="state" invisible="1"/>
                 <header>
-                    <button name="button_activate" type="object"
+                    <button name="action_activate" type="object"
                             string="Activar el timbrado"
                             class="oe_highlight"
                             attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+
+                    <button name="action_draft" type="object"
+                            string="Establecer como Borrador"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'active')]}"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <group col="1">
