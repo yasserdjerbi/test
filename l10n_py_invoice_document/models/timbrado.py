@@ -83,7 +83,8 @@ class TimbradoData(models.Model):
     )
 
     _sql_constraints = [
-        ('name_unique', 'unique (name)', 'El timbrado ya existe...!')
+        ('name_unique', 'unique (name,shipping_point,trade_code)',
+         'El timbrado ya existe...!')
     ]
 
     @staticmethod
