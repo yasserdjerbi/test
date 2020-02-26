@@ -83,6 +83,43 @@ class AccountJournal(models.Model):
             timbrado = self.env['timbrado.data'].search(domain)
             rec.timbrado_id = timbrado[0] if timbrado else False
 
+    def next_sequence_number(self):
+        """ Devuelve el proximo numero de secuencia para el timbrado de esta
+            factura
+        """
+        self.ensure_one()
+        if not self.timbrado_id.sequence_id:
+            raise ValueError('Este docuento no tiene secuencia, verifique la '
+                             'configuracion')
+        next_number = self.timbrado_id.sequence_id.number_next
+
+        # chequear numero a validar es mayor que el maximo
+        if next_number > self.timbrado_id.end_number:
+            raise ValidationError(
+                _('El timbrado ya no es valido, el numero de documento '
+                  'que quiere validar esta mas alla del rango.\n'
+                  'El proximo numero es %s mientras que el '
+                  'rango de validez del timbrado es [%s - %s]') %
+                (next_number, self.timbrado_id.start_number,
+                 self.timbrado_id.end_number))
+
+        # chequear numero a validar es menor que el minimo
+        if next_number < self.timbrado_id.start_number:
+            raise ValidationError(
+                _('El timbrado no es valido. Intenta validar un numero de '
+                  'documento que es menor al minimo valido para este '
+                  'timbrado.\n'
+                  'El proximo numero es %s mientras que el '
+                  'rango de validez del timbrado es [%s - %s]') %
+                (next_number, self.timbrado_id.start_number,
+                 self.timbrado_id.end_number))
+
+        # numero a validar es igual al maximo, invalidar timbrado
+        if next_number == self.timbrado_id.end_number:
+            self.timbrado_id.deactivate()
+
+        return self.timbrado_id.sequence_id.next_by_id()
+
     def action_post(self):
         """ Este metodo se dispara con el boton Publicar
             Solo para facturas o notas de credito al cliente, Obtener el
@@ -110,9 +147,9 @@ class AccountJournal(models.Model):
                 raise ValidationError(_('El RUC es requerido, en este caso no '
                                         'puede quedar en blanco'))
 
-            # obtener la secuencia definida en el tipo de documento
-            dt = self.l10n_latam_document_type_id
-            number = dt.next_sequence_number(self.timbrado_id)
+            # obtener la secuencia definida en el timbrado chequeando que este
+            # dentro de la validez del timbrado
+            number = self.next_sequence_number()
 
             # poner el numero de documento
             self.l10n_latam_document_number = number

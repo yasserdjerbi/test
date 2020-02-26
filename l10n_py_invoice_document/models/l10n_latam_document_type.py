@@ -24,43 +24,6 @@ class L10nLatamDocumentType(models.Model):
         help='Secuencia habilitada para este diario'
     )
 
-    def next_sequence_number(self, timbrado_id):
-        """ Devuelve el proximo numero de secuencia para este documento
-        """
-        self.ensure_one()
-
-        if not self.sequence_id:
-            raise ValueError('Este docuento no tiene secuencia, verifique la '
-                             'configuracion')
-        next_number = self.sequence_id.number_next
-
-        # chequear numero a validar es mayor que el maximo
-        if next_number > timbrado_id.end_number:
-            raise ValidationError(
-                _('El timbrado ya no es valido, el numero de documento '
-                  'que quiere validar esta mas alla del rango.\n'
-                  'El proximo numero es %s mientras que el '
-                  'rango de validez del timbrado es [%s - %s]') %
-                (next_number, timbrado_id.start_number,
-                 timbrado_id.end_number))
-
-        # chequear numero a validar es menor que el minimo
-        if next_number < timbrado_id.start_number:
-            raise ValidationError(
-                _('El timbrado no es valido. Intenta validar un numero de '
-                  'documento que es menor al minimo valido para este '
-                  'timbrado.\n'
-                  'El proximo numero es %s mientras que el '
-                  'rango de validez del timbrado es [%s - %s]') %
-                (next_number, timbrado_id.start_number,
-                 timbrado_id.end_number))
-
-        # numero a validar es igual al maximo, invalidar timbrado
-        if next_number == timbrado_id.end_number:
-            timbrado_id.deactivate()
-
-        return self.sequence_id.next_by_id()
-
     def _format_document_number(self, document_number):
         """ Make validation of Import Dispatch Number
           * making validations on the document_number. If it is wrong it
