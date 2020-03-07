@@ -24,3 +24,9 @@ http://ec2-54-233-138-43.sa-east-1.compute.amazonaws.com:8069
 
 - Documentacion de timbrado:
 https://drive.google.com/drive/folders/1gIXyOiICRADUTDMV43tNosxwJwEz_292?usp=sharing
+
+
+
+
+
+![esp8266 flowchart](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/anoff/plantbuddy/master/assets/esp8266.iuml)
