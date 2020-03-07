@@ -1,5 +1,7 @@
+# For copyright and license notices, see __manifest__.py file in module root
+
 from odoo import models, fields, _
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import UserError
 
 
 class L10nLatamDocumentType(models.Model):

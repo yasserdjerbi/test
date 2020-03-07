@@ -181,8 +181,9 @@ class AccountJournal(models.Model):
             if self.invoice_date > self.l10n_py_validity_end:
                 raise ValidationError(_('La fecha de la factura es posterior '
                                         'a la validez del timbrado'))
-            # llamar al metodo original
-            super().action_post()
+
+        # Llamar siempre al metodo original
+        super().action_post()
 
     def _get_l10n_latam_documents_domain(self):
         """ Esto sobreescribe un metodo de l10n_latam_invoice_document para
