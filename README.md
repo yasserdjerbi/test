@@ -29,4 +29,4 @@ https://drive.google.com/drive/folders/1gIXyOiICRADUTDMV43tNosxwJwEz_292?usp=sha
 
 
 
-![esp8266 flowchart](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/anoff/plantbuddy/master/assets/esp8266.iuml)
+![esp8266 flowchart](https://raw.githubusercontent.com/jobiols/odoo-paraguay/13.0/doc/global.puml?token=ACBBQVH3BBGC3DW5TW5HEES6MQ2BO)
