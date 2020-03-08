@@ -23,14 +23,14 @@ package "adhoc" {
 }
 
 10n_latam_invoice_document <|-- l10n_py
-base <|-- l10n_py_invoice_document
+base <|-u- l10n_py_invoice_document
 l10n_py <|-- l10n_py_invoice_document
 account <|-- l10n_py_invoice_document
 l10n_latam_invoice_documeny <|-- l10n_py_invoice_document
 
 account <|-- l10n_py_reports
 l10n_py_invoice_document <|-- l10n_py_reports
-account_payment_group <|-- l10n_py_reports
+account_payment_group <|-u- l10n_py_reports
 
 l10n_py <|-- l10n_py_vat_book
 l10n_py_reports <|-- l10n_py_vat_book
