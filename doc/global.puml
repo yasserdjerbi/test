@@ -1,7 +1,28 @@
 @startuml
-account <|-- l10n_py
-10n_latam_invoice_document <|-- l10n_py
 
+package "odoo enterprise" {
+class account_reports
+}
+
+package "odoo" {
+    class account
+    class base
+}
+package "latam" {
+    class 10n_latam_invoice_document
+}
+package "localizacion paraguay" {
+    class l10n_py
+    class l10n_py_invoice_document
+    class l10n_py_reports
+    class l10n_py_vat_book
+    class partner_ruc_unique
+}
+package "adhoc" {
+    class account_payment_group
+}
+
+10n_latam_invoice_document <|-- l10n_py
 base <|-- l10n_py_invoice_document
 l10n_py <|-- l10n_py_invoice_document
 account <|-- l10n_py_invoice_document
