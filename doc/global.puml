@@ -1,7 +1,22 @@
 @startuml
-Class01 <|-- Class02
-Class03 *-- Class04
-Class05 o-- Class06
-Class07 .. Class08
-Class09 -- Class10
+account <|-- l10n_py
+10n_latam_invoice_document <|-- l10n_py
+
+base <|-- l10n_py_invoice_document
+l10n_py <|-- l10n_py_invoice_document
+account <|-- l10n_py_invoice_document
+l10n_latam_invoice_documeny <|-- l10n_py_invoice_document
+
+account <|-- l10n_py_reports
+l10n_py_invoice_document <|-- l10n_py_reports
+account_payment_group <|-- l10n_py_reports
+
+l10n_py <|-- l10n_py_vat_book
+l10n_py_reports <|-- l10n_py_vat_book
+l10n_py_invoice_document <|-- l10n_py_vat_book
+account_reports <|-- l10n_py_vat_book
+
+base <|-- partner_ruc_unique
+l10n_py_invoice_document <|-- partner_ruc_unique
+
 @enduml
