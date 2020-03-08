@@ -24,3 +24,7 @@ http://ec2-54-233-138-43.sa-east-1.compute.amazonaws.com:8069
 
 - Documentacion de timbrado:
 https://drive.google.com/drive/folders/1gIXyOiICRADUTDMV43tNosxwJwEz_292?usp=sharing
+
+
+
+[Relaciones entre modulos](https://raw.githubusercontent.com/jobiols/odoo-paraguay/13.0/doc/global.puml?token=ACBBQVEIMOK5C6YORMZGPNS6MQ3EM)
