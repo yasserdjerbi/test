@@ -5,13 +5,15 @@ class account_reports
 }
 
 package "Odoo CE" {
-    class account
     class base
+    class account
     class l10n_latam_invoice_document
 }
+
 package "latam" {
     class 10n_latam_invoice_document
 }
+
 package "localizacion paraguay" {
     class l10n_py
     class l10n_py_invoice_document
@@ -19,12 +21,15 @@ package "localizacion paraguay" {
     class l10n_py_vat_book
     class partner_ruc_unique
 }
+
 package "adhoc" {
     class account_payment_group
     class account_check
 }
 
 10n_latam_invoice_document <|-- l10n_py
+account <|-- l10n_py
+
 base <|--- l10n_py_invoice_document
 l10n_py <|-- l10n_py_invoice_document
 account <|--- l10n_py_invoice_document
