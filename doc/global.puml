@@ -11,17 +11,17 @@ package "Odoo CE" {
     class 10n_latam_invoice_document
 }
 
+package "adhoc" {
+    class account_payment_group
+    class account_check
+}
+
 package "localizacion paraguay" {
     class l10n_py
     class l10n_py_invoice_document
     class l10n_py_reports
     class l10n_py_vat_book
     class partner_ruc_unique
-}
-
-package "adhoc" {
-    class account_payment_group
-    class account_check
 }
 
 10n_latam_invoice_document <|-- l10n_py

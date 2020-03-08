@@ -39,16 +39,10 @@
                         </div>
                     </div>
                     <div class="col-6" align="center">
-                        <t t-if="o.partner_type == 'customer'">
-                            <h3>RECIBO DE DINERO</h3>
-                        </t>
-                        <t t-if="o.partner_type == 'supplier'">
-                            <h3>ORDEN DE PAGO</h3>
-                        </t>
+                        <h3><span t-field="o.document_type_id.report_name"/></h3>
                         <h4>Nº <span t-field="o.document_number"/></h4>
                     </div>
                 </div>
-
 
                 <!-- Medios de pago -->
                 <t t-set="checks" t-value="o.mapped('payment_ids.check_ids')"/>

@@ -1,80 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-        <!-- actualizar los tipos de documento RECIBO segun paraguay -->
+        <!-- DOCUMENTOS PAGOS DEL CLIENTE -->
+
         <record id="account_payment_group_document.dc_recibo_x" model="l10n_latam.document.type">
-            <field name="sequence">780</field>
             <field name="code">RC</field>
             <field name="name">RECIBO RC</field>
             <field name="report_name">RECIBO DE DINERO</field>
             <field name="internal_type">customer_payment</field>
-            <field name="doc_code_prefix">RC</field>
+            <field name="doc_code_prefix">RECIBO </field>
             <field name="country_id" ref="base.py"/>
+            <field name="sequence">180</field>
         </record>
 
         <record id="dc_recibo_x_cc" model="l10n_latam.document.type">
-            <field name="sequence">780</field>
             <field name="code">CC</field>
             <field name="name">RECIBO CC</field>
-            <field name="report_name">RECIBO DE DINERO</field>
+            <field name="report_name">RECIBO DE DINERO CONTADO</field>
             <field name="internal_type">customer_payment</field>
-            <field name="doc_code_prefix">CC</field>
+            <field name="doc_code_prefix">RECIBO </field>
             <field name="country_id" ref="base.py"/>
+            <field name="sequence">190</field>
         </record>
 
         <record id="account_payment_group_document.dc_orden_pago_x" model="l10n_latam.document.type">
-            <field name="sequence">800</field>
             <field name="code">OP</field>
             <field name="name">ORDEN DE PAGO</field>
             <field name="report_name">ORDEN DE PAGO</field>
             <field name="internal_type">supplier_payment</field>
-            <field name="doc_code_prefix">OP</field>
+            <field name="doc_code_prefix">PAGO </field>
             <field name="country_id" ref="base.py"/>
+            <field name="sequence">200</field>
         </record>
 
         <!-- generar las secuencias para los dos tipos de recibo -->
         <record id="automatic_receipt_sequence_rc" model="ir.sequence">
-            <field name="name">Secuencia Recibo Automatico Credito</field>
+            <field name="name">Recibo Automatico Credito</field>
             <field name="implementation">no_gap</field>
             <field name="padding">7</field>
-            <field name="prefix">RC </field>
+            <field name="prefix">RC-</field>
         </record>
         <record id="automatic_receipt_sequence_cc" model="ir.sequence">
-            <field name="name">Secuencia Recibo Automatico Contado</field>
+            <field name="name">Recibo Automatico Contado</field>
             <field name="implementation">no_gap</field>
             <field name="padding">7</field>
-            <field name="prefix">CC </field>
+            <field name="prefix">CC-</field>
+        </record>
+        <record id="automatic_receipt_sequence_purchase" model="ir.sequence">
+            <field name="name">Recibo compras</field>
+            <field name="implementation">no_gap</field>
+            <field name="padding">7</field>
+            <field name="prefix">CP-</field>
         </record>
 
-        <!-- Generar los talonarios de recibo -->
-        <record id="automatic_rc_receipt" model="account.payment.receiptbook">
-            <field name="name">Recibo Automatico Credito</field>
-            <field name="partner_type">customer</field>
-            <field name="sequence_type">automatic</field>
-            <field name="prefix">RC </field>
-            <field name="document_type_id" search="[('code','=','RC')]" model="l10n_latam.document.type"/>
-            <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_rc"/>
-            <field name="company_id" ref="base.main_company"/>
-        </record>
+        <!-- VENTAS TALONARIO DE RECIBOS -->
 
-        <record id="automatic_cc_receipt" model="account.payment.receiptbook">
+        <record id="automatic_sale_cc_receipt" model="account.payment.receiptbook">
             <field name="name">Recibo Automatico Contado</field>
             <field name="partner_type">customer</field>
             <field name="sequence_type">automatic</field>
-            <field name="prefix">CC </field>
+            <!--
+            <field name="prefix">RECIBO </field>
+            -->
             <field name="document_type_id" search="[('code','=','CC')]" model="l10n_latam.document.type"/>
             <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_cc"/>
             <field name="company_id" ref="base.main_company"/>
+            <field name="sequence">10</field>
         </record>
 
-        <record id="manual_receipt" model="account.payment.receiptbook">
+        <record id="automatic_sale_rc_receipt" model="account.payment.receiptbook">
+            <field name="name">Recibo Automatico Credito</field>
+            <field name="partner_type">customer</field>
+            <field name="sequence_type">automatic</field>
+            <field name="document_type_id" search="[('code','=','RC')]" model="l10n_latam.document.type"/>
+            <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_rc"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <!-- Generar los talonarios de recibo para compras -->
+        <record id="automatic_purchase_receipt" model="account.payment.receiptbook">
+            <field name="name">Recibo Automatico compras</field>
+            <field name="partner_type">supplier</field>
+            <field name="sequence_type">automatic</field>
+            <field name="document_type_id" search="[('code','=','OP')]" model="l10n_latam.document.type"/>
+            <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_purchase"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="sequence">30</field>
+        </record>
+
+        <!-- talonario manual de recibo -->
+        <record id="manual_sale_receipt" model="account.payment.receiptbook">
             <field name="name">Recibo Manual</field>
             <field name="partner_type">customer</field>
             <field name="sequence_type">manual</field>
             <field name="padding">7</field>
-            <field name="prefix">B  </field>
             <field name="document_type_id" search="[('code','=','RC')]" model="l10n_latam.document.type"/>
             <field name="company_id" ref="base.main_company"/>
+            <field name="sequence">40</field>
         </record>
+
     </data>
 </odoo>

@@ -2,3 +2,4 @@
 
 from . import account_move_line
 from . import account_payment_group
+from . import l10n_latam_document_type
