@@ -32,6 +32,9 @@ class L10nLatamDocumentType(models.Model):
             should raise an exception
           * format the document_number against a pattern and return it
         """
+
+        import wdb;wdb.set_trace()
+
         self.ensure_one()
         if self.country_id != self.env.ref('base.py'):
             return super()._format_document_number(document_number)
