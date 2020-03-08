@@ -27,4 +27,4 @@ https://drive.google.com/drive/folders/1gIXyOiICRADUTDMV43tNosxwJwEz_292?usp=sha
 
 
 
-[Relaciones entre modulos](https://raw.githubusercontent.com/jobiols/odoo-paraguay/13.0/doc/global.puml?token=ACBBQVH3BBGC3DW5TW5HEES6MQ2BO)
+[Relaciones entre modulos](https://raw.githubusercontent.com/jobiols/odoo-paraguay/13.0/doc/global.puml?token=ACBBQVEIMOK5C6YORMZGPNS6MQ3EM)
