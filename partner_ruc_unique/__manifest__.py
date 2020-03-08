@@ -6,7 +6,7 @@
     'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
-    'license': 'Other OSI approved licence',
+    'license': 'OEEL-1',
     'website': 'tecnopro.com.py',
     'summary': 'Evita la duplicacion de RUC en la localizacion Paraguay',
     'depends': [

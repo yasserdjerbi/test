@@ -5,7 +5,7 @@
     'sequence': 14,
     'author': 'Tecnopro',
     'website': 'tecnopro.com.py',
-    'license': 'Other OSI approved licence',
+    'license': 'OEEL-1',
     'summary': 'Libros de IVA',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
