@@ -8,9 +8,6 @@ package "Odoo CE" {
     class base
     class account
     class l10n_latam_invoice_document
-}
-
-package "latam" {
     class 10n_latam_invoice_document
 }
 
