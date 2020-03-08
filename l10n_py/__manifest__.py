@@ -6,7 +6,7 @@
     'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"
-    'license': 'Other OSI approved licence',
+    'license': 'OEEL-1',
     'website': 'tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',
     'depends': [
