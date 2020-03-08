@@ -7,6 +7,7 @@ class account_reports
 package "Odoo CE" {
     class account
     class base
+    class l10n_latam_invoice_document
 }
 package "latam" {
     class 10n_latam_invoice_document
