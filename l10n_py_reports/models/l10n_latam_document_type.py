@@ -24,7 +24,7 @@ class L10nLatamDocumentType(models.Model):
 
         # recibos y ordenes de pago
         if self.code in ['CC',  # Recibo contado
-                         'CR',  # Recibo credito
+                         'RC',  # Recibo credito
                          'OP'   # Orden de pago
                          ]:
             return document_number
