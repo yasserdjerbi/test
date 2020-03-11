@@ -29,12 +29,8 @@ class L10nLatamDocumentType(models.Model):
                          ]:
             return document_number
 
-        # notas de credito
-        if self.code == 'NC':
-            return document_number
-
-        # factura
-        if self.code in ['FAC']:
+        # factura y nota de credito
+        if self.code in ['FAC', 'NC']:
             msg = "'%s' " + _("no es un valor valido para el "
                               "documento") + " '%s'.\n%s"
 
