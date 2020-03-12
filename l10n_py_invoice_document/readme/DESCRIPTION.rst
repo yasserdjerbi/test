@@ -20,6 +20,4 @@ Luego en el partner se define el tipo de cliente o de proveedor, y se utilizan l
 es requerido o no dependiendo si es un individuo o una empresa.
 Si el ruc esta en blanco y la regla lo permite se usa el ruc consolidado para la factura y el libro de iva
 
-Por otro lado se definen cuentas contables predeterminadas, para las compras y las ventas segun el caso.
-
-
+Ademas se definen cuentas contables predeterminadas, para las compras y las ventas segun el caso.
