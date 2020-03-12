@@ -19,7 +19,7 @@ class AccountJournal(models.Model):
     )
     _sql_constraints = [
         ('diario-unico-sucursal-expedicion-type',
-         'unique(l10n_py_shipping_point,l10n_py_trade_code,type)',
+         'check(1=1)',
          "Otro diario ya tiene los mismos codigos de sucursal y expedicion!!")
     ]
 
