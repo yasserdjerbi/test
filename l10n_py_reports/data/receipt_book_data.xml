@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <!-- DOCUMENTOS PAGOS DEL CLIENTE -->
 
         <record id="account_payment_group_document.dc_recibo_x" model="l10n_latam.document.type">
