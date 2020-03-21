@@ -154,7 +154,8 @@ class AccountJournal(models.Model):
             # poner el numero de documento
             self.l10n_latam_document_number = number
 
-            # llamar al metodo original
+            # llamar al metodo original aqui porque si dejaron la fecha de la
+            # factura en blanco lo que sigue va a fallar
             super().action_post()
 
             # Chequear que la fecha de la factura este dentro de la validez
@@ -166,6 +167,10 @@ class AccountJournal(models.Model):
                 raise ValidationError(
                     _('La fecha de la factura no esta dentro del rango de '
                       'validez del timbrado.'))
+        else:
+            # llamar al metodo original para el caso en que sea una
+            # factura de proveedor y no pasa por el otro lado.
+            super().action_post()
 
         if self.type in ['in_invoice', 'in_refund']:
             # chequear la longitud y tipo de timbrado
@@ -181,9 +186,6 @@ class AccountJournal(models.Model):
             if self.invoice_date > self.l10n_py_validity_end:
                 raise ValidationError(_('La fecha de la factura es posterior '
                                         'a la validez del timbrado'))
-
-        # Llamar siempre al metodo original
-        super().action_post()
 
     def _get_l10n_latam_documents_domain(self):
         """ Esto sobreescribe un metodo de l10n_latam_invoice_document para

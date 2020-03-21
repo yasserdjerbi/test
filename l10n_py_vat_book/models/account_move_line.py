@@ -16,4 +16,6 @@ class AccountMoveLine(models.Model):
                     if not line.tax_ids:
                         raise UserError(_('Todas las lineas de factura deben '
                                           'tener al menos un impuesto de IVA'))
+
+        # llamar al metodo original
         super().action_post()
