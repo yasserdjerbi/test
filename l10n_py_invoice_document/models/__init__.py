@@ -6,3 +6,5 @@ from . import timbrado
 from . import account_move
 from . import partner_type
 from . import res_partner
+from . import product_template
+from . import product_category
