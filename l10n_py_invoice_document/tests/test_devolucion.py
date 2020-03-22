@@ -28,7 +28,19 @@ class DocumentTestCase(SavepointCase):
     def create_refund(self, prod):
         vals = {
             'type': 'out_refund',
-            'partner_id': self.env.ref('base.res_partner_1'),
+            'partner_id': self.env.ref('base.res_partner_1').id,
+            'invoice_line_ids': [(0, 0, {
+                'product_id': prod.id,
+                'quantity': 1,
+                'price_unit': 42,
+            })],
+        }
+        return self.env['account.move'].create(vals)
+
+    def create_invoice(self, prod):
+        vals = {
+            'type': 'out_invoice',
+            'partner_id': self.env.ref('base.res_partner_1').id,
             'invoice_line_ids': [(0, 0, {
                 'product_id': prod.id,
                 'quantity': 1,
@@ -41,17 +53,22 @@ class DocumentTestCase(SavepointCase):
         """ Verifica que se usa la cuenta de devolucion en la NC cuando la
             ponemos en el producto
         """
-
-        # ponerle al producto la cuenta de retorno
+        # ponerle al producto las cuentas de factura y nc
         prod = self.env.ref('product.product_product_4')
         return_account = self.env.ref('l10n_py.1_expense_rd')
+        normal_account = self.env.ref('l10n_py.1_income')
         prod.property_account_income_return_id = return_account
+        prod.property_account_income_id = normal_account
 
+        # chequeo la nota de credito
         nc = self.create_refund(prod)
-
         invoice_account = nc.invoice_line_ids.account_id
-        self.assertEqual(invoice_account, return_account,
-                         'FAIL test_devolucion_product')
+        self.assertEqual(invoice_account, return_account)
+
+        # chequeo la factura
+        fa = self.create_invoice(prod)
+        invoice_account = fa.invoice_line_ids.account_id
+        self.assertEqual(invoice_account, normal_account)
 
     def test_devolucion_product_categ(self):
         """ Verifica que se usa la cuenta de devolucion en la NC cuando la
@@ -62,10 +79,18 @@ class DocumentTestCase(SavepointCase):
         prod = self.env.ref('product.product_product_4')
         prod.categ_id = self.env.ref('product.product_category_all')
         return_account = self.env.ref('l10n_py.1_expense_rd')
+        normal_account = self.env.ref('l10n_py.1_income')
         prod.categ_id.property_account_income_categ_return_id = return_account
+        prod.categ_id.property_account_income_categ_id = normal_account
 
         nc = self.create_refund(prod)
 
+        # chequeo la nota de credito
         invoice_account = nc.invoice_line_ids.account_id
-        self.assertEqual(invoice_account, return_account,
-                         'FAIL test_devolucion_product_categ')
+        self.assertEqual(invoice_account, return_account)
+
+        # chequeo la factura
+        fa = self.create_invoice(prod)
+        invoice_account = fa.invoice_line_ids.account_id
+        self.assertEqual(invoice_account, normal_account)
+
