@@ -4,7 +4,7 @@
  *  (eg. left: 7.5in; width: 2in;) all the dimensions will be scaled down.
 */
 
-.ckca_page {
+.ckpy_page {
     position: relative;
     font-size: 10pt;
     width: 8in!important;
@@ -18,12 +18,12 @@
         width: 8.25in;
     }
 
-    .ckca_check, .ckca_stub_1, .ckca_stub_2 {
+    .ckpy_check, .ckpy_stub_1, .ckpy_stub_2 {
         position: absolute;
         height: 3.25in;
     }
 
-    .ckca_check > * {
+    .ckpy_check > * {
         position: absolute;
         white-space: nowrap;
     }
@@ -33,29 +33,29 @@
         font-size: 1.3em;
     }
 
-    .ckca_stub {
+    .ckpy_stub {
         width: 8in;
     }
 
-    .ckca_stub .sequence_number {
+    .ckpy_stub .sequence_number {
         height: 0.3in;
         margin-bottom: 0.1in;
     }
 
-    .ckca_stub .summary_line {
+    .ckpy_stub .summary_line {
         width: 100%;
         margin-bottom: 0.1in;
     }
 
-    .ckca_stub .summary_line span {
+    .ckpy_stub .summary_line span {
         padding: 0 0.1in;
     }
 
-    .ckca_stub .stub_lines td {
+    .ckpy_stub .stub_lines td {
         padding: 0.01in 0.05in;
     }
 
-    .ckca_stub .stub_total_amount {
+    .ckpy_stub .stub_total_amount {
         position: absolute;
         bottom: 0in;
         right: 0.1in;

@@ -2,38 +2,38 @@
 <odoo>
 <data>
 
-<template id="assets_common" name="l10n_ca_check_printing pdf assets" inherit_id="web.report_assets_common">
+<template id="assets_common" name="l10n_py_check_printing pdf assets" inherit_id="web.report_assets_common">
     <xpath expr="." position="inside">
-        <link rel="stylesheet" type="text/scss" href="/l10n_ca_check_printing/static/src/scss/report_check_commons.scss"/>
-        <link rel="stylesheet" type="text/scss" href="/l10n_ca_check_printing/static/src/scss/report_check_bottom.scss"/>
-        <link rel="stylesheet" type="text/scss" href="/l10n_ca_check_printing/static/src/scss/report_check_middle.scss"/>
-        <link rel="stylesheet" type="text/scss" href="/l10n_ca_check_printing/static/src/scss/report_check_top.scss"/>
+        <link rel="stylesheet" type="text/scss" href="/l10n_py_check_printing/static/src/scss/report_check_commons.scss"/>
+        <link rel="stylesheet" type="text/scss" href="/l10n_py_check_printing/static/src/scss/report_check_bottom.scss"/>
+        <link rel="stylesheet" type="text/scss" href="/l10n_py_check_printing/static/src/scss/report_check_middle.scss"/>
+        <link rel="stylesheet" type="text/scss" href="/l10n_py_check_printing/static/src/scss/report_check_top.scss"/>
     </xpath>
 </template>
 
-<template id="ckca_check">
-    <div class="ckca_check">
+<template id="ckpy_check">
+    <div class="ckpy_check">
         <div class="sequence_number" t-if="page['sequence_number']" t-esc="page['sequence_number']" />
-        <div class="ckca_date_label" t-if="page['date_label']">Date:</div>
-        <div class="ckca_date" t-esc="page['payment_date_canada']"/>
-        <div class="ckca_date_format">YYYY-MM-DD</div>
-        <div class="ckca_payee_address" t-esc="page['partner_id']" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-        <div class="ckca_amount">
+        <div class="ckpy_date_label" t-if="page['date_label']">Date:</div>
+        <div class="ckpy_date" t-esc="page['payment_date_paraguay']"/>
+        <div class="ckpy_date_format">YYYY-MM-DD</div>
+        <div class="ckpy_payee_address" t-esc="page['partner_id']" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+        <div class="ckpy_amount">
             <t t-esc="page['amount']"/>
         </div>
-        <div class="ckca_amount_in_word" t-esc="page['amount_in_word']"/>
-        <div class="ckca_memo" t-esc="page['memo']"/>
+        <div class="ckpy_amount_in_word" t-esc="page['amount_in_word']"/>
+        <div class="ckpy_memo" t-esc="page['memo']"/>
     </div>
 </template>
-<template id="ckca_stub">
-    <div t-attf-class="ckca_stub ckca_stub_{{ stub_num }}">
+<template id="ckpy_stub">
+    <div t-attf-class="ckpy_stub ckpy_stub_{{ stub_num }}">
         <div class="sequence_number" t-if="page['sequence_number']" t-esc="page['sequence_number']" />
         <div class="row summary_line">
             <div class="col-6 text-left">
                 <span t-esc="page['partner_name']"/>
             </div>
             <div class="col-6 text-right">
-                <span t-esc="page['payment_date_canada']"/>
+                <span t-esc="page['payment_date_paraguay']"/>
             </div>
         </div>
 
