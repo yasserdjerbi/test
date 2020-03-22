@@ -9,6 +9,7 @@ class AccountMoveReversal(models.TransientModel):
     def reverse_moves(self):
         """ Cuando se crea la nota de credito desde la factura hay que
             recalcular las cuentas de las lineas de factura.
+            Para que tome las cuentas correspondientes a NC
         """
         # crea la nc normalmente
         ret = super().reverse_moves()
