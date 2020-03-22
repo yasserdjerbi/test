@@ -2,3 +2,4 @@
 
 from . import test_timbrado
 from . import test_ruc
+from . import test_devolucion

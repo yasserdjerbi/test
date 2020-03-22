@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- agregar cuenta de devolucion -->
+    <record id="view_category_property_form" model="ir.ui.view">
+        <field name="name">L10N PY INVOICE DOCUMENT agregar cuenta de devolucion</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_account_income_categ_id']" position="after">
+                <field name="property_account_income_categ_return_id"
+                       domain="[('internal_type','=','other'),
+                                ('deprecated', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

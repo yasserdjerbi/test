@@ -28,6 +28,8 @@
         'data/ir_cron_data.xml',
         'views/res_partner_view.xml',
         'views/partner_type_view.xml',
+        'views/product_template_view.xml',
+        'views/product_category_view.xml',
     ],
     'demo': [
         'demo/account_timbrado_demo.xml',
