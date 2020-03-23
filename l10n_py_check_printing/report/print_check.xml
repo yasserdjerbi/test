@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="print_check">
+    <t t-foreach="docs" t-as="o">
+        <t t-call="web.basic_layout">
+            <div t-att-style-amount="o.layout.style_amount">
+                importe <span t-field="o.amount"/>
+            </div>
+            <div style="position: absolute;left: 1160;top: 200;">
+                Fecha de emision
+                <span t-field="o.check_issue_date"/>
+            </div>
+            <div style="position: absolute; left: 2000;            bottom: 200;">
+                Fecha de pago
+                <span t-field="o.check_payment_date"/>
+            </div>
+            <div style="position: absolute;            left: 370;            top: 300;">
+                A la orden de
+                <span t-field="o.partner_id.name"/>
+            </div>
+            <div style="position: absolute;            left: 370;            top: 350;">
+                Importe en letras
+                <span t-field="o.check_amount_in_words"/>
+            </div>
+            cheque Nro
+            <span t-field="o.check_id.name"/>
+        </t>
+    </t>
+</template>
+</data>
+</odoo>
