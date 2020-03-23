@@ -14,8 +14,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/account_check_view.xml',
-        'views/account_checkbook_view.xml',
         'views/check_layout_view.xml',
+        'views/account_checkbook_view.xml',
         'data/py_check_printing.xml',
         'report/print_check.xml',
 #        'report/print_check_top.xml',

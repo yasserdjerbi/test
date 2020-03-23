@@ -77,6 +77,6 @@
     <menuitem id="menu_checkbook"
         action="action_account_checkbook"
         sequence="41"
-        parent="account_payment_fix.menu_finance_bank_and_cash"/>
+        parent="menu_check_configuration"/>
 
 </odoo>
