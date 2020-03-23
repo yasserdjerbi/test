@@ -2,13 +2,10 @@
 <odoo>
     <!-- Print cheques -->
     <record id="action_print_checks" model="ir.actions.act_window">
-        <field name="name">Imprimir cheques</field>
+        <field name="name">Listado de cheques a Imprimir</field>
         <field name="res_model">account.payment</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[]</field>
-    <!--
-        <field name="context">{'search_default_state':'holding','default_type':'third_check'}</field>
-    -->
     </record>
 
     <menuitem id="menu_print_check"

@@ -11,9 +11,22 @@ class CheckLayout(models.Model):
     name = fields.Char(
         string='Nombre del diseño de cheques'
     )
-    valor1 = fields.Integer(    )
-    valor2 = fields.Integer(    )
-    valor3 = fields.Integer(    )
-    valor4 = fields.Integer(    )
-    valor5 = fields.Integer(    )
-    valor6 = fields.Integer(    )
+
+    amount_top = fields.Integer()
+    amount_left = fields.Integer()
+
+    issue_date_top = fields.Integer()
+    issue_date_left = fields.Integer()
+
+    payment_date_top = fields.Integer()
+    payment_date_left = fields.Integer()
+
+    partner_name_top = fields.Integer()
+    partner_name_left = fields.Integer()
+
+    amount_words_top = fields.Integer()
+    amount_words_left = fields.Integer()
+
+    check_no_top = fields.Integer()
+    check_no_left = fields.Integer()
+

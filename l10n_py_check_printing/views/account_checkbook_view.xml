@@ -57,7 +57,7 @@
 
     <!-- Print cheques abre las chequeras pero usa las views con mas prioridad -->
     <record id="action_account_checkbook" model="ir.actions.act_window">
-        <field name="name">Chequeras</field>
+        <field name="name">Administracion de Chequeras</field>
         <field name="res_model">account.checkbook</field>
         <field name="view_mode">tree,form</field>
     </record>

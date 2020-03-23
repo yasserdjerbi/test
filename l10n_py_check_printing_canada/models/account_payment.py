@@ -2,6 +2,7 @@
 
 from odoo import models, api
 
+
 class account_payment(models.Model):
     _inherit = "account.payment"
 
