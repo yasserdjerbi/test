@@ -17,17 +17,25 @@
                 <sheet string="Checkbooks">
                     <div class="oe_title">
                         <label for="journal_id" class="oe_edit_only"/>
-                        <h1><field name="journal_id" class="oe_inline"/></h1>
+                        <h1>
+                            <field name="journal_id" class="oe_inline"/>
+                        </h1>
                     </div>
                     <group>
                         <field name="name" invisible="1"/>
-                        <field name="sequence_id" groups="base.group_no_one"/>
-                        <field name="next_number"/>
-                        <field name="issue_check_subtype"/>
-                        <field name="range_to"/>
-                        <field name="numerate_on_printing"/>
-                        <!-- <field name="block_manual_number"/> -->
-                        <field name="report_template"/>
+                        <group>
+                            <field name="layout_id"/>
+                            <field name="sequence_id" groups="base.group_no_one"/>
+                            <field name="next_number"/>
+                        </group>
+                        <group>
+                            <field name="issue_check_subtype"/>
+                            <field name="range_to"/>
+                            <field name="numerate_on_printing"/>
+<!--
+                            <field name="report_template"/>
+-->
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -45,6 +53,7 @@
         <field name="arch" type="xml">
             <tree string="Checkbooks" decoration-info="state == 'draft'"
                   decoration-muted="state == 'cancel'">
+                <field name="layout_id"/>
                 <field name="issue_check_subtype"/>
                 <field name="next_number"/>
                 <field name="range_to"/>
@@ -62,21 +71,23 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-     <record id="action_view_account_checkbook_tree_second" model="ir.actions.act_window.view">
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_account_checkbook_tree_second" />
-            <field name="act_window_id" ref="action_account_checkbook" />
+    <record id="action_view_account_checkbook_tree_second"
+            model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_account_checkbook_tree_second"/>
+        <field name="act_window_id" ref="action_account_checkbook"/>
     </record>
 
-    <record id="action_view_account_checkbook_form_second" model="ir.actions.act_window.view">
-           <field name="view_mode">form</field>
-           <field name="view_id" ref="view_account_checkbook_form_second" />
-           <field name="act_window_id" ref="action_account_checkbook" />
+    <record id="action_view_account_checkbook_form_second"
+            model="ir.actions.act_window.view">
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_account_checkbook_form_second"/>
+        <field name="act_window_id" ref="action_account_checkbook"/>
     </record>
 
     <menuitem id="menu_checkbook"
-        action="action_account_checkbook"
-        sequence="41"
-        parent="menu_check_configuration"/>
+              action="action_account_checkbook"
+              sequence="41"
+              parent="menu_check_configuration"/>
 
 </odoo>
