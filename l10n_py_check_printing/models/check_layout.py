@@ -6,12 +6,12 @@ from odoo import fields, models
 
 class CheckLayout(models.Model):
     _name = 'check.layout'
-    _description = "Check Layout Definition"
+    _description = 'Check Layout Definition'
 
     name = fields.Char(
-        string='Nombre del diseño de cheques'
+        string='Nombre del diseño',
+        required=True
     )
-
     amount_top = fields.Integer()
     amount_left = fields.Integer()
 

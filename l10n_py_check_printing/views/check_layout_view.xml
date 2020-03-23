@@ -7,21 +7,17 @@
         <field name="res_model">check.layout</field>
         <field name="view_mode">tree,form</field>
     </record>
-
+<!--
     <menuitem id="l10n_py_check_printing.menu_configuracion"
               parent="account.menu_finance"
               sequence="4"
               groups="account.group_account_user"
               name="Configuracion"/>
-
-    <menuitem id="l10n_py_check_printing.menu_check_layout"
+-->
+    <menuitem id="menu_check_layout"
         action="action_check_layout"
         sequence="42"
-        parent="l10n_py_check_printing.menu_configuracion"/>
+        parent="account_payment_fix.menu_finance_bank_and_cash"/>
 
 </data>
 </odoo>
-
-<!--
-account_payment_fix.menu_finance_bank_and_cash
--->
