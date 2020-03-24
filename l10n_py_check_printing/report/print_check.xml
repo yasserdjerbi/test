@@ -4,27 +4,6 @@
 <template id="print_check">
     <t t-foreach="docs" t-as="o">
         <t t-call="web.basic_layout">
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_amount"/>
-            </div>
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_issue_date"/>
-            </div>
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_payment_date"/>
-            </div>
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_name"/>
-            </div>
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_amount_words"/>
-            </div>
-            <div>
-            <span t-field="o.checkbook_id.layout_id.style_check_no"/>
-            </div>
-
-
-<!--
             <div t-att-style="o.checkbook_id.layout_id.style_amount"
                  t-if="o.checkbook_id.layout_id.amount">
                 importe <span t-field="o.amount"/>
@@ -54,13 +33,11 @@
                 Importe en letras <span t-field="o.check_amount_in_words"/>
                 <span t-field="o.checkbook_id.layout_id.style_amount_words"/>
             </div>
-
             <div t-att-style="o.checkbook_id.layout_id.style_check_no"
                  t-if="o.checkbook_id.layout_id.check_no">
                 cheque Nro <span t-field="o.check_id.name"/>
                 <span t-field="o.checkbook_id.layout_id.style_check_no"/>
             </div>
--->
         </t>
     </t>
 </template>
