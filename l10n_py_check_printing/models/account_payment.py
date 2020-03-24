@@ -4,6 +4,7 @@ from odoo import fields, models, _, api
 from odoo.exceptions import UserError
 
 import logging
+from num2words import num2words
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +17,9 @@ class AccountPayment(models.Model):
     )
 
     def _compute_amount_in_words(self):
-        self.check_amount_in_words = 'quichicientos guaranies'
+        for rec in self:
+            rec.check_amount_in_words = num2words(rec.amount,
+                                         lang=self.env.user.lang[:2]).upper()
 
     def do_print_checks(self):
         checkbook = self.mapped('checkbook_id')

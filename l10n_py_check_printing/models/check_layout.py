@@ -3,7 +3,7 @@
 
 from odoo import fields, models
 
-STYLE = 'position:absolute;left:%spx;top:%spx;'
+STYLE = 'position:relative;left:%spx;top:%spx;'
 SCALE = 4
 
 
