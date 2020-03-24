@@ -4,39 +4,62 @@
 <template id="print_check">
     <t t-foreach="docs" t-as="o">
         <t t-call="web.basic_layout">
-            <div style="position: absolute;left: 116;top: 200;">
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_amount"/>
+            </div>
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_issue_date"/>
+            </div>
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_payment_date"/>
+            </div>
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_name"/>
+            </div>
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_amount_words"/>
+            </div>
+            <div>
+            <span t-field="o.checkbook_id.layout_id.style_check_no"/>
+            </div>
+
+
 <!--
-            <div t-att-style="o.checkbook_id.layout_id.style_amount">
--->
+            <div t-att-style="o.checkbook_id.layout_id.style_amount"
+                 t-if="o.checkbook_id.layout_id.amount">
                 importe <span t-field="o.amount"/>
+                <span t-field="o.checkbook_id.layout_id.style_amount"/>
             </div>
 
-            <div style="position: absolute;left: 116;top: 200;">
-                <p>hola</p>
+            <div t-att-style="o.checkbook_id.layout_id.style_issue_date"
+                 t-if="o.checkbook_id.layout_id.issue_date">
+                Fecha de emision <span t-field="o.check_issue_date"/>
+                <span t-field="o.checkbook_id.layout_id.style_issue_date"/>
             </div>
 
-            <!--
+            <div t-att-style="o.checkbook_id.layout_id.style_payment_date"
+                 t-if="o.checkbook_id.layout_id.payment_date">
+                Fecha de pago <span t-field="o.check_payment_date"/>
+                <span t-field="o.checkbook_id.layout_id.style_payment_date"/>
+            </div>
 
+            <div t-att-style="o.checkbook_id.layout_id.style_name"
+                 t-if="o.checkbook_id.layout_id.name">
+                A la orden de <span t-field="o.partner_id.name"/>
+                <span t-field="o.checkbook_id.layout_id.style_name"/>
+            </div>
 
+            <div t-att-style="o.checkbook_id.layout_id.style_amount_words"
+                 t-if="o.checkbook_id.layout_id.amount_words">
+                Importe en letras <span t-field="o.check_amount_in_words"/>
+                <span t-field="o.checkbook_id.layout_id.style_amount_words"/>
+            </div>
 
-            <div t-att-style="o.checkbook_id.layout_id.style_issue_date">
-                Fecha de emision
-                <span t-field="o.check_issue_date"/>
+            <div t-att-style="o.checkbook_id.layout_id.style_check_no"
+                 t-if="o.checkbook_id.layout_id.check_no">
+                cheque Nro <span t-field="o.check_id.name"/>
+                <span t-field="o.checkbook_id.layout_id.style_check_no"/>
             </div>
-            <div t-att-style="o.checkbook_id.layout_id.style_payment_date">
-                Fecha de pago
-                <span t-field="o.check_payment_date"/>
-            </div>
-            <div t-att-style="o.checkbook_id.layout_id.style_name">
-                A la orden de
-                <span t-field="o.partner_id.name"/>
-            </div>
-            <div t-att-style="o.checkbook_id.layout_id.style_amount_words">
-                Importe en letras
-                <span t-field="o.check_amount_in_words"/>
-            </div>
-            cheque Nro
-            <span t-field="o.check_id.name"/>
 -->
         </t>
     </t>

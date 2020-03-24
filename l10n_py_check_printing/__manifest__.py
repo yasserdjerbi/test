@@ -18,6 +18,7 @@
         'views/account_checkbook_view.xml',
         'data/py_check_printing.xml',
         'report/print_check.xml',
+        'data/check_layout_data.xml',
 #        'report/print_check_top.xml',
 #        'report/print_check_middle.xml',
 #        'report/print_check_bottom.xml',

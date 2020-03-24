@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="check_layout_deferred" model="check.layout">
+            <field name="name">Cheque Diferido</field>
+
+            <field name="amount" eval="True"/>
+            <field name="amount_left">128</field>
+            <field name="amount_top">10</field>
+
+            <field name="issue_date" eval="True"/>
+            <field name="issue_date_left">20</field>
+            <field name="issue_date_top">116</field>
+
+            <field name="payment_date" eval="True"/>
+            <field name="payment_date_left">50</field>
+            <field name="payment_date_top">116</field>
+
+            <field name="partner_name" eval="True"/>
+            <field name="partner_name_left">37</field>
+            <field name="partner_name_top">30</field>
+
+            <field name="amount_words" eval="True"/>
+            <field name="amount_words_left">37</field>
+            <field name="amount_words_top">35</field>
+
+            <field name="check_no" eval="False"/>
+            <field name="check_no_left">0</field>
+            <field name="check_no_top">0</field>
+        </record>
+    </data>
+</odoo>

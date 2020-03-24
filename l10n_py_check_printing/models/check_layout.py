@@ -3,8 +3,8 @@
 
 from odoo import fields, models
 
-STYLE = 'position:absolute;left:%s;top:%s;'
-SCALE = 50
+STYLE = 'position:absolute;left:%spx;top:%spx;'
+SCALE = 4
 
 
 class CheckLayout(models.Model):
@@ -79,21 +79,21 @@ class CheckLayout(models.Model):
         self.style_amount = STYLE % (left, top)
 
     def _compute_issue_date(self):
-        left, top = self.scale(self.amount_left, self.amount_top)
+        left, top = self.scale(self.issue_date_left, self.issue_date_top)
         self.style_issue_date = STYLE % (left, top)
 
     def _compute_payment_date(self):
-        left, top = self.scale(self.amount_left, self.amount_top)
+        left, top = self.scale(self.payment_date_left, self.payment_date_top)
         self.style_payment_date = STYLE % (left, top)
 
     def _compute_name(self):
-        left, top = self.scale(self.amount_left, self.amount_top)
+        left, top = self.scale(self.partner_name_left, self.partner_name_top)
         self.style_name = STYLE % (left, top)
 
     def _compute_amount_words(self):
-        left, top = self.scale(self.amount_left, self.amount_top)
+        left, top = self.scale(self.amount_words_left, self.amount_words_top)
         self.style_amount_words = STYLE % (left, top)
 
     def _compute_check_no(self):
-        left, top = self.scale(self.amount_left, self.amount_top)
+        left, top = self.scale(self.check_no_left, self.check_no_top)
         self.style_check_no = STYLE % (left, top)
