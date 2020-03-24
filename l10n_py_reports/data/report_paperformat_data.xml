@@ -16,6 +16,26 @@
         <field name="dpi">90</field>
     </record>
 
+    <!-- TODO cambiar record por report
+    el id es action_ + id del template
+
+    <report id="action_report_invoice_with_payments"
+            paperformat="py_A4_landscape"
+            report_type="qweb-html"
+            print_report_name="'invoice - %s' % (object.partner_id.name or '',)"
+
+            string="Impresion de factura"
+            model="account.move"
+
+            name="Impresion de factura"
+            file="impresion de factura"
+
+            attachment_use="True"
+            attachment="'check_'+(object.partner_id.name)+'_'+(object.name)+'.pdf'"
+            menu="False"
+    />
+    -->
+
     <record id="account.account_invoices" model="ir.actions.report">
         <field name="paperformat_id" ref="py_A4_landscape"/>
         <field name="report_name">l10n_py_reports.report_invoice_with_payments</field>
