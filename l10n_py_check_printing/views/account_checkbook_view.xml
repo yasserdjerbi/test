@@ -53,6 +53,7 @@
         <field name="arch" type="xml">
             <tree string="Checkbooks" decoration-info="state == 'draft'"
                   decoration-muted="state == 'cancel'">
+                <field name="journal_id"/>
                 <field name="layout_id"/>
                 <field name="issue_check_subtype"/>
                 <field name="next_number"/>

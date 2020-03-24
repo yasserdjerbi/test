@@ -12,12 +12,12 @@
 #        'l10n_py'
     ],
     'data': [
+        'report/print_check.xml',
         'security/ir.model.access.csv',
         'views/account_check_view.xml',
         'views/check_layout_view.xml',
         'views/account_checkbook_view.xml',
         'data/py_check_printing.xml',
-        'report/print_check.xml',
         'data/check_layout_data.xml',
 #        'report/print_check_top.xml',
 #        'report/print_check_middle.xml',
