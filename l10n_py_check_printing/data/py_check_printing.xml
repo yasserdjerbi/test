@@ -3,16 +3,16 @@
     <data noupdate="0">
 
         <record id="paperformat_check_py" model="report.paperformat">
-            <field name="name">PY check Letter</field>
+            <field name="name">Formato de Cheque Paraguay</field>
             <field name="default" eval="False" />
-            <field name="format">Letter</field>
-            <field name="page_height">0</field>
-            <field name="page_width">0</field>
+            <field name="format">custom</field>
+            <field name="page_height">75</field>
+            <field name="page_width">175</field>
             <field name="orientation">Portrait</field>
             <field name="margin_top">0</field>
             <field name="margin_bottom">0</field>
             <field name="margin_left">0</field>
-            <field name="margin_right">7</field>
+            <field name="margin_right">0</field>
             <field name="header_line" eval="False" />
             <field name="header_spacing">0</field>
             <field name="dpi">90</field>
