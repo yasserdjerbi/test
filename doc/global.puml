@@ -22,6 +22,7 @@ package "localizacion paraguay" {
     class l10n_py_reports
     class l10n_py_vat_book
     class partner_ruc_unique
+    class l10n_py_check_printing
 }
 
 10n_latam_invoice_document <|-- l10n_py
@@ -43,5 +44,6 @@ account_reports <|-- l10n_py_vat_book
 
 base <|-- partner_ruc_unique
 l10n_py_invoice_document <|-- partner_ruc_unique
+account_check <|-- l10n_py_check_printing
 
 @enduml

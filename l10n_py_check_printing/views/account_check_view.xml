@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- formulario de layout para cheques -->
+    <record id="check_layout_form" model="ir.ui.view">
+        <field name="name">L10N PY CHECK PRINTING layout form</field>
+        <field name="model">check.layout</field>
+        <field name="arch" type="xml">
+            <form string="Diseño de cheque">
+                <div class="oe_title">
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                </div>
+                <div>
+                    <p>Habilite los campos para que se impriman en el
+                        cheque</p>
+                    <p>Ajuste las distancias de cada campo hasta arriba y
+                        hasta la izquierda para posicionar correctamente en
+                        el preimpreso.</p>
+                </div>
+                <group>
+                    <label for="amount"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="amount"/>
+                        Desde la izquierda
+                        <field name="amount_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="amount_top" style="width:5%"/> mm
+                    </div>
+
+                    <label for="issue_date"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="issue_date"/>
+                        Desde la izquierda
+                        <field name="issue_date_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="issue_date_top" style="width:5%"/> mm
+                    </div>
+
+                    <label for="payment_date"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="payment_date"/>
+                        Desde la izquierda
+                        <field name="payment_date_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="payment_date_top" style="width:5%"/> mm
+                    </div>
+
+                    <label for="partner_name"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="partner_name"/>
+                        Desde la izquierda
+                        <field name="partner_name_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="partner_name_top" style="width:5%"/> mm
+                    </div>
+
+                    <label for="amount_words"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="amount_words"/>
+                        Desde la izquierda
+                        <field name="amount_words_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="amount_words_top" style="width:5%"/> mm
+                    </div>
+
+                    <label for="check_no"/>
+                    <div class="oe_inline">Habilitado
+                        <field name="check_no"/>
+                        Desde la izquierda
+                        <field name="check_no_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="check_no_top" style="width:5%"/> mm
+                    </div>
+
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Print cheques -->
+    <record id="action_print_checks" model="ir.actions.act_window">
+        <field name="name">Listado de cheques a Imprimir</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem id="menu_print_check"
+              action="action_print_checks"
+              parent="account_payment_fix.menu_finance_bank_and_cash"/>
+
+</odoo>

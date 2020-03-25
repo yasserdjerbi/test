@@ -4,7 +4,7 @@
         <!-- TODO No se puede poner noupdate=1 porque aparecen de nuevo los
              recibos X -->
         <!-- DOCUMENTOS PAGOS DEL CLIENTE -->
-
+        
         <record id="account_payment_group_document.dc_recibo_x" model="l10n_latam.document.type">
             <field name="code">RC</field>
             <field name="name">RECIBO RC</field>

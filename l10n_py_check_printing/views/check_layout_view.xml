@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- diseno de cheques -->
+        <record id="action_check_layout" model="ir.actions.act_window">
+            <field name="name">Diseño de cheques</field>
+            <field name="res_model">check.layout</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_check_configuration"
+                  name="Configuracion"
+                  sequence="42"
+                  parent="account.menu_finance"/>
+
+        <menuitem id="menu_check_layout"
+                  action="action_check_layout"
+                  sequence="42"
+                  parent="menu_check_configuration"/>
+
+    </data>
+</odoo>
