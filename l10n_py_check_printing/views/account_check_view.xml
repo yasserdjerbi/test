@@ -13,58 +13,65 @@
                     </h1>
                 </div>
                 <div>
-                    <p>Al habilitar un camo saldra impreso en el cheque</p>
-                    <p>Para posicionar el campo en el cheque indique las distancias
-                       en milimetros desde el margen izquierdo del cheque y desde
-                        la parte superior.</p>
+                    <p>Habilite los campos para que se impriman en el
+                        cheque</p>
+                    <p>Ajuste las distancias de cada campo hasta arriba y
+                        hasta la izquierda para posicionar correctamente en
+                        el preimpreso.</p>
                 </div>
                 <group>
                     <label for="amount"/>
                     <div class="oe_inline">Habilitado
                         <field name="amount"/>
                         Desde la izquierda
-                        <field name="amount_left"/>mm - desde arriba
-                        <field name="amount_top"/> mm
+                        <field name="amount_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="amount_top" style="width:5%"/> mm
                     </div>
 
                     <label for="issue_date"/>
                     <div class="oe_inline">Habilitado
                         <field name="issue_date"/>
                         Desde la izquierda
-                        <field name="issue_date_left"/>mm - desde arriba
-                        <field name="issue_date_top"/> mm
+                        <field name="issue_date_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="issue_date_top" style="width:5%"/> mm
                     </div>
 
                     <label for="payment_date"/>
                     <div class="oe_inline">Habilitado
                         <field name="payment_date"/>
                         Desde la izquierda
-                        <field name="payment_date_left"/>mm - desde arriba
-                        <field name="payment_date_top"/> mm
+                        <field name="payment_date_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="payment_date_top" style="width:5%"/> mm
                     </div>
 
                     <label for="partner_name"/>
                     <div class="oe_inline">Habilitado
                         <field name="partner_name"/>
                         Desde la izquierda
-                        <field name="partner_name_left"/>mm - desde arriba
-                        <field name="partner_name_top"/> mm
+                        <field name="partner_name_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="partner_name_top" style="width:5%"/> mm
                     </div>
 
                     <label for="amount_words"/>
                     <div class="oe_inline">Habilitado
                         <field name="amount_words"/>
                         Desde la izquierda
-                        <field name="amount_words_left"/>mm - desde arriba
-                        <field name="amount_words_top"/> mm
+                        <field name="amount_words_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="amount_words_top" style="width:5%"/> mm
                     </div>
 
                     <label for="check_no"/>
                     <div class="oe_inline">Habilitado
                         <field name="check_no"/>
                         Desde la izquierda
-                        <field name="check_no_left"/>mm - desde arriba
-                        <field name="check_no_top"/> mm
+                        <field name="check_no_left" style="width:5%"/>mm
+                        -- Desde arriba
+                        <field name="check_no_top" style="width:5%"/> mm
                     </div>
 
                 </group>
