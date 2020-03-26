@@ -1,9 +1,23 @@
 @startuml
 
-' Esto es un comentario
+' Cheques de terceros, en desarrollo...
 
-[*] --> EnMano : cobrar cheque
-EnMano --> Depositado : Transferir cheque a un banco
-Depositado --> Rechazado : Rechazo del banco
+note "Cheques de terceros\nrecibidos" as N1
+
+Devuelto : El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
+EnMano: El cheque se recibió\ny esta en cartera
+Depositado: El cheque se\ndepositó en banco
+Rechazado: El banco rechazo el cheque ...
+Vendido: El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
+RechazoVenta: Movimiento de Cash a cuenta de rechazo,\nSe rechazo la venta del cheque
+
+[*] --> EnMano : cobrar cheque con\nrecibo de cliente
+EnMano --> Depositado : Transferir a\ncuenta de banco
+EnMano --> Vendido: Transferir a cuenta\nde efectivo
+EnMano --> Devuelto: Devolver al\ncliente
+Depositado --> Rechazado : Rechazo\ndel banco
+Devuelto --> [*]
+Vendido --> RechazoVenta : Se rechaza la venta
+
 
 @enduml
