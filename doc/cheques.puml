@@ -1,0 +1,9 @@
+@startuml
+
+' Esto es un comentario
+
+[*] --> EnMano : cobrar cheque
+EnMano --> Depositado : Transferir cheque a un banco
+Depositado --> Rechazado : Rechazo del banco
+
+@enduml
