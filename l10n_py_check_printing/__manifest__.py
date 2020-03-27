@@ -9,6 +9,7 @@
     'depends': [
         'account_check'
     ],
+    "excludes": ['account_check_printing'],
     'data': [
         'report/print_check.xml',
         'security/ir.model.access.csv',

@@ -34,25 +34,26 @@ note "Diagrama de estados de Cheques" as N1
 
 Handed: [Entregado] El cheque se emitio y se el\nentrego en pago a un proveedor
 Rejected: [Rechazado] Crea ND del proveedor
-Deposited: [Depositado] se deposita en banco\nAsiento: chq diferidos a cta banco.
-
+Debited: [Debitado] se deposita en banco\nAsiento: chq diferidos a cta banco.
+Holding: [En Cartera] tenemos el cheque\ncomo valor en cartera.
+Returned: [Devuelto] Devolvemos el cheque\nal emisor: genera NC al Cliente
 
 [*] --> Handed : Emitir un cheque\nej. pago a proveedor
-Handed --> Deposited : BTN: Bank Debit
+Handed --> Debited : BTN: Bank Debit
 Handed --> Rejected: BNT: Supplier\nReturn/Rejection
+Rejected --> [*]
+
+[*] --> Holding: Recibir un cheque de\nterceros ej. pago de cliente
+Holding --> Returned: BTN: Return\nto Customer
+Returned --> [*]
 
 
 
-
-
-
-Devuelto : [Returned] El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
 Vendido: [Selled] El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
 Reclamado: [Reclaimed] Se genera una factura en borrador
 
 Handed --> Vendido: Transferir a cuenta\nde efectivo
-Depositado --> Rechazado : Rechazo\ndel banco
-Devuelto --> [*]
+
 Vendido --> RechazoVenta : Se rechaza la venta
 RechazoVenta --> Reclamado: Se reclama el cheque
 
