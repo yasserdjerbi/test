@@ -91,9 +91,11 @@
     <record id="action_print_checks" model="ir.actions.act_window">
         <field name="name">Listado de cheques a Imprimir</field>
         <field name="res_model">account.payment</field>
-        <field name="view_mode">tree,form</field>
-        <field name="domain">[('payment_type_copy','=','outbound')]
-        </field>
+        <field name="view_mode">tree</field>
+
+        <!-- no encuentro forma de filtrar los cheques -->
+        <field name="domain">[]</field>
+
     </record>
 
     <menuitem id="menu_print_check"
