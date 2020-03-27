@@ -9,7 +9,7 @@
 '        ('transfered', 'Transfered'),
 '        ('reclaimed', 'Reclaimed'), ------------
 '        ('withdrawed', 'Withdrawed'),
-'        ('handed', 'Handed'),
+'        ('handed', 'Handed'),      -------------
 '        ('rejected', 'Rejected'), --------------
 '        ('debited', 'Debited'),
 '        ('returned', 'Returned'), --------------
@@ -32,7 +32,7 @@
 
 note "Diagrama de estados de Cheques" as N1
 
-EnMano: El cheque se recibió\ny esta en cartera
+Handed: [En Mano] El cheque se recibió\ny esta en cartera
 Devuelto : [Returned] El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
 Depositado: [Deposited] El cheque se\ndepositó en banco
 Rechazado: [Rejected] El banco rechazo el cheque ...
@@ -40,10 +40,10 @@ Vendido: [Selled] El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta
 RechazoVenta: Movimiento de Cash a cuenta de rechazo,\nSe rechazo la venta del cheque
 Reclamado: [Reclaimed] Se genera una factura en borrador
 
-[*] --> EnMano : cobrar cheque con\nrecibo de cliente
-EnMano --> Depositado : Transferir a\ncuenta de banco
-EnMano --> Vendido: Transferir a cuenta\nde efectivo
-EnMano --> Devuelto: Devolver al\ncliente
+[*] --> Handed : cobrar cheque con\nrecibo de cliente
+Handed --> Depositado : Transferir a\ncuenta de banco
+Handed --> Vendido: Transferir a cuenta\nde efectivo
+Handed --> Devuelto: Devolver al\ncliente
 Depositado --> Rechazado : Rechazo\ndel banco
 Devuelto --> [*]
 Vendido --> RechazoVenta : Se rechaza la venta
