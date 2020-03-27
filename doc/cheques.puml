@@ -10,6 +10,7 @@ Depositado: El cheque se\ndepositó en banco
 Rechazado: El banco rechazo el cheque ...
 Vendido: El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
 RechazoVenta: Movimiento de Cash a cuenta de rechazo,\nSe rechazo la venta del cheque
+Reclamado: Se genera una factura en borrador
 
 [*] --> EnMano : cobrar cheque con\nrecibo de cliente
 EnMano --> Depositado : Transferir a\ncuenta de banco
@@ -18,6 +19,6 @@ EnMano --> Devuelto: Devolver al\ncliente
 Depositado --> Rechazado : Rechazo\ndel banco
 Devuelto --> [*]
 Vendido --> RechazoVenta : Se rechaza la venta
-
+RechazoVenta --> Reclamado: Se reclama el cheque
 
 @enduml

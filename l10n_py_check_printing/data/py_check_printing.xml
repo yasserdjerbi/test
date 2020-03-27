@@ -35,5 +35,14 @@
             menu="False"
         />
 
+        <!-- poner imprimir cheques en el boton action -->
+        <act_window id="action_issue_checks_print"
+            name="Imprimir Cheques"
+            binding_model="account.check"
+            view_mode="form"
+            target="new"
+            res_model="print.check.wizard"
+            />
+
     </data>
 </odoo>
