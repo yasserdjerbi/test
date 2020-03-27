@@ -1,21 +1,56 @@
 @startuml
 
 ' Cheques de terceros, en desarrollo...
+'        ('draft', 'Draft'),
+'        ('holding', 'Holding'),
+'        ('deposited', 'Deposited'), -------------
+'        ('selled', 'Selled'),      ----------------
+'        ('delivered', 'Delivered'), [Endosado]
+'        ('transfered', 'Transfered'),
+'        ('reclaimed', 'Reclaimed'), ------------
+'        ('withdrawed', 'Withdrawed'),
+'        ('handed', 'Handed'),      -------------
+'        ('rejected', 'Rejected'), --------------
+'        ('debited', 'Debited'),
+'        ('returned', 'Returned'), --------------
+'        ('changed', 'Changed'),
+'        ('cancel', 'Cancel'),
 
-note "Cheques de terceros\nrecibidos" as N1
+'        'holding':   ['draft', 'deposited', 'selled', 'delivered', 'transfered'],
+'        'delivered': ['holding'],
+'        'deposited': ['holding', 'rejected'],
+'        'selled':    ['holding'],
+'        'handed':    ['draft'],
+'        'transfered': ['holding'],
+'        'withdrawed': ['draft'],
+'        'rejected':  ['delivered', 'deposited', 'selled', 'handed'],
+'        'debited':   ['handed'],
+'        'returned':  ['handed', 'holding'],
+'        'changed':   ['handed', 'holding'],
+'        'cancel':    ['draft'],
+'        'reclaimed': ['rejected'],
 
-Devuelto : El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
-EnMano: El cheque se recibió\ny esta en cartera
-Depositado: El cheque se\ndepositó en banco
-Rechazado: El banco rechazo el cheque ...
-Vendido: El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
-RechazoVenta: Movimiento de Cash a cuenta de rechazo,\nSe rechazo la venta del cheque
-Reclamado: Se genera una factura en borrador
+note "Diagrama de estados de Cheques" as N1
 
-[*] --> EnMano : cobrar cheque con\nrecibo de cliente
-EnMano --> Depositado : Transferir a\ncuenta de banco
-EnMano --> Vendido: Transferir a cuenta\nde efectivo
-EnMano --> Devuelto: Devolver al\ncliente
+Handed: [Entregado] El cheque se emitio y se el\nentrego en pago a un proveedor
+Rejected: [Rechazado] Crea ND del proveedor
+Deposited: [Depositado] se deposita en banco\nAsiento: chq diferidos a cta banco.
+
+
+[*] --> Handed : Emitir un cheque\nej. pago a proveedor
+Handed --> Deposited : BTN: Bank Debit
+Handed --> Rejected: BNT: Supplier\nReturn/Rejection
+
+
+
+
+
+
+Devuelto : [Returned] El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
+Vendido: [Selled] El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
+Reclamado: [Reclaimed] Se genera una factura en borrador
+
+Handed --> Vendido: Transferir a cuenta\nde efectivo
 Depositado --> Rechazado : Rechazo\ndel banco
 Devuelto --> [*]
 Vendido --> RechazoVenta : Se rechaza la venta
