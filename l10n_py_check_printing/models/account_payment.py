@@ -37,4 +37,9 @@ class AccountPayment(models.Model):
         check_report = self.env['ir.actions.report'].search(
             [('report_name', '=', report_name)], limit=1).report_action(self)
 
+        # intentando que el contexto se parezca al que funciona.
+        check_report['context']['active_domain'] = []
+        check_report['context']['active_id'] = 5
+        check_report['context']['active_model'] = 'account.payment'
+
         return check_report
