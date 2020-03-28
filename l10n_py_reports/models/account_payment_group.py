@@ -22,7 +22,7 @@ class AccountPaymentGroup(models.Model):
             if checks or payments:
                 _logger.info('*** medios de pago')
 
-                # Cheques <for each="line in o.mapped('payment_ids.check_ids')">
+                # Cheques <for each="line in o.mapped('payment_ids.check_ids')"> # noqa
                 for check in checks:
                     _logger.info('*** Cheque nro %s - %s - Venc. %s' % (
                         check.name, check.bank_id.name or check.journal_id.name, check.payment_date))  # noqa
@@ -54,7 +54,7 @@ class AccountPaymentGroup(models.Model):
                 if unmatched_amount:
                     _logger.info('*** '+'A cuenta', unmatched_amount)
 
-                    # #############################################################################
+                    # ########################################################
                     # Falta migrar el modulo account_debt_management
                     #       if self.partner_type == 'customer':
                     #           documents = (self.partner_type=='customer' and self.partner_id.commercial_partner_id.receivable_debt_ids or self.partner_id.commercial_partner_id.payable_debt_ids).filtered(lambda x: x.company_id == self.company_id) # noqa
