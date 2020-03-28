@@ -48,7 +48,6 @@ Holding --> Returned: BTN: Return\nto Customer
 Returned --> [*]
 
 
-
 Vendido: [Selled] El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
 Reclamado: [Reclaimed] Se genera una factura en borrador
 
