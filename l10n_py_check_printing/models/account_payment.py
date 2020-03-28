@@ -37,4 +37,6 @@ class AccountPayment(models.Model):
         check_report = self.env['ir.actions.report'].search(
             [('report_name', '=', report_name)], limit=1).report_action(self)
 
+
+
         return check_report

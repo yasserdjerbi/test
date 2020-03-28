@@ -91,4 +91,10 @@
               sequence="41"
               parent="menu_check_configuration"/>
 
+    <menuitem name="Transferencias"
+        id="account.menu_finance"
+        groups="account.group_account_user,account.group_account_manager,account.group_account_invoice"
+        web_icon="account,static/description/icon.png"
+        sequence="40"/>
+
 </odoo>

@@ -24,16 +24,28 @@
             attachment="'check_'+(object.partner_id.name)+'_'+(object.name)+'.pdf'"
 -->
 
+        <!-- mover esto al directorio reports -->
         <report id="action_print_check"
             string="Imprimir Cheque sobre preimpreso"
             model="account.payment"
+
             name="l10n_py_check_printing.print_check"
+
             file="l10n_py_check_printing.print_check"
             report_type="qweb-pdf"
             paperformat="l10n_py_check_printing.paperformat_check_py"
             print_report_name="'check - %s' % (object.partner_id.name or '',)"
             menu="False"
         />
+
+        <!-- poner imprimir cheques en el boton action -->
+        <act_window id="action_issue_checks_print"
+            name="Imprimir Cheques"
+            binding_model="account.check"
+            view_mode="form"
+            target="new"
+            res_model="print.check.wizard"
+            />
 
     </data>
 </odoo>

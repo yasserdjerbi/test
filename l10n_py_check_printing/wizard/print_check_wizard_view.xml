@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="print_check_wizard_form" model="ir.ui.view">
+        <field name="name">L10N PY CHECK PRINTING print wizard form</field>
+        <field name="model">print.check.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Impresion de los cheques">
+                <p>Imprimir todos los cheques seleccionados...?</p>
+
+                <footer>
+                    <button string='Confirmar' name="print_checks" type="object" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

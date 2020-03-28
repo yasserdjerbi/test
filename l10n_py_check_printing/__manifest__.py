@@ -9,6 +9,7 @@
     'depends': [
         'account_check'
     ],
+    "excludes": ['account_check_printing'],
     'data': [
         'report/print_check.xml',
         'security/ir.model.access.csv',
@@ -18,6 +19,7 @@
         #'views/res_config_settings_view.xml', no se porque no anda. se modifica en origen.
         'data/py_check_printing.xml',
         'data/check_layout_data.xml',
+        'wizard/print_check_wizard_view.xml',
     ],
     'installable': True,
     'auto_install': False,

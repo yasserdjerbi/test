@@ -32,20 +32,27 @@
 
 note "Diagrama de estados de Cheques" as N1
 
-Handed: [En Mano] El cheque se recibió\ny esta en cartera
-Devuelto : [Returned] El cheque se devolvió al \ncliente y se generó una\nfactura en borrador
-Depositado: [Deposited] El cheque se\ndepositó en banco
-Rechazado: [Rejected] El banco rechazo el cheque ...
+Handed: [Entregado] El cheque se emitio y se el\nentrego en pago a un proveedor
+Rejected: [Rechazado] Crea ND del proveedor
+Debited: [Debitado] se deposita en banco\nAsiento: chq diferidos a cta banco.
+Holding: [En Cartera] tenemos el cheque\ncomo valor en cartera.
+Returned: [Devuelto] Devolvemos el cheque\nal emisor: genera NC al Cliente
+
+[*] --> Handed : Emitir un cheque\nej. pago a proveedor
+Handed --> Debited : BTN: Bank Debit
+Handed --> Rejected: BNT: Supplier\nReturn/Rejection
+Rejected --> [*]
+
+[*] --> Holding: Recibir un cheque de\nterceros ej. pago de cliente
+Holding --> Returned: BTN: Return\nto Customer
+Returned --> [*]
+
+
 Vendido: [Selled] El cheque se vendió y se\ncobró, el dinero fue a una\ncuenta de efectivo
-RechazoVenta: Movimiento de Cash a cuenta de rechazo,\nSe rechazo la venta del cheque
 Reclamado: [Reclaimed] Se genera una factura en borrador
 
-[*] --> Handed : cobrar cheque con\nrecibo de cliente
-Handed --> Depositado : Transferir a\ncuenta de banco
 Handed --> Vendido: Transferir a cuenta\nde efectivo
-Handed --> Devuelto: Devolver al\ncliente
-Depositado --> Rechazado : Rechazo\ndel banco
-Devuelto --> [*]
+
 Vendido --> RechazoVenta : Se rechaza la venta
 RechazoVenta --> Reclamado: Se reclama el cheque
 
