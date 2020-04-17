@@ -22,5 +22,6 @@ class L10nLatamDocumentType(models.Model):
     sequence_id = fields.Many2one(
         'ir.sequence',
         ondelete='set null',
-        help='Secuencia habilitada para este diario'
+        help='Secuencia habilitada para este diario',
+        string='Secuencia'
     )
