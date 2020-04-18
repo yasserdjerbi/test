@@ -5,7 +5,7 @@
     'sequence': 14,
     'author': 'Tecnopro',
     'website': 'tecnopro.com.py',
-    'license': 'OEEL-1',
+    'license': 'AGPL-3',
     'summary': 'Definicion de tipos de documento',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [

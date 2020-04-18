@@ -6,7 +6,7 @@
     'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"
-    'license': 'OEEL-1',
+    'license': 'AGPL-3',
     'website': 'tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',
     'depends': [
@@ -20,9 +20,7 @@
         'data/l10n_py_post.xml',
         'data/account_chart_template_data.xml',
     ],
-    'demo': [
-        'demo/res_user_settings.xml'
-    ],
+    'demo': [ ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
 }

@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 # run test suite for odoo-paraguay
 
+# exit inmediately if a command exits with a non-zero status.
+set -e
+
 CLIENT="tatakua"
 
-echo $CLIENT"_test"
+function do_test() {
+    module="$1"
+    oe -Q $module -c $CLIENT -d $CLIENT"_test"
+}
 
-oe -Q l10n_py_invoice_document -c $CLIENT -d $CLIENT"_test"
-oe -Q l10n_py_reports -c $CLIENT -d $CLIENT"_test"
-oe -Q l10n_py_vat_book -c $CLIENT -d $CLIENT"_test"
-oe -Q partner_ruc_unique -c $CLIENT -d $CLIENT"_test"
+do_test "l10n_py_invoice_document"
+do_test "l10n_py_reports"
+do_test "l10n_py_vat_book"
+do_test "partner_ruc_unique"

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo noupdate="1">
-    <!-- darle caracteristicas de contabilidad completas al admin -->
-    <record id="base.user_admin" model="res.users">
-        <field name="sel_groups_19_22_23">22</field>
-    </record>
-</odoo>

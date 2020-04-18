@@ -4,7 +4,9 @@ from odoo import models, fields
 
 
 class PrintCheckWizard(models.TransientModel):
+    """Checks to print"""
     _name = "print.check.wizard"
+    _description = __doc__
 
     def print_checks(self):
         # cheques seleccionados de account.check
