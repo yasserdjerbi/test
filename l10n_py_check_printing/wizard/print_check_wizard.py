@@ -1,6 +1,6 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
-from odoo import models, fields
+from odoo import models
 
 
 class PrintCheckWizard(models.TransientModel):

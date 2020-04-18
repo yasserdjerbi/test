@@ -1,6 +1,6 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
-from odoo import fields, models, _, api
+from odoo import fields, models
 
 
 class AccountCheckbook(models.Model):

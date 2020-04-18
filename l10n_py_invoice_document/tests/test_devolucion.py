@@ -93,4 +93,3 @@ class DocumentTestCase(SavepointCase):
         fa = self.create_invoice(prod)
         invoice_account = fa.invoice_line_ids.account_id
         self.assertEqual(invoice_account, normal_account)
-
