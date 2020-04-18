@@ -7,7 +7,6 @@
             <field name="ruc_required_person" eval="False"/>
             <field name="ruc_required_company" eval="True"/>
             <field name="consolidated_ruc">44444401-7</field>
-            <field name="default_account" ref="l10n_py.payable"/>
             <field name="default_account" search="[('code','=','211000')]"/>
 
         </record>
