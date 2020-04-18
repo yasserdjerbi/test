@@ -11,13 +11,15 @@ https://www.odoo.com/documentation/13.0/webservices/localization.html
         <!-- [Optional] Boolean to enable the complete set of taxes. By default, this field is True.
         This boolean helps you to choose if you want to propose to the user to encode the sale
         and purchase rates or choose from list of taxes.
-        This last choice assumes that the set of tax defined on this template is complete. -->
+        This last choice assumes that the set of tax defined on this template is complete.
         <field name="complete_tax_set" eval="True"/>
+        -->
 
         <!-- In Continental Accounting, the expense account is affected at the time of purchase,
         on the other hand, in Anglo Saxon Accounting the expense account is affected at the
-        time of processing a sales order. -->
+        time of processing a sales order.
         <field name="use_anglo_saxon" eval="False"/>
+        -->
 
         <field name="property_account_receivable_id" ref="receivable"/>
         <field name="property_account_payable_id" ref="payable"/>
@@ -27,18 +29,13 @@ https://www.odoo.com/documentation/13.0/webservices/localization.html
 
         <field name="property_stock_account_input_categ_id" ref="stock_in"/>
         <field name="property_stock_account_output_categ_id" ref="stock_out"/>
-        <field name="property_stock_valuation_account_id"
-               ref="stock_valuation"/>
+        <field name="property_stock_valuation_account_id" ref="stock_valuation"/>
 
-        <field name="income_currency_exchange_account_id"
-               ref="income_currency_exchange"/>
-        <field name="expense_currency_exchange_account_id"
-               ref="expense_currency_exchange"/>
+        <field name="income_currency_exchange_account_id" ref="income_currency_exchange"/>
+        <field name="expense_currency_exchange_account_id" ref="expense_currency_exchange"/>
 
-        <field name="default_cash_difference_income_account_id"
-               ref="cash_diff_income"/>
-        <field name="default_cash_difference_expense_account_id"
-               ref="cash_diff_expense"/>
+        <field name="default_cash_difference_income_account_id" ref="cash_diff_income"/>
+        <field name="default_cash_difference_expense_account_id" ref="cash_diff_expense"/>
         <field name="default_pos_receivable_account_id" ref="pos_receivable"/>
     </record>
     </data>

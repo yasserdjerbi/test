@@ -128,86 +128,87 @@ class AccountArVatLine(models.Model):
         return self.move_id.get_formview_action()
 
     def init(self):
-        cr = self._cr
-        tools.drop_view_if_exists(cr, self._table)
+        """Create the view"""
+        tools.drop_view_if_exists(self._cr, self._table)
         # we use tax_ids for base amount instead of tax_base_amount for two
         # reasons:
         # * zero taxes do not create any aml line so we can't get base for
         #   them with tax_base_amount
         # * we use same method as in odoo tax report to avoid any possible
         #   discrepancy with the computed tax_base_amount
-        query = """
-SELECT
-    am.id,
-    sum(CASE
-            WHEN ntg.name = 'IVA 10%'
-            THEN aml.balance ELSE Null END) as vat_10,
-    sum(CASE
-            WHEN ntg.name = 'IVA 5%'
-            THEN aml.balance ELSE Null END) as vat_5,
-    sum(CASE
-            WHEN btg.name = 'IVA 10%'
-            THEN aml.balance ELSE Null END) as base_10,
-    sum(CASE
-            WHEN btg.name = 'IVA 5%'
-            THEN aml.balance ELSE Null END) as base_5,
-    sum(CASE
-            WHEN btg.name = 'IVA Excento'
-            THEN aml.balance ELSE Null END) as not_taxed,
-    sum(aml.balance) as total,
-    CASE
-        WHEN am.type in ('out_invoice','out_refund')
-        THEN rp.sale_ruc
-        ELSE rp.purchase_ruc END as ruc,
-    am.name as move_name,
-    rp.name as partner_name,
-    am.id as move_id,
-    am.type,
-    am.date,
-    am.invoice_date,
-    am.partner_id,
-    am.journal_id,
-    am.name,
-    am.l10n_latam_document_type_id as document_type_id,
-    am.state,
-    am.company_id,
-    CASE
-        WHEN am.invoice_payment_term_id = 1
-        THEN 'Contado'
-        ELSE 'Crédito' END as payment_term
-FROM
-    account_move_line aml
-LEFT JOIN
-    account_move as am
-    ON aml.move_id = am.id
-LEFT JOIN
-    -- nt = net tax
-    account_tax AS nt
-    ON aml.tax_line_id = nt.id
-LEFT JOIN
-    account_move_line_account_tax_rel AS amltr
-    ON aml.id = amltr.account_move_line_id
-LEFT JOIN
-    -- bt = base tax
-    account_tax AS bt
-    ON amltr.account_tax_id = bt.id
-LEFT JOIN
-    account_tax_group AS btg
-    ON btg.id = bt.tax_group_id
-LEFT JOIN
-    account_tax_group AS ntg
-    ON ntg.id = nt.tax_group_id
-LEFT JOIN
-    res_partner AS rp
-    ON rp.id = am.partner_id
-WHERE
-    account_internal_type <> 'receivable' and
-    am.type in ('out_invoice', 'in_invoice', 'out_refund', 'in_refund')
 
-GROUP BY
-    am.id, rp.id
-ORDER BY
-    am.date, am.name
-"""
-        sql = "CREATE or REPLACE VIEW %s as (%s)"
-        cr.execute(sql, (self._table, query))
+        query = """
+        SELECT
+            am.id,
+            sum(CASE
+                    WHEN ntg.name = 'IVA 10%'
+                    THEN aml.balance ELSE Null END) as vat_10,
+            sum(CASE
+                    WHEN ntg.name = 'IVA 5%'
+                    THEN aml.balance ELSE Null END) as vat_5,
+            sum(CASE
+                    WHEN btg.name = 'IVA 10%'
+                    THEN aml.balance ELSE Null END) as base_10,
+            sum(CASE
+                    WHEN btg.name = 'IVA 5%'
+                    THEN aml.balance ELSE Null END) as base_5,
+            sum(CASE
+                    WHEN btg.name = 'IVA Excento'
+                    THEN aml.balance ELSE Null END) as not_taxed,
+            sum(aml.balance) as total,
+            CASE
+                WHEN am.type in ('out_invoice','out_refund')
+                THEN rp.sale_ruc
+                ELSE rp.purchase_ruc END as ruc,
+            am.name as move_name,
+            rp.name as partner_name,
+            am.id as move_id,
+            am.type,
+            am.date,
+            am.invoice_date,
+            am.partner_id,
+            am.journal_id,
+            am.name,
+            am.l10n_latam_document_type_id as document_type_id,
+            am.state,
+            am.company_id,
+            CASE
+                WHEN am.invoice_payment_term_id = 1
+                THEN 'Contado'
+                ELSE 'Crédito' END as payment_term
+        FROM
+            account_move_line aml
+        LEFT JOIN
+            account_move as am
+            ON aml.move_id = am.id
+        LEFT JOIN
+            -- nt = net tax
+            account_tax AS nt
+            ON aml.tax_line_id = nt.id
+        LEFT JOIN
+            account_move_line_account_tax_rel AS amltr
+            ON aml.id = amltr.account_move_line_id
+        LEFT JOIN
+            -- bt = base tax
+            account_tax AS bt
+            ON amltr.account_tax_id = bt.id
+        LEFT JOIN
+            account_tax_group AS btg
+            ON btg.id = bt.tax_group_id
+        LEFT JOIN
+            account_tax_group AS ntg
+            ON ntg.id = nt.tax_group_id
+        LEFT JOIN
+            res_partner AS rp
+            ON rp.id = am.partner_id
+        WHERE
+            account_internal_type <> 'receivable' and
+            am.type in ('out_invoice', 'in_invoice', 'out_refund', 'in_refund')
+
+        GROUP BY
+            am.id, rp.id
+        ORDER BY
+            am.date, am.name
+        """
+        sql = 'CREATE OR REPLACE VIEW %s as (%s)'
+        self._cr.execute(sql % (self._table, query))  # noqa
