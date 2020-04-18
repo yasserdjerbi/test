@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'Diseño de cheques Paraguay',
     'version': '13.0.0.0.0',
