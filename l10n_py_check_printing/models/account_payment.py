@@ -1,6 +1,6 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
-from odoo import fields, models
+from odoo import fields, models, _
 from odoo.exceptions import UserError
 
 import logging
@@ -30,9 +30,9 @@ class AccountPayment(models.Model):
                       or 'l10n_py_check_printing.print_check'
 
         if not checkbook.layout_id:
-            raise UserError('Debe definir un Diseño de cheque para la '
-                            'chequera '
-                            'del banco %s' % checkbook.journal_id.name)
+            raise UserError(_('Debe definir un Diseño de cheque para la '
+                              'chequera '
+                              'del banco %s' % checkbook.journal_id.name))
 
         check_report = self.env['ir.actions.report'].search(
             [('report_name', '=', report_name)], limit=1).report_action(self)
