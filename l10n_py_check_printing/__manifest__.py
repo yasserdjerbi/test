@@ -22,6 +22,11 @@
         'data/check_layout_data.xml',
         'wizard/print_check_wizard_view.xml',
     ],
+    'external_dependencies': {
+        'python': [
+            'num2words',
+        ],
+    },
     'installable': True,
     'auto_install': False,
     'license': 'AGPL-3',
