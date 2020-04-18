@@ -209,5 +209,5 @@ GROUP BY
 ORDER BY
     am.date, am.name
 """
-        sql = """CREATE or REPLACE VIEW %s as (%s)""" % (self._table, query)
-        cr.execute(sql)
+        sql = "CREATE or REPLACE VIEW %s as (%s)"
+        cr.execute(sql, (self._table, query))
