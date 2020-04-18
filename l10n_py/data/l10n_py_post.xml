@@ -3,7 +3,8 @@
 https://www.odoo.com/documentation/13.0/webservices/localization.html
 -->
 
-<odoo noupdate="1">
+<odoo>
+    <data noupdate="0">
     <!-- Chart template account links -->
     <record id="py_chart_template" model="account.chart.template">
 
@@ -40,9 +41,10 @@ https://www.odoo.com/documentation/13.0/webservices/localization.html
                ref="cash_diff_expense"/>
         <field name="default_pos_receivable_account_id" ref="pos_receivable"/>
     </record>
+    </data>
 
     <!-- Tax template for sale and purchase -->
-
+    <data noupdate="1">
     <record id="sale_tax_template_10" model="account.tax.template">
         <!-- [Required] Set the CoA owning this tax. -->
         <field name="chart_template_id" ref="py_chart_template"/>
@@ -409,5 +411,5 @@ https://www.odoo.com/documentation/13.0/webservices/localization.html
             }),
         ]"/>
     </record>
-
+    </data>
 </odoo>
