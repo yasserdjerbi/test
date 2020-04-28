@@ -18,7 +18,7 @@
         'data/account.account.template.csv',
         'data/account_tax_group.xml',
         'data/l10n_py_post.xml',
-        'data/account_chart_template_data.xml',
+        #'data/account_chart_template_data.xml',
     ],
     'demo': [],
     'uninstall_hook': 'uninstall_hook',
