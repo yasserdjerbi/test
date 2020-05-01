@@ -24,5 +24,6 @@
         'demo/product_data_demo.xml',
         'demo/invoice_data_demo.xml'
     ],
-    'installable': True,
+    # TODO Este modulo no esta testeado
+    'installable': False,
 }

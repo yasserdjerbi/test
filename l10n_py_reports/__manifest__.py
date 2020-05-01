@@ -11,7 +11,7 @@
     'depends': [
         'account',
         'l10n_py_invoice_document',
-        'account_payment_group'
+#        'account_payment_group'
     ],
     'external_dependencies': {
         'python': [
@@ -19,10 +19,10 @@
         ],
     },
     'data': [
-        'templates/report_invoice.xml',
-        'data/report_paperformat_data.xml',
-        'data/receipt_book_data.xml',
-        'templates/report_payment_receipt.xml',
+#        'templates/report_invoice.xml',
+#        'data/report_paperformat_data.xml',
+#        'data/receipt_book_data.xml',
+#        'templates/report_payment_receipt.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

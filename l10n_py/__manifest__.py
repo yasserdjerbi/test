@@ -18,6 +18,7 @@
         'data/account.account.template.csv',
         'data/account_tax_group.xml',
         'data/l10n_py_post.xml',
+        # TODO esta vista hace fallar los chequeos de odoo.sh
         #'data/account_chart_template_data.xml',
     ],
     'demo': [],

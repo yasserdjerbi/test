@@ -26,7 +26,8 @@
             'num2words',
         ],
     },
-    'installable': True,
+    # TODO este modul no esta testeado
+    'installable': False,
     'auto_install': False,
     'license': 'AGPL-3',
 }
