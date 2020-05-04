@@ -1,4 +1,4 @@
-@startuml
+
 
 ' Cheques de terceros, en desarrollo...
 '        ('draft', 'Draft'),
@@ -56,4 +56,3 @@ Handed --> Vendido: Transferir a cuenta\nde efectivo
 Vendido --> RechazoVenta : Se rechaza la venta
 RechazoVenta --> Reclamado: Se reclama el cheque
 
-@enduml
