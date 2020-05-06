@@ -11,7 +11,6 @@
     'depends': [
         'account',
         'l10n_py_invoice_document',
-        #'account_payment_group'
     ],
     'external_dependencies': {
         'python': [

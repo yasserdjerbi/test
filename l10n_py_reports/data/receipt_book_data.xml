@@ -3,9 +3,8 @@
     <data noupdate="0">
         <!-- TODO No se puede poner noupdate=1 porque aparecen de nuevo los
              recibos X -->
-        <!-- DOCUMENTOS PAGOS DEL CLIENTE -->
-        
-        <record id="account_payment_group_document.dc_recibo_x" model="l10n_latam.document.type">
+        <!-- DOCUMENTOS PAGOS DEL CLIENTE
+        <record id="dc_recibo_x" model="l10n_latam.document.type">
             <field name="code">RC</field>
             <field name="name">RECIBO RC</field>
             <field name="report_name">RECIBO DE DINERO</field>
@@ -24,8 +23,9 @@
             <field name="country_id" ref="base.py"/>
             <field name="sequence">190</field>
         </record>
-
-        <record id="account_payment_group_document.dc_orden_pago_x" model="l10n_latam.document.type">
+-->
+<!--
+        <record id="dc_orden_pago_x" model="l10n_latam.document.type">
             <field name="code">OP</field>
             <field name="name">ORDEN DE PAGO</field>
             <field name="report_name">ORDEN DE PAGO</field>
@@ -34,7 +34,7 @@
             <field name="country_id" ref="base.py"/>
             <field name="sequence">200</field>
         </record>
-
+-->
         <!-- generar las secuencias para los dos tipos de recibo -->
         <record id="automatic_receipt_sequence_rc" model="ir.sequence">
             <field name="name">Recibo Automatico Credito 001 001</field>
@@ -56,14 +56,11 @@
         </record>
 
         <!-- VENTAS TALONARIO DE RECIBOS -->
-
+<!--
         <record id="automatic_sale_cc_receipt" model="account.payment.receiptbook">
             <field name="name">Recibo Automatico Contado</field>
             <field name="partner_type">customer</field>
             <field name="sequence_type">automatic</field>
-            <!--
-            <field name="prefix">RECIBO </field>
-            -->
             <field name="document_type_id" search="[('code','=','CC')]" model="l10n_latam.document.type"/>
             <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_cc"/>
             <field name="company_id" ref="base.main_company"/>
@@ -79,8 +76,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="sequence">20</field>
         </record>
-
+-->
         <!-- Generar los talonarios de recibo para compras -->
+<!--
         <record id="automatic_purchase_receipt" model="account.payment.receiptbook">
             <field name="name">Recibo Automatico compras</field>
             <field name="partner_type">supplier</field>
@@ -90,8 +88,9 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="sequence">30</field>
         </record>
-
+-->
         <!-- talonario manual de recibo -->
+<!--
         <record id="manual_sale_receipt" model="account.payment.receiptbook">
             <field name="name">Recibo Manual</field>
             <field name="partner_type">customer</field>
@@ -101,6 +100,6 @@
             <field name="company_id" ref="base.main_company"/>
             <field name="sequence">40</field>
         </record>
-
+-->
     </data>
 </odoo>
