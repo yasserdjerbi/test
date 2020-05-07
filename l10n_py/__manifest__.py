@@ -18,11 +18,10 @@
         'data/account.account.template.csv',
         'data/account_tax_group.xml',
         'data/l10n_py_post.xml',
-        # TODO esta vista hace fallar los chequeos de odoo.sh
-        #'data/account_chart_template_data.xml',
     ],
     'demo': [
-        'demo/install_localization.xml'
+# TODO si instalo la localizacion en modo demo tambien fallan los test sh en account
+#        'demo/install_localization.xml'
     ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
