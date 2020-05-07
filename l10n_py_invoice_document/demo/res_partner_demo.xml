@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_py_1" model="res.partner">
+        <field name="name">Envaco</field>
+        <field name="ruc">80007952-3</field>
+        <field name="is_company">1</field>
+        <field name="street">201, Second Floor, IT Tower 4</field>
+        <field name="street2">InfoCity Gate - 1, Infocity</field>
+        <field name="city">Gandhinagar</field>
+        <field name="zip">382007</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+
+    <record id="res_partner_py_2" model="res.partner">
+        <field name="name">Motor Company sa</field>
+        <field name="ruc">80034560-6</field>
+        <field name="is_company">1</field>
+        <field name="street">201, Second Floor, IT Tower 4</field>
+        <field name="street2">InfoCity Gate - 1, Infocity</field>
+        <field name="city">Gandhinagar</field>
+        <field name="zip">382007</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+
+    <record id="res_partner_py_3" model="res.partner">
+        <field name="name">Scavone hnos. sa</field>
+        <field name="ruc">80016288-9</field>
+        <field name="is_company">1</field>
+        <field name="street">Dr Candido Vasconcellos</field>
+        <field name="street2"></field>
+        <field name="city">Asuncion</field>
+        <field name="zip">382007</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+    <record id="res_partner_py_4" model="res.partner">
+        <field name="name">GOLDSCHMIDT, ALEXANDRO</field>
+        <field name="ruc">6014992-2</field>
+        <field name="is_company">1</field>
+        <field name="street">201, Second Floor, IT Tower 4</field>
+        <field name="street2">InfoCity Gate - 1, Infocity</field>
+        <field name="city">Asuncion</field>
+        <field name="zip">382007</field>
+        <field name="country_id" ref="base.py"/>
+    </record>
+
+</odoo>

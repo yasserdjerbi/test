@@ -32,9 +32,8 @@
         'views/product_category_view.xml',
     ],
     'demo': [
-        # TODO Los test estan fallando revisar
-#        'demo/account_timbrado_demo.xml',
-#        'demo/base_res_partner.xml'
+        'demo/account_timbrado_demo.xml',
+        'demo/res_partner_demo.xml'
     ],
     'installable': True,
 }
