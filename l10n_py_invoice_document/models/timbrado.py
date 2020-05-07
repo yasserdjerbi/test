@@ -79,7 +79,9 @@ class TimbradoData(models.Model):
     )
     sequence_id = fields.Many2one(
         'ir.sequence',
-        help='Secuencia del timbrado'
+        help='Secuencia del timbrado.\n'
+             'Al activar el timbrado se crea una secuencia y al desactivarlo\n'
+             'pasarlo a borrador se destruye.'
     )
 
     @api.constrains('name')
