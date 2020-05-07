@@ -82,11 +82,18 @@ class TimbradoData(models.Model):
         help='Secuencia del timbrado'
     )
 
-    _sql_constraints = [
-        ('name_unique', 'unique (name,shipping_point,trade_code,'
-                        'document_type_id)',
-         'El timbrado ya existe...!')
-    ]
+    @api.constrains('name')
+    def _check_name(self):
+        for rec in self:
+            if self.env['timbrado.data'].search([
+                ('name', '=', rec.name),
+                ('shipping_point', '=', rec.shipping_point),
+                ('trade_code', '=', rec.trade_code),
+                ('document_type_id', '=', rec.document_type_id.id),
+                ('id', '!=', rec.id)
+            ]):
+                    raise ValidationError('No puede agregar un timbrado que '
+                                          'ya existe')
 
     @staticmethod
     def _format(value):

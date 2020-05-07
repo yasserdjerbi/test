@@ -104,4 +104,4 @@ class DocumentTestCase(TransactionCase):
         timbrado = self.timbrados[0]
         timbrado._button_activate(date)
         seq = timbrado.sequence_id
-        self.assertTrue(len(seq), 1)
+        self.assertTrue(seq, 'No se ha creado la secuencia')

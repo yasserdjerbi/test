@@ -21,7 +21,9 @@
         # TODO esta vista hace fallar los chequeos de odoo.sh
         #'data/account_chart_template_data.xml',
     ],
-    'demo': [],
+    'demo': [
+        'demo/install_localization.xml'
+    ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
 }

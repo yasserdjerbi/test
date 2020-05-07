@@ -28,7 +28,7 @@ class DocumentTestCase(SavepointCase):
     def create_refund(self, prod):
         vals = {
             'type': 'out_refund',
-            'partner_id': self.env.ref('base.res_partner_1').id,
+            'partner_id': self.env.ref('res_partner_py_1').id,
             'invoice_line_ids': [(0, 0, {
                 'product_id': prod.id,
                 'quantity': 1,
@@ -40,7 +40,7 @@ class DocumentTestCase(SavepointCase):
     def create_invoice(self, prod):
         vals = {
             'type': 'out_invoice',
-            'partner_id': self.env.ref('base.res_partner_1').id,
+            'partner_id': self.env.ref('res_partner_py_1').id,
             'invoice_line_ids': [(0, 0, {
                 'product_id': prod.id,
                 'quantity': 1,
