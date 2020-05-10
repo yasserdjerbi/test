@@ -16,7 +16,7 @@ python:
 
 env:
   global:
-  - VERSION="13.0" TESTS="0" LINT_CHECK="0"
+  - VERSION="13.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
 
   matrix:
   - LINT_CHECK="1"
@@ -27,7 +27,7 @@ git:
 
 install:
   - pip install -r requirements.txt
-  - git clone https://github.com/jobiols/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - git clone --depth=1 https://github.com/jobiols/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - pip install --upgrade python-magic
   - travis_install_nightly
