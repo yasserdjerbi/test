@@ -38,18 +38,21 @@
         <!-- generar las secuencias para los dos tipos de recibo -->
         <record id="automatic_receipt_sequence_rc" model="ir.sequence">
             <field name="name">Recibo Automatico Credito 001 001</field>
+            <field name="code">RACR</field>
             <field name="implementation">no_gap</field>
             <field name="padding">7</field>
             <field name="prefix">RC-001-001-</field>
         </record>
         <record id="automatic_receipt_sequence_cc" model="ir.sequence">
             <field name="name">Recibo Automatico Contado 001 001</field>
+            <field name="code">RACO</field>
             <field name="implementation">no_gap</field>
             <field name="padding">7</field>
             <field name="prefix">CC-001-001-</field>
         </record>
         <record id="automatic_receipt_sequence_purchase" model="ir.sequence">
             <field name="name">Recibo compras</field>
+            <field name="code">RCOM</field>
             <field name="implementation">no_gap</field>
             <field name="padding">7</field>
             <field name="prefix">CP-</field>
