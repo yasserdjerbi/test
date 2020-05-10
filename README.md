@@ -1,5 +1,6 @@
 # odoo-paraguay
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7f927558a1b4840814a5835f9870f38)](https://app.codacy.com/manual/jobiols/test?utm_source=github.com&utm_medium=referral&utm_content=jobiols/test&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/jobiols/test.svg?branch=13.0)](https://travis-ci.com/jobiols/test)
 [![CodeFactor](https://www.codefactor.io/repository/github/jobiols/test/badge)](https://www.codefactor.io/repository/github/jobiols/test)
 
