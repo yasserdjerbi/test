@@ -1,6 +1,7 @@
 # odoo-paraguay
 
-[![Build Status](https://travis-ci.com/jobiols/odoo-paraguay.svg?token=77F3WzCbdXWpLDSsuTxX&branch=13.0)](https://travis-ci.com/jobiols/odoo-paraguay)
+[![Build Status](https://travis-ci.com/jobiols/test.svg?branch=13.0)](https://travis-ci.com/jobiols/test)
+[![CodeFactor](https://www.codefactor.io/repository/github/jobiols/test/badge)](https://www.codefactor.io/repository/github/jobiols/test)
 
 Localizacion de Odoo - Paraguay
 
