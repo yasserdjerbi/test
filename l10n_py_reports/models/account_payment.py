@@ -17,7 +17,7 @@ class AccountPayment(models.Model):
         """ Este metodo sobreescribe el original de odoo para poder usar los
             talonarios de recibo solo si el pais es Paraguay.
             Es necesario hacer esto porque si se instala en SH le va a correr
-            los test standard de account y va a fallar
+            los test standard de account y va a fallar.
 
             Create the journal items for the payment and update the payment's state to 'posted'.
             A journal entry is created containing an item in the source liquidity account (selected journal's default_debit or default_credit)

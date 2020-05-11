@@ -22,8 +22,8 @@
         'templates/report_invoice.xml',
         'data/report_paperformat_data.xml',
         'data/receipt_book_data.xml',
-        'views/account_payment_view.xml'
-#       'templates/report_payment_receipt.xml',
+        'views/account_payment_view.xml',
+        'templates/report_payment_receipt_template.xml',
     ],
     'installable': True,
 }
