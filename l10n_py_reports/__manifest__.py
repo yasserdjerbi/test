@@ -23,7 +23,7 @@
         'data/report_paperformat_data.xml',
         'data/receipt_book_data.xml',
         'views/account_payment_view.xml'
-#        'templates/report_payment_receipt.xml',
+#       'templates/report_payment_receipt.xml',
     ],
     'installable': True,
 }
