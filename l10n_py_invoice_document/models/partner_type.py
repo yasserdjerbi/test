@@ -40,7 +40,6 @@ class PartnerType(models.Model):
         string='Cuenta Predeterminada',
         help='Cuenta contable que se utilizará para este tipo de '
              'Cliente/Proveedor',
-        required=True
     )
     applied_to = fields.Selection([
         ('sale', 'Ventas'),
@@ -62,6 +61,7 @@ class PartnerType(models.Model):
 
     @api.constrains('default_account')
     def constraint_default_account(self):
-        if not self.default_account.reconcile:
+        """ Constraint to verify conciliable account """
+        if self.default_account and not self.default_account.reconcile:
             raise ValidationError(_('La cuenta predeterminada debe ser '
                                   'conciliable.'))

@@ -8,6 +8,7 @@
     'depends': [
         'account_check'
     ],
+    # TODO no se puede tener un modulo de odoo excluido, no pasa los tests
     "excludes": ['account_check_printing'],
     'data': [
         'report/print_check.xml',
@@ -26,7 +27,8 @@
             'num2words',
         ],
     },
-    'installable': True,
+    # TODO este modul no esta testeado
+    'installable': False,
     'auto_install': False,
     'license': 'AGPL-3',
 }

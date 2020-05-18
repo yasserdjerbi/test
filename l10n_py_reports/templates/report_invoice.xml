@@ -89,9 +89,13 @@
                                     <div class="font-10-px">
                                         <b>Timbrado Nro <span t-esc="o.timbrado_id.name"/></b>
                                         <br/>
-                                        Fecha inicio vigencia <span t-esc="o.timbrado_id.validity_start.strftime('%d/%m/%Y')"/>
+                                        <t t-if="o.timbrado_id.validity_start">
+                                            Fecha inicio vigencia <span t-esc="o.timbrado_id.validity_start.strftime('%d/%m/%Y')"/>
+                                        </t>
                                         <br/>
+                                        <t t-if="o.timbrado_id.validity_end">
                                         Fecha fin vigencia <span t-esc="o.timbrado_id.validity_end.strftime('%d/%m/%Y')"/>
+                                        </t>
                                         <br/>
                                     </div>
 

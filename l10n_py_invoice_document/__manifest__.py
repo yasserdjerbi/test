@@ -33,7 +33,7 @@
     ],
     'demo': [
         'demo/account_timbrado_demo.xml',
-        'demo/base_res_partner.xml'
+        'demo/res_partner_demo.xml'
     ],
     'installable': True,
 }

@@ -5,7 +5,7 @@
     'version': '13.0.0.0.3',
     'author': 'Tecnopro',
     'category': 'Localizacion',
-    "development_status": "Alpha",  # "Alpha|Beta|Production/Stable|Mature"
+    "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'license': 'AGPL-3',
     'website': 'tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',
@@ -18,9 +18,11 @@
         'data/account.account.template.csv',
         'data/account_tax_group.xml',
         'data/l10n_py_post.xml',
-        #'data/account_chart_template_data.xml',
     ],
-    'demo': [],
+    'demo': [
+# TODO si instalo la localizacion en modo demo tambien fallan los test sh en account
+#        'demo/install_localization.xml'
+    ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
 }

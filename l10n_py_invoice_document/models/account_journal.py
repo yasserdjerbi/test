@@ -17,6 +17,8 @@ class AccountJournal(models.Model):
         help='Punto de expedición que representa este diario',
         copy=False
     )
+
+# TODO quitar esto que esta depreciado
     _sql_constraints = [
         ('diario-unico-sucursal-expedicion-type',
          'check(1=1)',
