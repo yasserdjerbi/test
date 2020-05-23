@@ -6,7 +6,7 @@ from odoo import fields, models, api, _
 
 class TimbradoData(models.Model):
     _name = "timbrado.data"
-    _description = 'Timbrado que habilita las factura'
+    _description = 'Timbrado que habilita las facturas'
 
     name = fields.Char(
         string='Número de Timbrado',
