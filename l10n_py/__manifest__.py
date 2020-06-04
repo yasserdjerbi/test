@@ -20,6 +20,7 @@
         'data/l10n_py_post.xml',
     ],
     'demo': [
+        'demo/demo_data.xml'
 # TODO si instalo la localizacion en modo demo tambien fallan los test sh en account
 #        'demo/install_localization.xml'
     ],

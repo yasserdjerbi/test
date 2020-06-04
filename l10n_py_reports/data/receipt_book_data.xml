@@ -75,7 +75,7 @@
 
         <!-- Generar los talonarios de recibo para compras -->
         <record id="automatic_purchase_receipt" model="report.receiptbook">
-            <field name="name">Recibo Automatico compras</field>
+            <field name="name">Pago a Proveedores</field>
             <field name="partner_type">supplier</field>
             <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_purchase"/>
             <field name="sequence">30</field>

@@ -18,13 +18,6 @@ class AccountJournal(models.Model):
         copy=False
     )
 
-# TODO quitar esto que esta depreciado
-    _sql_constraints = [
-        ('diario-unico-sucursal-expedicion-type',
-         'check(1=1)',
-         "Otro diario ya tiene los mismos codigos de sucursal y expedicion!!")
-    ]
-
     @staticmethod
     def _format(value):
         """ Formatea los numeros de sucursal y expedicion

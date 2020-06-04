@@ -48,20 +48,25 @@
             </field>
             <!-- Timbrado y fecha de vencimiento que aparece en la factura del proveedor -->
             <field name="invoice_vendor_bill_id" position="after">
+                <field name="req_timbrado" invisible="1"/>
                 <field name="l10n_py_timbrado"
                        attrs="{
-                        'invisible': ['|',('l10n_latam_use_documents', '=', False),
-                                          ('type', 'not in', ['in_invoice','in_refund'])],
+                        'invisible': ['|','|',('l10n_latam_use_documents', '=', False),
+                                              ('type', 'not in', ['in_invoice','in_refund']),
+                                              ('req_timbrado', '=', False) ],
                         'required': [('l10n_latam_use_documents', '=', True),
-                                     ('type', 'in', ['in_invoice','in_refund'])],
+                                     ('type', 'in', ['in_invoice','in_refund']),
+                                     ('req_timbrado', '=', True)],
                         'readonly': [('state', '!=', 'draft')]}"
                 />
                 <field name="l10n_py_validity_end"
                        attrs="{
-                        'invisible': ['|',('l10n_latam_use_documents', '=', False),
-                                          ('type', 'not in', ['in_invoice','in_refund'])],
+                        'invisible': ['|','|',('l10n_latam_use_documents', '=', False),
+                                              ('type', 'not in', ['in_invoice','in_refund']),
+                                              ('req_timbrado', '=', False) ],
                         'required': [('l10n_latam_use_documents', '=', True),
-                                     ('type', 'in', ['in_invoice','in_refund'])],
+                                     ('type', 'in', ['in_invoice','in_refund']),
+                                     ('req_timbrado', '=', True)],
                         'readonly': [('state', '!=', 'draft')]}"
                 />
             </field>

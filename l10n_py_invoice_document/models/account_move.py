@@ -45,10 +45,14 @@ class AccountJournal(models.Model):
         string='Nro de remision'
     )
     document_number = fields.Char(
+        compute='_compute_document_number',
         help="Campo tecnico con la ultima parte del numero de factura, se usa"
              "para mandar a imprimir cuando es preimpreso",
-        compute='_compute_document_number',
         string='Ultima parte del Nro de Factura'
+    )
+    req_timbrado = fields.Boolean(
+        related = 'l10n_latam_document_type_id.req_timbrado',
+        help='Campo tecnico para mostrar u ocultar el timbrado en las vistas'
     )
 
     def _compute_document_number(self):
@@ -172,8 +176,10 @@ class AccountJournal(models.Model):
             # factura de proveedor y no pasa por el otro lado.
             super().action_post()
 
-        if self.type in ['in_invoice', 'in_refund']:
-            # chequear la longitud y tipo de timbrado
+        if self.req_timbrado and self.type in ['in_invoice', 'in_refund']:
+            # chequear solo si el timbrado es requerido:
+            #   longitud del timbrado y que sea numerico
+            #   validez del timbrado posterior a la fecha de la factura
 
             if len(self.l10n_py_timbrado) != 8:
                 raise ValidationError(_('La longitud del timbrado debe ser de '

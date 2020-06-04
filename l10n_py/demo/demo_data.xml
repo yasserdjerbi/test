@@ -1,0 +1,20 @@
+<odoo>
+    <record id="partner_py" model="res.partner">
+        <field name='name'>The paraguayan partner for demo</field>
+        <field name='vat'>30111111118</field>
+        <field name="street">Fake address 123</field>
+        <field name="city">Guarambaré</field>
+        <field name="country_id" ref="base.py"/>
+        <field name="zip">2000</field>
+        <field name="phone">+1 555 123 8069</field>
+        <field name="email">info@yourcompany.example.com</field>
+        <field name="website">www.example.com</field>
+    </record>
+
+    <record id="company_py" model="res.company">
+        <field name='parent_id' ref='base.main_company'/>
+        <field name='currency_id' ref='base.PYG'/>
+        <field name='partner_id' ref='partner_py'/>
+        <field name='name'>Your Paraguayan Company</field>
+    </record>
+</odoo>
