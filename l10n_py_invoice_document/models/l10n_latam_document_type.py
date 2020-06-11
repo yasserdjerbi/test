@@ -6,6 +6,7 @@ from odoo import models, fields
 class L10nLatamDocumentType(models.Model):
     _inherit = 'l10n_latam.document.type'
 
+    # TODO hay que quitar este campo
     cod_doc_set = fields.Integer(
         help='codigo que tiene que ver con la generacion del libro de iva o '
              'como se llame en paraguay'
@@ -19,9 +20,21 @@ class L10nLatamDocumentType(models.Model):
     venta = fields.Boolean(
         help='si esta tildado el documento aplica para ventas'
     )
+    vat_enabled = fields.Boolean(
+        help='Si esta tildado el documento aparece en el libro de IVA'
+    )
     sequence_id = fields.Many2one(
         'ir.sequence',
         ondelete='set null',
         help='Secuencia habilitada para este diario',
         string='Secuencia'
     )
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = rec.name
+            if rec.code:
+                name = '(%s) %s' % (rec.doc_code_prefix, name)
+            result.append((rec.id, name))
+        return result

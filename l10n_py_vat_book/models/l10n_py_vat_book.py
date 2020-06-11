@@ -11,21 +11,32 @@ class L10nPYVatBook(models.AbstractModel):
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
 
+    def print_pdf(self, options):
+        options.update({
+            'journal_type': self.env.context.get('journal_type')
+        })
+        return super(L10nPYVatBook, self).print_pdf(options)
+
+    def print_xlsx(self, options):
+        options.update({
+            'journal_type': self.env.context.get('journal_type')
+        })
+        return super(L10nPYVatBook, self).print_xlsx(options)
+
     def _get_columns_name(self, options):
         return [
             {'name': _("Date"), 'class': 'date'},
-            {'name': _("Document")},
+            {'name': _('Documento')},
+            {'name': _('Condición')},
+            {'name': _("Documento Nº")},
             {'name': _("Name")},
             {'name': _("R.U.C.")},
+            {'name': _('Base Exento'), 'class': 'number'},
             {'name': _("Base 5"), 'class': 'number'},
             {'name': _('Base 10'), 'class': 'number'},
-            {'name': _('Taxed'), 'class': 'number'},
-            {'name': _('Not taxed'), 'class': 'number'},
             {'name': _('IVA 5%'), 'class': 'number'},
             {'name': _('IVA 10%'), 'class': 'number'},
             {'name': _('TOTAL'), 'class': 'number'},
-            {'name': _('Tipo Documento')},
-            {'name': _('Contado/Credito')},
         ]
 
     @api.model
@@ -40,7 +51,8 @@ class L10nPYVatBook(models.AbstractModel):
     @api.model
     def _get_lines(self, options, line_id=None):
         context = self.env.context
-        journal_type = context.get('journal_type', 'sale')
+        journal_type = context.get('journal_type') or \
+                       options.get('journal_type', 'sale')
         company_ids = context.get('company_ids')
 
         lines = []
@@ -64,7 +76,7 @@ class L10nPYVatBook(models.AbstractModel):
             domain += [('date', '<=', context['date_to'])]
         if context.get('date_from'):
             domain += [('date', '>=', context['date_from'])]
-        for rec in self.env['account.ar.vat.line'].search_read(domain):
+        for rec in self.env['account.py.vat.line'].search_read(domain):
             taxed = rec['base_5'] + rec['base_10']
             totals['taxed'] += taxed
             totals['not_taxed'] += rec['not_taxed']
@@ -85,22 +97,20 @@ class L10nPYVatBook(models.AbstractModel):
                 'name': format_date(self.env, rec['invoice_date']),
                 'class': 'date',
                 'level': 2,
-                'model': 'account.ar.vat.line',
+                'model': 'account.py.vat.line',
                 'caret_options': caret_type,
                 'columns': [
+                    {'name': rec['document_type']},
+                    {'name': rec['payment_term']},
                     {'name': rec['move_name']},
                     {'name': rec['partner_name']},
                     {'name': rec['ruc']},
-
+                    {'name': self.format_value(sign * rec['not_taxed'])},
                     {'name': self.format_value(sign * rec['base_5'])},
                     {'name': self.format_value(sign * rec['base_10'])},
-                    {'name': self.format_value(sign * taxed)},
-                    {'name': self.format_value(sign * rec['not_taxed'])},
                     {'name': self.format_value(sign * rec['vat_5'])},
                     {'name': self.format_value(sign * rec['vat_10'])},
                     {'name': self.format_value(sign * rec['total'])},
-                    {'name': rec['document_type']},
-                    {'name': rec['payment_term']},
                 ],
             })
             line_id += 1
@@ -114,15 +124,14 @@ class L10nPYVatBook(models.AbstractModel):
                 {'name': ''},
                 {'name': ''},
                 {'name': ''},
+                {'name': ''},
+                {'name': ''},
+                {'name': self.format_value(sign * totals['not_taxed'])},
                 {'name': self.format_value(sign * totals['base_5'])},
                 {'name': self.format_value(sign * totals['base_10'])},
-                {'name': self.format_value(sign * totals['taxed'])},
-                {'name': self.format_value(sign * totals['not_taxed'])},
                 {'name': self.format_value(sign * totals['vat_5'])},
                 {'name': self.format_value(sign * totals['vat_10'])},
                 {'name': self.format_value(sign * totals['total'])},
-                {'name': ''},
-                {'name': ''},
             ],
         })
         return lines

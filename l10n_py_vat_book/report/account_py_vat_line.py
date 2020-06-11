@@ -2,7 +2,7 @@
 from odoo import tools, models, fields
 
 
-class AccountArVatLine(models.Model):
+class AccountPyVatLine(models.Model):
     """ Base model for new Paraguayan VAT reports.
     The idea is that this lines have all the necessary data and which any
     changes in odoo, this ones will be taken for this cube and then no changes
@@ -13,7 +13,7 @@ class AccountArVatLine(models.Model):
     depending of the information of the taxes and add some other fields
     """
 
-    _name = "account.ar.vat.line"
+    _name = "account.py.vat.line"
     _description = "VAT line for Analysis in Paraguayan Localization"
     _auto = False
 
@@ -155,7 +155,7 @@ class AccountArVatLine(models.Model):
             sum(CASE
                     WHEN btg.name = 'IVA Excento'
                     THEN aml.balance ELSE Null END) as not_taxed,
-            sum(aml.balance) as total,
+            sum(aml.debit) as total,
             CASE
                 WHEN am.type in ('out_invoice','out_refund')
                 THEN rp.sale_ruc
@@ -201,7 +201,11 @@ class AccountArVatLine(models.Model):
         LEFT JOIN
             res_partner AS rp
             ON rp.id = am.partner_id
+        LEFT JOIN 
+            l10n_latam_document_type AS l10nldt
+            ON l10nldt.id = am.l10n_latam_document_type_id
         WHERE
+            l10nldt.vat_enabled and
             account_internal_type <> 'receivable' and
             am.type in ('out_invoice', 'in_invoice', 'out_refund', 'in_refund')
 

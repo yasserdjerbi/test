@@ -54,8 +54,8 @@ class InternalDocumentTestCase(TestPy):
         # chequear si existe una de las cuentas de paraguay
         domain = [('code', '=', '131000'),
                   ('company_id', '=', self.company_py.id)]
-        a = self.env['account.account'].search(domain)
-        self.assertTrue(a, 'account not found, is localization installed?')
+        _ = self.env['account.account'].search(domain)
+        self.assertTrue(_, 'account not found, is localization installed?')
 
         data['timbrado'] = self.timbrado
         invoice = self._create_invoice(data)

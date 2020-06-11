@@ -7,7 +7,7 @@
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'license': 'AGPL-3',
-    'website': 'tecnopro.com.py',
+    'website': 'http://tecnopro.com.py',
     'summary': 'Modulo base para la localizacion Paraguaya',
     'depends': [
         'account',

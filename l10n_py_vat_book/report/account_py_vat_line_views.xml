@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_account_ar_vat_line_search" model="ir.ui.view">
-         <field name="name">account.ar.vat.line.search</field>
-         <field name="model">account.ar.vat.line</field>
+    <record id="view_account_py_vat_line_search" model="ir.ui.view">
+         <field name="name">account.py.vat.line.search</field>
+         <field name="model">account.py.vat.line</field>
          <field name="arch" type="xml">
             <search>
                 <field name="move_id"/>
@@ -30,9 +30,9 @@
          </field>
     </record>
 
-    <record id="view_account_ar_vat_line_tree" model="ir.ui.view">
-         <field name="name">account.ar.vat.line.tree</field>
-         <field name="model">account.ar.vat.line</field>
+    <record id="view_account_py_vat_line_tree" model="ir.ui.view">
+         <field name="name">account.py.vat.line.tree</field>
+         <field name="model">account.py.vat.line</field>
          <field name="arch" type="xml">
             <tree editable="bottom">
                 <field name="date"/>
@@ -50,9 +50,9 @@
          </field>
     </record>
 
-    <record id="view_account_ar_vat_line_pivot" model="ir.ui.view">
-         <field name="name">account.ar.vat.line.pivot</field>
-         <field name="model">account.ar.vat.line</field>
+    <record id="view_account_py_vat_line_pivot" model="ir.ui.view">
+         <field name="name">account.py.vat.line.pivot</field>
+         <field name="model">account.py.vat.line</field>
          <field name="arch" type="xml">
             <pivot>
                 <field name="type" type="row"/>
@@ -66,9 +66,9 @@
          </field>
     </record>
 
-    <record id="action_account_ar_vat_line" model="ir.actions.act_window">
+    <record id="action_account_py_vat_line" model="ir.actions.act_window">
         <field name="name">Analisis de IVA</field>
-        <field name="res_model">account.ar.vat.line</field>
+        <field name="res_model">account.py.vat.line</field>
         <field name="view_mode">tree,pivot</field>
         <field name="context">{'search_default_posted': 1, 'time_ranges': {'field': 'date', 'range': 'last_month'}}</field>
     </record>
@@ -76,6 +76,6 @@
     <menuitem id="menu_current_account"
               parent="account.menu_finance_reports"
               sequence="20"
-              action="action_account_ar_vat_line"/>
+              action="action_account_py_vat_line"/>
 
 </odoo>

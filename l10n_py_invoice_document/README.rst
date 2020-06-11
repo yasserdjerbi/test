@@ -10,11 +10,14 @@ Tipos de documentos (facturacion) Paraguay
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/github-TecnoproPy%2Fodoo--paraguay-lightgray.png?logo=github
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
+.. |badge3| image:: https://img.shields.io/badge/github-TecnoproPy%2Fodoo--paraguay-lightgray.png?logo=github
     :target: https://github.com/TecnoproPy/odoo-paraguay/tree/13.0/l10n_py_invoice_document
     :alt: TecnoproPy/odoo-paraguay
 
-|badge1| |badge2| 
+|badge1| |badge2| |badge3| 
 
 **Tipos de documentos usados en la contabilidad paraguaya**
 
@@ -34,11 +37,25 @@ En Contabilidad / Tipos de socios de negocio se definen los tipos de Cliente/Pro
 | .....  | .....          |          .. |     ..        |   	.....       | .....   |
 +----------+--------------+-------------+---------------+-------------+---------------+
 
-Luego en el partner se define el tipo de cliente o de proveedor, y se utilizan las reglas para determinar si el ruc
-es requerido o no dependiendo si es un individuo o una empresa.
-Si el ruc esta en blanco y la regla lo permite se usa el ruc consolidado para la factura y el libro de iva
+Luego en el partner se define el tipo de cliente o de proveedor, y se utilizan
+las reglas para determinar si el ruc es requerido o no dependiendo si es un
+individuo o una empresa.
+Si el ruc esta en blanco y la regla lo permite se usa el ruc consolidado para
+la factura y el libro de iva
 
-Ademas se definen cuentas contables predeterminadas, para las compras y las ventas segun el caso.
+Ademas se definen cuentas contables predeterminadas, para las compras y las
+ventas segun el caso.
+
+**Cuenta separada para devoluciones**
+
+Se define una cuenta adicional para las notas de credito en ventas.
+
+Por ejemplo:
+Un producto tiene *Cuenta de Ingresos* y una *Cuenta de Gastos*. Se le agrega otra
+cuenta llamada *Cuenta de Ingresos (devolución)* para las notas de crédito.
+
+Esta cuenta esta en la pestaña *Contabilidad* de la ficha del producto y en el
+formulario de *Categoria de producto*.
 
 **Table of contents**
 

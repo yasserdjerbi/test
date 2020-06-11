@@ -15,7 +15,7 @@
 #
 #   Arrancar el test con:
 #
-#   oe -Q l10n_py_vat_book -c test13 -d test13_test
+#   oe -Q l10n_py_vat_book -c tatakua -d tatakua_test
 #
 
 from odoo.tests.common import TransactionCase
@@ -86,7 +86,7 @@ class DocumentTestCase(TransactionCase):
         for invoice in invoices:
             invoice.action_post()
 
-        avl_obj = self.env['account.ar.vat.line']
+        avl_obj = self.env['account.py.vat.line']
 
         invoice1 = self.env.ref('l10n_py_vat_book.demo_vat_invoice_1')
         invoice2 = self.env.ref('l10n_py_vat_book.demo_vat_invoice_2')

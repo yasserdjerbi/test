@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="action_l10n_ar_sales_vat_book" model="ir.actions.client">
+    <record id="action_l10n_py_sales_vat_book" model="ir.actions.client">
         <field name="name">Libro IVA Ventas</field>
         <field name="tag">account_report</field>
         <field name="context"
@@ -9,11 +9,11 @@
     </record>
 
     <menuitem
-            id="menu_l10n_ar_sales_vat_book"
-            action="action_l10n_ar_sales_vat_book"
+            id="menu_l10n_py_sales_vat_book"
+            action="action_l10n_py_sales_vat_book"
             parent="account.menu_finance_reports"/>
 
-    <record id="action_l10n_ar_purchases_vat_book" model="ir.actions.client">
+    <record id="action_l10n_py_purchases_vat_book" model="ir.actions.client">
         <field name="name">Libro IVA Compras</field>
         <field name="tag">account_report</field>
         <field name="context"
@@ -21,8 +21,8 @@
     </record>
 
     <menuitem
-            id="menu_l10n_ar_purchases_vat_book"
-            action="action_l10n_ar_purchases_vat_book"
+            id="menu_l10n_py_purchases_vat_book"
+            action="action_l10n_py_purchases_vat_book"
             parent="account.menu_finance_reports"/>
 
 </odoo>

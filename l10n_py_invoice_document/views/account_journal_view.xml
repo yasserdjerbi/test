@@ -23,7 +23,7 @@
                        attrs="{'invisible':['|', '|', ('l10n_latam_country_code', '!=', 'PY'), ('l10n_latam_use_documents', '=', False), ('type', '!=', 'sale')], 'required':[('l10n_latam_country_code', '=', 'PY'), ('l10n_latam_use_documents', '=', True), ('type', '=', 'sale')]}"/>
 <!--
                 <field name="l10n_py_share_sequences"
-                       attrs="{'invisible':[('l10n_ar_afip_pos_system', '!=', 'II_IM')]}"/>
+                       attrs="{'invisible':[('l10n_py_afip_pos_system', '!=', 'II_IM')]}"/>
 -->
             </field>
 
