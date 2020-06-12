@@ -2,9 +2,8 @@
     'name': 'Tipos de documentos (facturacion) Paraguay',
     'version': '13.0.0.0.8',
     'category': 'Localizacion',
-    'sequence': 14,
     'author': 'Tecnopro',
-    'website': 'tecnopro.com.py',
+    'website': 'http://tecnopro.com.py',
     'license': 'AGPL-3',
     'summary': 'Definicion de tipos de documento',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
@@ -36,4 +35,5 @@
         'demo/res_partner_demo.xml'
     ],
     'installable': True,
+    'sequence': 1
 }

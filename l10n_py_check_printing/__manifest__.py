@@ -31,4 +31,5 @@
     'installable': False,
     'auto_install': False,
     'license': 'AGPL-3',
+    'sequence': 1
 }

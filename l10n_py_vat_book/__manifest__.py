@@ -25,4 +25,5 @@
         #'demo/invoice_data_demo.xml'
     ],
     'installable': True,
+    'sequence': 1
 }

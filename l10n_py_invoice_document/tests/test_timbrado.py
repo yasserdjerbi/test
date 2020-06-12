@@ -18,8 +18,8 @@
 #   oe -Q l10n_py_invoice_document -c tatakua -d tatakua_test
 #
 
-from odoo.tests.common import TransactionCase
 import datetime
+from odoo.tests.common import TransactionCase
 
 
 class DocumentTestCase(TransactionCase):

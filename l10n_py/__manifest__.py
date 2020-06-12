@@ -26,4 +26,5 @@
     ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,
+    'sequence': 1
 }

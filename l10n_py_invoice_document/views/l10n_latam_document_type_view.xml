@@ -12,9 +12,7 @@
             </field>
 
             <field name='report_name' position="after">
-<!--
-                <field name='cod_doc_set'/>
-                -->
+                <field name='purchase_seq'/>
                 <field name='req_timbrado' widget="boolean_toggle"/>
                 <field name='compra' widget="boolean_toggle"/>
                 <field name='venta' widget="boolean_toggle"/>
@@ -37,9 +35,7 @@
                 <attribute name="invisible">1</attribute>
             </field>
             <field name='report_name' position="after">
-<!--
-                <field name='cod_doc_set'/>
-                -->
+                <field name='purchase_seq' widget="boolean_toggle"/>
                 <field name='req_timbrado' widget="boolean_toggle"/>
                 <field name='compra' widget="boolean_toggle"/>
                 <field name='venta' widget="boolean_toggle"/>

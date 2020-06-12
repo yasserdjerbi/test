@@ -26,4 +26,5 @@
         'templates/report_payment_receipt_template.xml',
     ],
     'installable': True,
+    'sequence': 1
 }

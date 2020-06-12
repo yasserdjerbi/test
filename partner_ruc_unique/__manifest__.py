@@ -19,4 +19,5 @@
     ],
     'installable': True,
     'auto_install': True,
+    'sequence': 1
 }

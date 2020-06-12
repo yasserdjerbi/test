@@ -24,6 +24,13 @@ class AccountJournal(models.Model):
         related='l10n_latam_document_type_id.code',
         help='Campo tecnico para relacionar con el timbrado'
     )
+    purchase_seq = fields.Boolean(
+        related='l10n_latam_document_type_id.purchase_seq',
+        help='Campo tecnico para ocultar el campo Numero de documento cuando '
+             'el documento de compra obtiene su numero de una secuencia y para'
+             'generar el numero de doc a partir de la secuencia '
+             'automaticamente'
+    )
     l10n_py_timbrado = fields.Char(
         string='Timbrado Proveedor',
         help='Numero de timbrado de la factura del proveedor'
@@ -51,7 +58,7 @@ class AccountJournal(models.Model):
         string='Ultima parte del Nro de Factura'
     )
     req_timbrado = fields.Boolean(
-        related = 'l10n_latam_document_type_id.req_timbrado',
+        related='l10n_latam_document_type_id.req_timbrado',
         help='Campo tecnico para mostrar u ocultar el timbrado en las vistas'
     )
 
@@ -172,8 +179,16 @@ class AccountJournal(models.Model):
                     _('La fecha de la factura no esta dentro del rango de '
                       'validez del timbrado.'))
         else:
-            # llamar al metodo original para el caso en que sea una
-            # factura de proveedor y no pasa por el otro lado.
+            # En el caso de compras, chequear si el documento de compra
+            # requiere una secuencia, si es asi generar el numero
+            if self.purchase_seq:
+                # hay que conseguir el numero de secuencia
+                number = self.l10n_latam_document_type_id.next_sequence()
+
+                # poner el numero de documento
+                # TODO no me pone el prefijo en el documento
+                self.name = number
+
             super().action_post()
 
         if self.req_timbrado and self.type in ['in_invoice', 'in_refund']:

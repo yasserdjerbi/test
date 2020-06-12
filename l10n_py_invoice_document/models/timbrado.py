@@ -81,7 +81,7 @@ class TimbradoData(models.Model):
         'ir.sequence',
         help='Secuencia del timbrado.\n'
              'Al activar el timbrado se crea una secuencia y al desactivarlo\n'
-             'pasarlo a borrador se destruye.'
+             ' o pasarlo a borrador se destruye.'
     )
 
     @api.constrains('name')
@@ -94,8 +94,8 @@ class TimbradoData(models.Model):
                 ('document_type_id', '=', rec.document_type_id.id),
                 ('id', '!=', rec.id)
             ]):
-                    raise ValidationError('No puede agregar un timbrado que '
-                                          'ya existe')
+                    raise ValidationError(_('No puede agregar un timbrado que '
+                                            'ya existe'))
 
     @staticmethod
     def _format(value):
