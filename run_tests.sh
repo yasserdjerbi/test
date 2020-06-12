@@ -1,3 +1,4 @@
+#!/bin/sh
 # correr localmente todos los tests de la localizacion
 
 #    -v /odoo_ar/odoo-13.0e/extra-addons:/opt/odoo/extra-addons \
@@ -5,10 +6,11 @@
 #    -v /odoo_ar/odoo-13.0e/dist-local-packages:/usr/local/lib/python3.7/dist-local-packages \
 #    -v /odoo_ar/odoo-13.0e/tatakua/data_dir:/opt/odoo/data \
 
-#!/bin/sh
-# restaurar la base test vacia
-oe --restore -d tatakua_test -c tatakua
+# restaurar la base de test vacia
+cp /odoo_ar/odoo-13.0e/tatakua/backup_dir/test_bkp/tatakua_test.zip /odoo_ar/odoo-13.0e/tatakua/backup_dir/
+oe --restore -d tatakua_test -c tatakua -f tatakua_test.zip
 
+# correr los tests
 sudo docker run --rm -it \
     -v /odoo_ar/odoo-13.0e/tatakua/config:/opt/odoo/etc/ \
     -v /odoo_ar/odoo-13.0e/tatakua/sources:/opt/odoo/custom-addons \
