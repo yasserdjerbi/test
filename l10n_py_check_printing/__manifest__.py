@@ -4,7 +4,7 @@
     'author': 'Tecnopro',
     'category': 'Accounting/Accounting',
     'summary': 'Impresión de Cheques PY',
-    'website': 'tecnopro.com.py',
+    'website': 'http://tecnopro.com.py',
     'depends': [
         'account_check'
     ],

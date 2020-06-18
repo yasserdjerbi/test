@@ -1,14 +1,12 @@
 #!/bin/sh
 # correr localmente todos los tests de la localizacion
-
-#    -v /odoo_ar/odoo-13.0e/extra-addons:/opt/odoo/extra-addons \
-#    -v /odoo_ar/odoo-13.0e/dist-packages:/usr/lib/python3/dist-packages \
-#    -v /odoo_ar/odoo-13.0e/dist-local-packages:/usr/local/lib/python3.7/dist-local-packages \
-#    -v /odoo_ar/odoo-13.0e/tatakua/data_dir:/opt/odoo/data \
+# ----------------------------------------------------
 
 # restaurar la base de test vacia
 cp /odoo_ar/odoo-13.0e/tatakua/backup_dir/test_bkp/tatakua_test.zip /odoo_ar/odoo-13.0e/tatakua/backup_dir/
 oe --restore -d tatakua_test -c tatakua -f tatakua_test.zip
+
+#  -i  l10n_py,l10n_py_invoice_document,partner_ruc_unique,l10n_py_reports,l10n_py_vat_book \
 
 # correr los tests
 sudo docker run --rm -it \
@@ -16,5 +14,5 @@ sudo docker run --rm -it \
     -v /odoo_ar/odoo-13.0e/tatakua/sources:/opt/odoo/custom-addons \
     --link pg-tatakua:db \
     jobiols/odoo-ent:13.0e -- \
-       -i  l10n_py,l10n_py_invoice_document,partner_ruc_unique,l10n_py_reports,l10n_py_vat_book \
+       -i  l10n_be \
    --stop-after-init -d tatakua_test --test-enable

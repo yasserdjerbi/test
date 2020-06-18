@@ -1,6 +1,5 @@
 # For copyright and license notices, see __manifest__.py file in module root
 from odoo.tests.common import SingleTransactionCase #noqa
-from odoo.tests.common import Form
 
 
 class VatTransactionCase(SingleTransactionCase):

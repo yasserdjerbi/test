@@ -2,7 +2,7 @@
 
 {
     'name': 'Contabilidad Paraguay',
-    'version': '13.0.0.0.3',
+    'version': '13.0.0.0.4',
     'author': 'Tecnopro',
     'category': 'Localizacion',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
@@ -21,8 +21,6 @@
     ],
     'demo': [
         'demo/demo_data.xml'
-# TODO si instalo la localizacion en modo demo tambien fallan los test sh en account
-#        'demo/install_localization.xml'
     ],
     'uninstall_hook': 'uninstall_hook',
     'installable': True,

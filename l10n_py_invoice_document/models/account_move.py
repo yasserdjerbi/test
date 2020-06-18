@@ -150,7 +150,7 @@ class AccountJournal(models.Model):
             if partner_type.applied_to != 'sale':
                 raise ValidationError(_('El tipo de cliente "%s" no esta '
                                         'habilitado para '
-                                        'ventas' % partner_type.name))
+                                        'ventas') % partner_type.name)
 
             # verificar si el ruc del cliente es requerido
             chk = self.partner_id.partner_type_sale_id.ruc_required
@@ -167,14 +167,14 @@ class AccountJournal(models.Model):
 
             # llamar al metodo original aqui porque si dejaron la fecha de la
             # factura en blanco lo que sigue va a fallar
-            super().action_post()
+            ret = super().action_post()
 
             # Chequear que la fecha de la factura este dentro de la validez
             # del timbrado. Hay que chequear despues del post porque antes
             # puede no existir la fecha de la factura.
             start = self.timbrado_id.validity_start
             end = self.timbrado_id.validity_end
-            if not (start <= self.invoice_date <= end):
+            if not start <= self.invoice_date <= end:
                 raise ValidationError(
                     _('La fecha de la factura no esta dentro del rango de '
                       'validez del timbrado.'))
@@ -189,7 +189,7 @@ class AccountJournal(models.Model):
                 # TODO no me pone el prefijo en el documento
                 self.name = number
 
-            super().action_post()
+            ret = super().action_post()
 
         if self.req_timbrado and self.type in ['in_invoice', 'in_refund']:
             # chequear solo si el timbrado es requerido:
@@ -207,6 +207,7 @@ class AccountJournal(models.Model):
             if self.invoice_date > self.l10n_py_validity_end:
                 raise ValidationError(_('La fecha de la factura es posterior '
                                         'a la validez del timbrado'))
+        return ret
 
     def _get_l10n_latam_documents_domain(self):
         """ Esto sobreescribe un metodo de l10n_latam_invoice_document para

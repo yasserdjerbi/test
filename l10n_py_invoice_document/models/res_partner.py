@@ -88,17 +88,17 @@ class Partner(models.Model):
 
         # obtengo el numero antes del guion y el dv despues del guion
         numero = ruc[:ruc.find('-')]
-        dv = ruc[ruc.find('-') + 1:]
+        check_digit = ruc[ruc.find('-') + 1:]
 
         # verifico que los dos sean numeros, sino ya es invalido
         try:
             numero = int(numero)
-            dv = int(dv)
+            check_digit = int(check_digit)
         except ValueError:
             return False
 
         # verifico que el dv sea igual al calculado
-        return dv == self._calc_dv(numero)
+        return check_digit == self._calc_dv(numero)
 
     @staticmethod
     def _calc_dv(ruc):

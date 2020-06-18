@@ -1,7 +1,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
 
-from odoo import fields, models
+from odoo import fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
 
@@ -44,9 +44,9 @@ class AccountPayment(models.Model):
                     sequence_code = 'account.payment.transfer'
                 else:
                     if not rec.receiptbook_id.sequence_id.code:
-                        raise ValidationError(
+                        raise ValidationError(_(
                             'La secuencia %s no tiene codigo por favor agrege '
-                            'uno' % rec.receiptbook_id.sequence_id.name)
+                            'uno' % rec.receiptbook_id.sequence_id.name))
                     sequence_code = rec.receiptbook_id.sequence_id.code
                 rec.name = self.env['ir.sequence'].next_by_code(sequence_code, sequence_date=rec.payment_date)
                 if not rec.name and rec.payment_type != 'transfer':

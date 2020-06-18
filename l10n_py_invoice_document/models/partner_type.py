@@ -41,10 +41,9 @@ class PartnerType(models.Model):
         help='Cuenta contable que se utilizará para este tipo de '
              'Cliente/Proveedor',
     )
-    applied_to = fields.Selection([
-        ('sale', 'Ventas'),
-        ('purchase', 'Compras')
-    ],
+    applied_to = fields.Selection(
+        [('sale', 'Ventas'),
+         ('purchase', 'Compras')],
         string='Ambito de Aplicación',
         required=True,
         help='Indica si este tipo de Cliente/Proveedor aplica para venta o '
@@ -54,14 +53,13 @@ class PartnerType(models.Model):
     def ruc_required(self, company_type):
         if company_type == 'company':
             return self.ruc_required_company
-        elif company_type == 'person':
+        if company_type == 'person':
             return self.ruc_required_person
-        else:
-            raise Exception('Error Interno')
+        raise Exception('Error Interno')
 
     @api.constrains('default_account')
     def constraint_default_account(self):
         """ Constraint to verify conciliable account """
         if self.default_account and not self.default_account.reconcile:
             raise ValidationError(_('La cuenta predeterminada debe ser '
-                                  'conciliable.'))
+                                    'conciliable.'))

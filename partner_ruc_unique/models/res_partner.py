@@ -14,8 +14,8 @@ class ResPartner(models.Model):
         consolidated_rucs = []
         partner_types = self.env['partner.type'].search(
             [('consolidated_ruc', '!=', False)])
-        for pt in partner_types:
-            consolidated_rucs.append(pt.consolidated_ruc)
+        for partner_type in partner_types:
+            consolidated_rucs.append(partner_type.consolidated_ruc)
 
         for record in self:
             if record.parent_id or not record.ruc:

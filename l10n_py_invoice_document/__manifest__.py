@@ -1,6 +1,6 @@
 {
     'name': 'Tipos de documentos (facturacion) Paraguay',
-    'version': '13.0.0.0.8',
+    'version': '13.0.0.0.9',
     'category': 'Localizacion',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
@@ -35,5 +35,6 @@
         'demo/res_partner_demo.xml'
     ],
     'installable': True,
+    'auto_install': True,
     'sequence': 1
 }

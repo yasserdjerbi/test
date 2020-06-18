@@ -1,10 +1,9 @@
 {
     'name': 'Libros de IVA Paraguay',
-    'version': '13.0.0.0.4',
+    'version': '13.0.0.0.6',
     'category': 'Localizacion',
-    'sequence': 14,
     'author': 'Tecnopro',
-    'website': 'tecnopro.com.py',
+    'website': 'http://tecnopro.com.py',
     'license': 'AGPL-3',
     'summary': 'Libros de IVA',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"

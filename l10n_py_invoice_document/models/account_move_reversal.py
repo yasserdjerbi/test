@@ -15,10 +15,10 @@ class AccountMoveReversal(models.TransientModel):
         ret = super().reverse_moves()
 
         # obtenemos el objeto
-        nc = self.env['account.move'].browse(ret['res_id'])
+        _nc = self.env['account.move'].browse(ret['res_id'])
 
         # revisamos todas las lineas de factura y le recalculamos la cuenta
-        for line in nc.invoice_line_ids:
+        for line in _nc.invoice_line_ids:
             if not line.product_id or line.display_type in ('line_section',
                                                             'line_note'):
                 continue

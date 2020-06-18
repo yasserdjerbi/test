@@ -1,7 +1,10 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
+import logging
 from odoo.exceptions import ValidationError
 from odoo import fields, models, api, _
+
+_logger = logging.getLogger(__name__)
 
 
 class TimbradoData(models.Model):
@@ -88,14 +91,14 @@ class TimbradoData(models.Model):
     def _check_name(self):
         for rec in self:
             if self.env['timbrado.data'].search([
-                ('name', '=', rec.name),
-                ('shipping_point', '=', rec.shipping_point),
-                ('trade_code', '=', rec.trade_code),
-                ('document_type_id', '=', rec.document_type_id.id),
-                ('id', '!=', rec.id)
+                    ('name', '=', rec.name),
+                    ('shipping_point', '=', rec.shipping_point),
+                    ('trade_code', '=', rec.trade_code),
+                    ('document_type_id', '=', rec.document_type_id.id),
+                    ('id', '!=', rec.id)
             ]):
-                    raise ValidationError(_('No puede agregar un timbrado que '
-                                            'ya existe'))
+                raise ValidationError(_('No puede agregar un timbrado que '
+                                        'ya existe'))
 
     @staticmethod
     def _format(value):
@@ -129,8 +132,8 @@ class TimbradoData(models.Model):
     @api.depends('start_number', 'end_number')
     def _compute_range(self):
         for rec in self:
-            r = '[%s - %s]' % (rec.start_number, rec.end_number)
-            rec.range = r
+            _ = '[%s - %s]' % (rec.start_number, rec.end_number)
+            rec.range = _
 
     @api.depends('start_number', 'end_number')
     def _compute_qty(self):
@@ -217,8 +220,8 @@ class TimbradoData(models.Model):
             if rec.validity_start <= today <= rec.validity_end:
                 try:
                     rec._button_activate(today)
-                except:
-                    pass
+                except Exception as e:
+                    _logger.exception('Fail timbrado activation %s', str(e))
             else:
                 rec.deactivate()
 

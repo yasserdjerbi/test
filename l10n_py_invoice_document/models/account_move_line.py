@@ -13,7 +13,7 @@ class AccountJournal(models.Model):
         self.ensure_one()
 
         if not self.product_id:
-            return
+            return False
 
         # Si no es el caso, llamamos al super
         if self.move_id.type != 'out_refund':

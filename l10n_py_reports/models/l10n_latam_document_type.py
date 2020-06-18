@@ -9,7 +9,7 @@ class L10nLatamDocumentType(models.Model):
 
     def next_sequence(self):
         """ Obtener el siguiente numero de secuencia para aquellos documentos
-            que requieren secuencia en vetas.
+            que requieren secuencia en ventas.
             Si es la primera vez que se usa esto, crear la secuencia
         """
         self.ensure_one()
@@ -49,7 +49,7 @@ class L10nLatamDocumentType(models.Model):
         # si esta habilitada secuencia de compras el campo esta invisible
         # terminar
         if self.compra and self.purchase_seq:
-            return
+            return False
 
         # no lo dejo pasar si no tengo algun numero
         if not document_number:

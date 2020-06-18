@@ -1,13 +1,11 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
-from odoo import models, fields, api, _
-from odoo.exceptions import UserError, ValidationError
+from odoo import models, fields, api
 
 
 class L10nLatamDocumentType(models.Model):
     _inherit = 'l10n_latam.document.type'
 
-    # TODO hay que quitar este campo
     purchase_seq = fields.Boolean(
         string='Autosecuencia',
         help='Si esta tildado al usarlo para compra tomara un numero de '
@@ -34,12 +32,30 @@ class L10nLatamDocumentType(models.Model):
         string='Secuencia'
     )
 
-    # TODO este constrains anda raro en la vista de lista. mejorarlo
-    @api.constrains('compra', 'purchase_seq')
-    def check_purchase_seq(self):
-        if self.purchase_seq and not self.compra:
-            raise UserError(_('Autosecuencia y compra deben estar tildados '
-                             'juntos'))
+    @api.onchange('compra', 'venta')
+    def _onchange_compra_venta(self):
+        """ Compra y venta no pueden estar deshabilitados al mismo tiempo
+        """
+        if not self.venta and not self.compra:
+            self.compra = bool(self._origin.venta)
+            self.venta = bool(self._origin.compra)
+
+    @api.onchange('req_timbrado', 'vat_enabled')
+    def _onchange_req_timbrado(self):
+        """ si se habilita req_timbrado, vat_enabled debe ser True
+        """
+        if self.req_timbrado:
+            self.vat_enabled = True
+
+    @api.onchange('purchase_seq', 'compra', 'venta')
+    def _onchange_req_purchase_seq(self):
+        """ si se habilita purchase_seq, compra = True, venta = False,
+            req_timbrado = False
+        """
+        if self.purchase_seq:
+            self.compra = True
+            self.venta = False
+            self.req_timbrado = False
 
     def name_get(self):
         result = []

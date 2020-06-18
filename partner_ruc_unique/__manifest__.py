@@ -2,12 +2,12 @@
 
 {
     'name': 'Partner RUC unique',
-    'version': '13.0.0.0.0',
+    'version': '13.0.0.0.1',
     'author': 'Tecnopro',
     'category': 'Localizacion',
-    "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
+    "development_status": "Production/Stable",
     'license': 'AGPL-3',
-    'website': 'tecnopro.com.py',
+    'website': 'http://tecnopro.com.py',
     'summary': 'Evita la duplicacion de RUC en la localizacion Paraguay',
     'depends': [
         'base',

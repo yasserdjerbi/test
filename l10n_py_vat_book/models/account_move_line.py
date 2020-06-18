@@ -8,14 +8,31 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move"
 
     def action_post(self):
-        """ Verificar las lineas de iva pero solo en facturas de cliente
+        """ Verificar las lineas de factura por el IVA
+            si el documento tiene vat_enabled todas las lineas deben tener IVA
+            si no lo tiene, ninguna linea debe tener IVA
+
+            Aca hay que tener en cuenta que el unico tipo de impuesto que va
+            ahi es el IVA por lo tanto no nos preocupamos por verificar que
+            imuesto es, si hay algo en tax_ids eso sera IVA.
         """
-        if self.type in ['out_invoice', 'out_refund']:
-            for line in self.line_ids:
-                if not line.exclude_from_invoice_tab:
-                    if not line.tax_ids:
-                        raise UserError(_('Todas las lineas de factura deben '
-                                          'tener al menos un impuesto de IVA'))
+        doc_type_id = self.l10n_latam_document_type_id
+        vat_enabled = doc_type_id.vat_enabled
+        if self.type in ['out_invoice', 'out_refund',
+                         'in_invoice', 'in_refund']:
+            lines = self.invoice_line_ids
+            if vat_enabled:
+                # si va a salir en el libro de iva
+                if lines.filtered(lambda x: not x.tax_ids):
+                    raise UserError(_('Para el documento %s, todas las lineas '
+                                      'deben tener al menos un impuesto IVA')
+                                    % doc_type_id.name)
+            else:
+                # si  no va a salir en el libro de iva
+                if lines.filtered(lambda x: x.tax_ids):
+                    raise UserError(_('Para el documento %s, no puede haber '
+                                      'ninguna linea con impuesto IVA')
+                                    % doc_type_id.name)
 
         # llamar al metodo original
-        super().action_post()
+        return super().action_post()

@@ -66,3 +66,4 @@ class AccountJournal(models.Model):
                 'No puede cambiar la configuracion de un diario que ya tiene'
                 'facturas validadas, mostramos algunas:\n' +
                 '- %s' % ('\n- '.join(inv.mapped('display_name')))))
+        return True
