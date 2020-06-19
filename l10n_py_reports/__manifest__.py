@@ -1,6 +1,6 @@
 {
     'name': 'Reportes Paraguay',
-    'version': '13.0.0.0.5',
+    'version': '13.0.0.0.6',
     'category': 'Localizacion',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
