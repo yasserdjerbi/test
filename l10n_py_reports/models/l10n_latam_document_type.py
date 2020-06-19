@@ -16,7 +16,7 @@ class L10nLatamDocumentType(models.Model):
         assert self.purchase_seq is True
 
         if not self.sequence_id:
-            self.sequence_id = self._create_sequence()
+            self.sudo().sequence_id = self._create_sequence()
 
         return self.sequence_id.next_by_id()
 
@@ -32,7 +32,7 @@ class L10nLatamDocumentType(models.Model):
             'number_next_actual': 0,
             'code': self.name
         }
-        return self.env['ir.sequence'].create(vals)
+        return self.env['ir.sequence'].sudo().create(vals)
 
     def _format_document_number(self, document_number):
         """ Make validation of Import Dispatch Number
