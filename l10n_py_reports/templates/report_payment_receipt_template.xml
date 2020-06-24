@@ -11,60 +11,49 @@
                     left: 0;
                     bottom: 0;
                 }
+<!--
+                div {
+                border:1px solid black
+                }
+-->
             </style>
 
             <div class="page">
-
-<!--
-                <h3><strong>Recibo: <span t-field="o.name"/></strong></h3>
-                <div class="row mt64">
-                    <div class="col-6" t-if="o.payment_date">
-                        <strong>Payment Date: </strong> <span t-field="o.payment_date"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6" t-if="o.partner_type">
-                        <t t-if="o.partner_type == 'customer'">
-                            <strong>Customer: </strong>
-                        </t>
-                        <t t-if="o.partner_type == 'supplier'">
-                            <strong>Vendor: </strong>
-                        </t><span t-field="o.partner_id"/>
-                    </div>
-                    <div class="col-6" t-if="o.payment_method_id">
-                        <strong>Payment Method: </strong><span t-field="o.payment_method_id.name"/>
-                    </div>
-                </div>
--->
                 <div class="row mt32">
-                    <div class="col-6">
+                    <div class="col-7">
                         <div t-if="o.payment_date">
                             <strong>Fecha: </strong> <span t-field="o.payment_date"/>
+                            <br/>
                         </div>
                         <div t-if="o.partner_type">
                             <t t-if="o.partner_type == 'customer'">
-                                <strong>Cliente: </strong>
+                                <strong>Recibimos de: </strong>
                             </t>
                             <t t-if="o.partner_type == 'supplier'">
-                                <strong>Proveedor: </strong>
-                            </t><span t-field="o.partner_id"/>
+                                <strong>Orden de pago para: </strong>
+                            </t>
+                            <span t-field="o.partner_id"
+                                  t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": False}'/>
                         </div>
                     </div>
-                    <div class="col-6" align="center">
-                        <h3><span t-field="o.receiptbook_id.name"/></h3>
+                    <div class="col-4" align="center">
+                        <strong>RUC <span t-field="o.company_id.vat"/></strong>
+                        <h4><span t-field="o.receiptbook_id.document_type_id.report_name"/></h4>
                         <h4>Nº <span t-field="o.name"/></h4>
                     </div>
                 </div>
 
+                <div t-if="o.amount_in_words and (o.partner_type == 'customer')">
+                    <strong>La suma de: </strong><span t-field="o.amount_in_words"/>
+                </div>
+                <div t-if="o.amount_in_words and (o.partner_type == 'supplier')">
+                    <strong>Por un total de: </strong><span t-field="o.amount_in_words"/>
+                </div>
+
                 <div class="row mb64">
-                    <div class="col-6" t-if="o.amount">
-                        <strong>Total: </strong><span t-field="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                     </div>
-                    <!--
-                    <div class="col-6" t-if="o.communication">
-                        <strong>Memo: </strong><span t-field="o.communication"/>
-                     </div>
-                     -->
+                </div>
+                <div>
+                    <span><strong>Según el siguente detalle:</strong></span>
                 </div>
                 <table class="table table-sm">
                     <thead>
@@ -86,6 +75,14 @@
                             <td class="text-right"><span t-esc="o._get_invoice_payment_amount(inv)" t-options="{'widget': 'monetary', 'display_currency': inv.currency_id}"/></td>
                             <td class="text-right"><span t-field="inv.amount_residual"/></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>TOTAL</strong></td>
+                            <td></td>
+                            <td class="text-right"><strong><span t-esc="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></strong></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
 
@@ -93,33 +90,19 @@
                 <hr/>
                 <br/>
                 <div class="row mt32">
-                    <div class="col-6">
-                        <span>Observaciones:</span>
-                        <span t-field="o.communication" />
+                    <div class="col-8">
+                        <div t-if="o.communication">
+                            <span>Observaciones:</span>
+                            <span t-field="o.communication" />
+                        </div>
                     </div>
-
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-6">
-                                <center>..............................................</center>
-                            </div>
-                            <div class="col-6">
-                                <center>..............................................</center>
-                            </div>
+                    <div class="col-4" >
+                        <div>
+                            <span t-field="o.write_uid.signature"/>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <center>Firma</center>
-                            </div>
-                            <div class="col-6">
-                                <center>Aclaracion</center>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
-
-
-            </div>
         </t>
     </template>
 

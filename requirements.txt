@@ -1,1 +1,2 @@
 num2words==0.5.10
+openupgradelib==2.0.0

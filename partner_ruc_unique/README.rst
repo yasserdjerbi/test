@@ -28,6 +28,11 @@ Si el ruc esta en blanco o es un ruc consolidado no lo tiene en cuenta.
 .. contents::
    :local:
 
+Installation
+============
+
+This module is auto installed
+
 Bug Tracker
 ===========
 

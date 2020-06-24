@@ -7,8 +7,8 @@ dc_af,50,AF,AUTOFACTURA (Fact Proveed),AUTOFACTURA (Fact Proveed),False,True,Tru
 dc_pa,60,PA,PASAJE AEREO,PASAJE AEREO,False,False,False,True,base.py,False,invoice,PA,True
 dc_pae,70,PAE,PASAJE AEREO ELECTRÓNICO,PASAJE AEREO ELECTRÓNICO,False,False,False,True,base.py,False,invoice,PE,True
 dc_inv,80,INV,FACTURA DEL EXTERIOR,FACTURA DEL EXTERIOR,False,False,True,False,base.py,True,invoice,FX,True
-dc_pls,90,PLS,PLANILLA DE SUELDOS,PLANILLA DE SUELDOS,False,False,True,False,base.py,False,,PS,True
-dc_cing,100,CING,COMPROBANTE DE INGRESOS,COMPROBANTE DE INGRESOS,False,False,True,False,base.py,False,,IN,True
+dc_pls,90,PLS,PLANILLA DE SUELDOS,PLANILLA DE SUELDOS,False,False,True,False,base.py,False,invoice,PS,True
+dc_cing,100,CING,COMPROBANTE DE INGRESOS,COMPROBANTE DE INGRESOS,False,False,True,False,base.py,False,invoice,IN,True
 dc_fexp,110,FEXP,FACTURA EXPORTACIÓN (Fact Cliente),FACTURA EXPORTACIÓN (Fact Cliente),False,False,False,False,base.py,True,invoice,EX,True
 dc_rsa,120,RSA,RETENCIÓN ABSORBIDA,RETENCIÓN ABSORBIDA,False,True,True,True,base.py,True,invoice,RA,True
 dc_vui,130,VUI,VENTA USO INTERNO,VENTA USO INTERNO,False,False,False,True,base.py,True,invoice,VI,True

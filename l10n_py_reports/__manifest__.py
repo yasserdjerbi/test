@@ -1,6 +1,6 @@
 {
     'name': 'Reportes Paraguay',
-    'version': '13.0.0.0.6',
+    'version': '13.0.0.0.7',
     'category': 'Localizacion',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
@@ -14,15 +14,18 @@
     'external_dependencies': {
         'python': [
             'num2words',
+            'openupgradelib'
         ],
     },
     'data': [
+        'data/receipt_book_data.xml',
+        'data/report_paperformat_data.xml',
         'security/ir.model.access.csv',
         'templates/report_invoice.xml',
-        'data/report_paperformat_data.xml',
-        'data/receipt_book_data.xml',
-        'views/account_payment_view.xml',
         'templates/report_payment_receipt_template.xml',
+        'wizard/adjust_sequence_number_view.xml',
+        'views/account_payment_view.xml',
+        'views/account_payment_receiptbook_view.xml',
     ],
     'installable': True,
     'auto_install': True,

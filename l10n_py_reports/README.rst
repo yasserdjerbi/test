@@ -29,6 +29,16 @@ Implementa la impresion de documentos de la localizacion
 .. contents::
    :local:
 
+Installation
+============
+
+This module is auto installed
+
+Configuration
+=============
+
+crear los talonarios de recibos requeridos
+
 Bug Tracker
 ===========
 

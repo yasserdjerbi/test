@@ -6,24 +6,37 @@ from odoo import models, fields, api
 class L10nLatamDocumentType(models.Model):
     _inherit = 'l10n_latam.document.type'
 
+    internal_type = fields.Selection(
+        selection_add=[
+            ('customer_payment', 'Customer Payment'),
+            ('supplier_payment', 'Supplier Payment')
+        ]
+    )
     purchase_seq = fields.Boolean(
         string='Autosecuencia',
         help='Si esta tildado al usarlo para compra tomara un numero de '
-             'secuencia unico y no dejara introducir numero de documento'
+             'secuencia unico y no dejara introducir numero de documento',
+        default=False
     )
     req_timbrado = fields.Boolean(
         help='Si esta tildado el documento requiere timbrado y ademas, en una '
-             'compra se valida el numero ingresado contra una mascara.'
+             'compra se valida el numero ingresado contra una mascara.',
+        default=False
     )
     compra = fields.Boolean(
-        help='si esta tildado el documento aplica para compras'
+        help='si esta tildado el documento aplica para compras',
+        required=True,
+        default=False
     )
     venta = fields.Boolean(
-        help='si esta tildado el documento aplica para ventas'
+        help='si esta tildado el documento aplica para ventas',
+        required=True,
+        default=False
     )
     vat_enabled = fields.Boolean(
         string='Libro IVA',
-        help='Si esta tildado el documento aparece en el libro de IVA'
+        help='Si esta tildado el documento aparece en el libro de IVA',
+        default=False
     )
     sequence_id = fields.Many2one(
         'ir.sequence',
@@ -31,14 +44,6 @@ class L10nLatamDocumentType(models.Model):
         help='Secuencia habilitada para este documento',
         string='Secuencia'
     )
-
-    @api.onchange('compra', 'venta')
-    def _onchange_compra_venta(self):
-        """ Compra y venta no pueden estar deshabilitados al mismo tiempo
-        """
-        if not self.venta and not self.compra:
-            self.compra = bool(self._origin.venta)
-            self.venta = bool(self._origin.compra)
 
     @api.onchange('req_timbrado', 'vat_enabled')
     def _onchange_req_timbrado(self):

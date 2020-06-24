@@ -6,8 +6,23 @@
         <field name="name">L10N PY REPORTS receiptbook</field>
         <field name="inherit_id" ref="account.view_account_payment_form"/>
         <field name="arch" type="xml">
+
+            <!-- show receiptbook only in inbound payments -->
             <xpath expr="//field[@name='journal_id']" position="after">
-                <field name="receiptbook_id"/>
+                <field name="payment_type" invisible="1"/>
+                <label for="receiptbook_id" attrs="{'invisible': [('payment_type', 'in', ['outbound'])]}"/>
+                <div attrs="{'invisible': [('payment_type', 'in', ['outbound'])]}">
+                    <field name="receiptbook_id"
+                           domain="[('partner_type','=','customer')]"
+                            attrs="{'required': [('partner_type','=','customer')]}"
+                    />
+                    <label for="next_receipt_number"/>
+                    <field name="next_receipt_number"/>
+                    <!-- por ahora lo sacamos
+                    <a type="action" name="%(adjust_sequence_number_action)d" class="btn btn-link" role="button">
+                        <i class="fa fa-fw o_button_icon fa-arrow-right"/> Configure next number</a>
+                        -->
+                </div>
             </xpath>
         </field>
     </record>

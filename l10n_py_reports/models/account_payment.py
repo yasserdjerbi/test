@@ -1,6 +1,6 @@
 # For copyright and license notices, see __manifest__.py file in module root
 
-
+from num2words import num2words
 from odoo import fields, models, _
 from odoo.exceptions import UserError, ValidationError
 
@@ -9,15 +9,23 @@ class AccountPayment(models.Model):
     _inherit = "account.payment"
 
     receiptbook_id = fields.Many2one(
-        'report.receiptbook',
-        string='Talonario de recibos',
+        'account.payment.receiptbook',
     )
+    amount_in_words = fields.Char(
+        compute="_compute_amount_in_words"
+    )
+    next_receipt_number = fields.Integer(
+        related='receiptbook_id.next_number'
+    )
+    def _compute_amount_in_words(self):
+        for rec in self:
+            lang = self.env.user.lang[:2]
+            _ = u'GUARANIES %s' % num2words(rec.amount, lang=lang)
+            rec.amount_in_words = _.upper()
 
     def post(self):
-        """ Este metodo sobreescribe el original de odoo para poder usar los
+        """  Este metodo sobreescribe el original de odoo para poder usar los
             talonarios de recibo solo si el pais es Paraguay.
-            Es necesario hacer esto porque si se instala en SH le va a correr
-            los test standard de account y va a fallar.
 
             Create the journal items for the payment and update the payment's
             state to 'posted'.
@@ -37,7 +45,6 @@ class AccountPayment(models.Model):
             .with_context(default_type='entry')
 
         for rec in self:
-
             if rec.state != 'draft':
                 raise UserError(_("Only a draft payment can be posted."))
 
@@ -48,21 +55,18 @@ class AccountPayment(models.Model):
             # keep the name in case of a payment reset to draft
             if not rec.name:
                 # Use the right sequence to set the name
+                # TODO Revisar la transferencia
                 if rec.payment_type == 'transfer':
                     sequence_code = 'account.payment.transfer'
                 else:
+                    # if there is no receiptbook, then it is a payment order,
+                    # then put the default payment order.
                     if not rec.receiptbook_id:
-                        receipt = 'l10n_py_reports.automatic_purchase_receipt'
+                        receipt = 'l10n_py_reports.default_payment_order'
                         rec.receiptbook_id = self.env.ref(receipt)
-                    if not rec.receiptbook_id.sequence_id.code:
-                        raise ValidationError(
-                            _('La secuencia %s no tiene codigo por favor '
-                              'agrege uno') %
-                            rec.receiptbook_id.sequence_id.name)
-                    sequence_code = rec.receiptbook_id.sequence_id.code
 
-                rec.name = self.env['ir.sequence'].next_by_code(
-                    sequence_code, sequence_date=rec.payment_date)
+                rec.name = rec.receiptbook_id.sequence_id.next_by_id(
+                    sequence_date=rec.payment_date)
 
                 if not rec.name and rec.payment_type != 'transfer':
                     raise UserError(_("You have to define a sequence for %s "

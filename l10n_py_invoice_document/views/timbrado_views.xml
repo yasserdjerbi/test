@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="view_timbrado_form" model="ir.ui.view">
-        <field name="name">INVOICE DOCUMENT timbrado</field>
+        <field name="name">L10N_PY_INVOICE_DOCUMENT timbrado</field>
         <field name="model">timbrado.data</field>
         <field name="arch" type="xml">
             <form string="Document Type">

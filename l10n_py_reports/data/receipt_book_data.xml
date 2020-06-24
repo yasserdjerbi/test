@@ -1,82 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- TODO No se puede poner noupdate=1 porque aparecen de nuevo los
-         recibos X -->
-    <!-- DOCUMENTOS PAGOS DEL CLIENTE
-    <record id="dc_recibo_x" model="l10n_latam.document.type">
-        <field name="code">RC</field>
-        <field name="name">RECIBO RC</field>
+<odoo noupdate="0">
+    <!-- Documents - Customer Payments -->
+    <record id="dc_receipt" model="l10n_latam.document.type">
+        <field name="code">RECCO</field>
+        <field name="name">RECEIPT</field>
         <field name="report_name">RECIBO DE DINERO</field>
         <field name="internal_type">customer_payment</field>
-        <field name="doc_code_prefix">RECIBO </field>
-        <field name="country_id" ref="base.py"/>
-        <field name="sequence">180</field>
-    </record>
-
-    <record id="dc_recibo_x_cc" model="l10n_latam.document.type">
-        <field name="code">CC</field>
-        <field name="name">RECIBO CC</field>
-        <field name="report_name">RECIBO DE DINERO CONTADO</field>
-        <field name="internal_type">customer_payment</field>
-        <field name="doc_code_prefix">RECIBO </field>
+        <field name="doc_code_prefix">RE</field>
         <field name="country_id" ref="base.py"/>
         <field name="sequence">190</field>
     </record>
--->
-<!--
-    <record id="dc_orden_pago_x" model="l10n_latam.document.type">
-        <field name="code">OP</field>
-        <field name="name">ORDEN DE PAGO</field>
-        <field name="report_name">ORDEN DE PAGO</field>
-        <field name="internal_type">supplier_payment</field>
-        <field name="doc_code_prefix">PAGO </field>
+
+    <record id="dc_cash_receipt" model="l10n_latam.document.type">
+        <field name="code">RECCR</field>
+        <field name="name">MONEY CASH RECEIPT</field>
+        <field name="report_name">MONEY CASH RECEIPT</field>
+        <field name="internal_type">customer_payment</field>
+        <field name="doc_code_prefix">RC</field>
         <field name="country_id" ref="base.py"/>
         <field name="sequence">200</field>
     </record>
--->
-    <!-- generar las secuencias para los dos tipos de recibo -->
-    <record id="automatic_receipt_sequence_rc" model="ir.sequence">
-        <field name="name">Recibo Automatico Credito 001 001</field>
-        <field name="code">RACR</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding">7</field>
-        <field name="prefix">RC-001-001-</field>
-    </record>
-    <record id="automatic_receipt_sequence_cc" model="ir.sequence">
-        <field name="name">Recibo Automatico Contado 001 001</field>
-        <field name="code">RACO</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding">7</field>
-        <field name="prefix">CC-001-001-</field>
-    </record>
-    <record id="automatic_receipt_sequence_purchase" model="ir.sequence">
-        <field name="name">Recibo compras</field>
-        <field name="code">RCOM</field>
-        <field name="implementation">no_gap</field>
-        <field name="padding">7</field>
-        <field name="prefix">CP-</field>
+
+    <!-- Documents - Payment Orders -->
+    <record id="dc_payment_order" model="l10n_latam.document.type">
+        <field name="code">OPAG</field>
+        <field name="name">PAYMENT ORDER</field>
+        <field name="report_name">ORDEN DE PAGO</field>
+        <field name="internal_type">supplier_payment</field>
+        <field name="doc_code_prefix">OP</field>
+        <field name="country_id" ref="base.py"/>
+        <field name="sequence">210</field>
     </record>
 
-    <!-- VENTAS TALONARIO DE RECIBOS -->
-    <record id="automatic_sale_cc_receipt" model="report.receiptbook">
-        <field name="name">RECIBO DE DINERO CONTADO</field>
-        <field name="partner_type">customer</field>
-        <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_cc"/>
-        <field name="sequence">10</field>
+    <!-- default payment order sequence -->
+    <record id="default_payment_order_sequence" model="ir.sequence">
+        <field name="name">PAYMENT ORDER</field>
+        <field name="implementation">no_gap</field>
+        <field name="prefix">OP-</field>
+        <field name="padding">8</field>
+        <field name="number_increment">1</field>
     </record>
 
-    <record id="automatic_sale_rc_receipt" model="report.receiptbook">
-        <field name="name">RECIBO DE DINERO</field>
-        <field name="partner_type">customer</field>
-        <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_rc"/>
-        <field name="sequence">20</field>
-    </record>
-
-    <!-- Generar los talonarios de recibo para compras -->
-    <record id="automatic_purchase_receipt" model="report.receiptbook">
-        <field name="name">PAGO A PROVEEDORES</field>
+    <!-- default payment order -->
+    <record id="default_payment_order" model="account.payment.receiptbook">
+        <field name="name">PAYMENT ORDER</field>
         <field name="partner_type">supplier</field>
-        <field name="sequence_id" ref="l10n_py_reports.automatic_receipt_sequence_purchase"/>
-        <field name="sequence">30</field>
+        <field name="sequence_type">automatic</field>
+        <field name="prefix">OP-</field>
+        <field name="padding">8</field>
+        <field name="document_type_id" eval="dc_payment_order"/>
+        <field name="sequence_id" eval="default_payment_order_sequence"/>
     </record>
+
 </odoo>

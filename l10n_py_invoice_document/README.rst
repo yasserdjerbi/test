@@ -65,7 +65,7 @@ formulario de *Categoria de producto*.
 Installation
 ============
 
-
+This module is auto installed
 
 Configuration
 =============
