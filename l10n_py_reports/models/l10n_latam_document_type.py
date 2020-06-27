@@ -59,8 +59,8 @@ class L10nLatamDocumentType(models.Model):
         if not self.req_timbrado:
             return document_number
 
-        msg = "'%s' " + _("no es un valor valido para el "
-                          "documento") + " '%s'.\n%s"
+        msg = "'%s' " + _("is not a valid value for the "
+                          "document") + " '%s'.\n%s"
 
         # Invoice Number Validator (.i.e: 3-4-123)
         failed = False

@@ -1,4 +1,4 @@
-Implementa la impresion de documentos de la localizacion
+This module implements the printing of documents from the Paraguayan location
 
-- Facturas, notas de credito
-- Recibos
+- Invoices, Credit notes
+- Receipts

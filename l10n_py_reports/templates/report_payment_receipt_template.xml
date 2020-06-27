@@ -13,19 +13,20 @@
                     left: 0;
                     bottom: 0;
                 }
-<!--
-                div {
-                border:1px solid black
+
+                div.op {
+                border:2px solid black;
+                border-radius: 20px;
                 }
--->
+
             </style>
 
             <div class="page">
                 <div class="row mt32">
                     <div class="col-7">
                         <div t-if="o.payment_date">
-                            <strong>Fecha: </strong> <span t-field="o.payment_date"/>
-                            <br/>
+                            <strong>Fecha: </strong><span t-field="o.payment_date"/>
+                            <br/><br/>
                         </div>
                         <div t-if="o.partner_type">
                             <t t-if="o.partner_type == 'customer'">
@@ -38,19 +39,23 @@
                                   t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": False}'/>
                         </div>
                     </div>
-                    <div class="col-4" align="center">
+                    <div class="col-4 op" align="center">
                         <strong>RUC <span t-field="o.company_id.vat"/></strong>
                         <h4><span t-field="o.receiptbook_id.document_type_id.report_name"/></h4>
                         <h4>Nº <span t-field="o.name"/></h4>
                     </div>
                 </div>
 
+                <br/>
                 <div t-if="o.amount_in_words and (o.partner_type == 'customer')">
                     <strong>La suma de: </strong><span t-field="o.amount_in_words"/>
                 </div>
                 <div t-if="o.amount_in_words and (o.partner_type == 'supplier')">
                     <strong>Por un total de: </strong><span t-field="o.amount_in_words"/>
                 </div>
+
+                <strong>Medio de pago</strong>
+                <span t-field="o.journal_id"/>
 
                 <div class="row mb64">
                 </div>
@@ -87,7 +92,6 @@
                         </tr>
                     </tbody>
                 </table>
-
 
                 <hr/>
                 <br/>

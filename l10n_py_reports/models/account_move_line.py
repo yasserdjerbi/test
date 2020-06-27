@@ -10,37 +10,37 @@ class AccountMove(models.Model):
     amount_total_in_words = fields.Char(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Total a pagar en letras'
+        help='Total amount to pay in words'
     )
     amount_total_py = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Total a pagar'
+        help='Total amount to pay'
     )
     amount_tax_free_py = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Total excento'
+        help='Total excempt'
     )
     amount_tax_5_py = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Total iva al 5%'
+        help='Total tax 5%'
     )
     amount_tax_10_py = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Total iva al 10%'
+        help='Total tax 10%'
     )
     tax_5 = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Liquidacion iva al 5%'
+        help='TAX clearance 5%'
     )
     tax_10 = fields.Integer(
         compute='_compute_amount_tax',
         readonly=True,
-        help='Liquidacion iva al 10%'
+        help='TAX clearance 10%'
     )
 
     def _compute_amount_tax(self):
@@ -68,15 +68,15 @@ class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
     tax_free = fields.Integer(
-        string='Excento',
+        string='Excempt',
         compute='_compute_prices'
     )
     tax_5 = fields.Integer(
-        string='IVA 5%',
+        string='TAX 5%',
         compute='_compute_prices'
     )
     tax_10 = fields.Integer(
-        string='IVA 10%',
+        string='TAX 10%',
         compute='_compute_prices'
     )
 

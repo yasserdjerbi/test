@@ -1,11 +1,11 @@
 {
-    'name': 'Reportes Paraguay',
-    'version': '13.0.0.0.8',
-    'category': 'Localizacion',
+    'name': 'Paraguayan Reports',
+    'version': '13.0.0.0.9',
+    'category': 'Localization',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
     'license': 'AGPL-3',
-    'summary': 'Reportes, Facturas, Notas de credito, Recibos',
+    'summary': 'Printing of invoices, credit notes and receipts',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
         'account',
@@ -24,7 +24,6 @@
         'templates/report_preprinted_invoice.xml',
         'templates/report_invoice.xml',
         'templates/report_payment_receipt_template.xml',
-        'wizard/adjust_sequence_number_view.xml',
         'views/account_payment_view.xml',
         'views/account_payment_receiptbook_view.xml',
     ],

@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 def migrate(cr, version):
 
-    _logger.info('Migration -> acomodar recibos')
+    _logger.info('Migration -> disable old receipts')
     cr.execute("""
     UPDATE account_payment
     SET receiptbook_id = null;

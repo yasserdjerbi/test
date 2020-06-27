@@ -17,6 +17,7 @@ class AccountPayment(models.Model):
     next_receipt_number = fields.Integer(
         related='receiptbook_id.next_number'
     )
+
     def _compute_amount_in_words(self):
         for rec in self:
             lang = self.env.user.lang[:2]

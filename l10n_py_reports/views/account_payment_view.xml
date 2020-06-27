@@ -18,10 +18,6 @@
                     />
                     <label for="next_receipt_number"/>
                     <field name="next_receipt_number"/>
-                    <!-- por ahora lo sacamos
-                    <a type="action" name="%(adjust_sequence_number_action)d" class="btn btn-link" role="button">
-                        <i class="fa fa-fw o_button_icon fa-arrow-right"/> Configure next number</a>
-                        -->
                 </div>
             </xpath>
         </field>

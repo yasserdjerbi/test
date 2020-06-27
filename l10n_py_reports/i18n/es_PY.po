@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200613\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-21 20:12+0000\n"
-"PO-Revision-Date: 2020-06-21 20:12+0000\n"
+"POT-Creation-Date: 2020-06-27 02:43+0000\n"
+"PO-Revision-Date: 2020-06-27 02:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,17 @@ msgstr ""
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.report_payment_receipt_document
+msgid "<strong>Medio de pago</strong>"
+msgstr ""
+
+#. module: l10n_py_reports
+#: model_terms:ir.ui.view,arch_db:l10n_py_reports.report_payment_receipt_document
 msgid "<strong>Orden de pago para: </strong>"
+msgstr ""
+
+#. module: l10n_py_reports
+#: model_terms:ir.ui.view,arch_db:l10n_py_reports.report_payment_receipt_document
+msgid "<strong>Por un total de: </strong>"
 msgstr ""
 
 #. module: l10n_py_reports
@@ -123,7 +133,7 @@ msgstr ""
 #. module: l10n_py_reports
 #: model:ir.model,name:l10n_py_reports.model_account_payment_receiptbook
 msgid "Account payment Receiptbook"
-msgstr ""
+msgstr "Talonario de recibos del modelo Account Payment"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment_receiptbook__active
@@ -131,14 +141,15 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: l10n_py_reports
+#: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment__next_receipt_number
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment_receiptbook__next_number
 msgid "Actual Next Number"
-msgstr "Número Siguiente Real"
+msgstr "Siguiente numero de Secuencia"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment__amount_in_words
 msgid "Amount In Words"
-msgstr ""
+msgstr "Total en palabras"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_move__amount_tax_10_py
@@ -158,7 +169,7 @@ msgstr ""
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_move__amount_total_in_words
 msgid "Amount Total In Words"
-msgstr ""
+msgstr "Cantidad total en palabras"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_move__amount_total_py
@@ -168,7 +179,15 @@ msgstr ""
 #. module: l10n_py_reports
 #: model:ir.model.fields.selection,name:l10n_py_reports.selection__account_payment_receiptbook__sequence_type__automatic
 msgid "Automatic"
-msgstr ""
+msgstr "Automatico"
+
+#. module: l10n_py_reports
+#: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__padding
+msgid ""
+"Automatically adds some '0' on the left of the 'Number' to get the required "
+"padding size."
+msgstr "Agrega automaticamente algunos '0' a la izquierda del 'Numero' para "
+"obtener el largo requerido."
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -255,24 +274,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_py_reports
-#: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment_receiptbook__mail_template_id
-msgid "Email Template"
-msgstr "Plantilla de correo electrónico"
-
-#. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment_receiptbook__sequence_id
 msgid "Entry Sequence"
 msgstr "Secuencia del asiento"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_move_line__tax_free
-msgid "Excento"
-msgstr ""
+msgid "Excempt"
+msgstr "Excento"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
 msgid "Exentas"
-msgstr ""
+msgstr "Excentas"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -301,21 +315,8 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_py_reports
-#: model:ir.model.fields,field_description:l10n_py_reports.field_account_move_line__tax_10
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
 msgid "IVA 10%"
-msgstr ""
-
-#. module: l10n_py_reports
-#: model:ir.model.fields,field_description:l10n_py_reports.field_account_move_line__tax_5
-msgid "IVA 5%"
-msgstr ""
-
-#. module: l10n_py_reports
-#: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__mail_template_id
-msgid ""
-"If set an email will be sent to the customer when the related "
-"account.payment.group has been posted."
 msgstr ""
 
 #. module: l10n_py_reports
@@ -357,16 +358,6 @@ msgid "Latam Document Type"
 msgstr "Tipo de Documento Latam"
 
 #. module: l10n_py_reports
-#: model:ir.model.fields,help:l10n_py_reports.field_account_move__tax_10
-msgid "Liquidacion iva al 10%"
-msgstr ""
-
-#. module: l10n_py_reports
-#: model:ir.model.fields,help:l10n_py_reports.field_account_move__tax_5
-msgid "Liquidacion iva al 5%"
-msgstr ""
-
-#. module: l10n_py_reports
 #: model:ir.model.fields.selection,name:l10n_py_reports.selection__account_payment_receiptbook__sequence_type__manual
 msgid "Manual"
 msgstr ""
@@ -387,6 +378,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_py_reports
+#: model:ir.model.fields,help:l10n_py_reports.field_account_payment__next_receipt_number
 #: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__next_number
 msgid ""
 "Next number that will be used. This number can be incremented frequently so "
@@ -452,21 +444,17 @@ msgid "RUC:/C.I. Nro:"
 msgstr ""
 
 #. module: l10n_py_reports
-#: model_terms:ir.ui.view,arch_db:l10n_py_reports.view_receipt_receiptbook_form
-#: model_terms:ir.ui.view,arch_db:l10n_py_reports.view_receipt_receiptbook_search
-msgid "Receipt Books"
-msgstr ""
-
-#. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment__receiptbook_id
 msgid "Receiptbook"
-msgstr "Talonario de recibos"
+msgstr "Talonario de recibo"
 
 #. module: l10n_py_reports
 #: model:ir.actions.act_window,name:l10n_py_reports.action_receiptbook_form
 #: model:ir.ui.menu,name:l10n_py_reports.menu_receiptbook_form
+#: model_terms:ir.ui.view,arch_db:l10n_py_reports.view_receipt_receiptbook_form
+#: model_terms:ir.ui.view,arch_db:l10n_py_reports.view_receipt_receiptbook_search
 msgid "Receiptbooks"
-msgstr "Talonario de recibos"
+msgstr "Talonarios de recibo"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -486,12 +474,32 @@ msgstr "Secuencia"
 #. module: l10n_py_reports
 #: model:ir.model.fields,field_description:l10n_py_reports.field_account_payment_receiptbook__sequence_type
 msgid "Sequence Type"
-msgstr ""
+msgstr "Tipo de secuencia"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
 msgid "TATAKUA"
 msgstr ""
+
+#. module: l10n_py_reports
+#: model:ir.model.fields,field_description:l10n_py_reports.field_account_move_line__tax_10
+msgid "TAX 10%"
+msgstr "IVA 10%"
+
+#. module: l10n_py_reports
+#: model:ir.model.fields,field_description:l10n_py_reports.field_account_move_line__tax_5
+msgid "TAX 5%"
+msgstr "IVA 5%"
+
+#. module: l10n_py_reports
+#: model:ir.model.fields,help:l10n_py_reports.field_account_move__tax_10
+msgid "TAX clearance 10%"
+msgstr "Liquidacion de iva 10%"
+
+#. module: l10n_py_reports
+#: model:ir.model.fields,help:l10n_py_reports.field_account_move__tax_5
+msgid "TAX clearance 5%"
+msgstr "Liquidacion de IVA 5%"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -514,6 +522,15 @@ msgid "Tax 5"
 msgstr ""
 
 #. module: l10n_py_reports
+#: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__company_id
+msgid ""
+"The company to which this receipt book belongs. It is only visible in a "
+"multi-company environment."
+msgstr ""
+"The company a la cual pertenece este libro. Solo es visible en un ambiente "
+"multi compañia."
+
+#. module: l10n_py_reports
 #: code:addons/l10n_py_reports/models/account_payment.py:0
 #, python-format
 msgid "The payment cannot be processed because the invoice is not open!"
@@ -522,10 +539,13 @@ msgstr "¡No se puede procesar el pago porque la factura no está abierta!"
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__sequence_id
 msgid ""
-"This field contains the information related to the numbering of the receipt "
-"entries of this receiptbook. If left blank, thesequence is created "
-"automatically"
+"This field contains the sequence object holding the information related to "
+"the numbering of this receipt book's receipt entries. If left blank, the "
+"sequence is created automatically."
 msgstr ""
+"Este campo contiene el objeto de secuencia que contiene la información relacionada con "
+"la numeración de las entradas de recibo de este libro de recibos. Si se deja en blanco "
+"la secuencia se crea automáticamente."
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -534,33 +554,33 @@ msgstr ""
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_move__amount_total_py
-msgid "Total a pagar"
-msgstr ""
+msgid "Total amount to pay"
+msgstr "Cantidad total a pagar"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_move__amount_total_in_words
-msgid "Total a pagar en letras"
-msgstr ""
+msgid "Total amount to pay in words"
+msgstr "Cantidad total a pagar en palabras"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_move__amount_tax_free_py
-msgid "Total excento"
-msgstr ""
+msgid "Total excempt"
+msgstr "Total excento"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_move__amount_tax_10_py
-msgid "Total iva al 10%"
-msgstr ""
+msgid "Total tax 10%"
+msgstr "Total IVA 10%"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_move__amount_tax_5_py
-msgid "Total iva al 5%"
-msgstr ""
+msgid "Total tax 5%"
+msgstr "Total IVA 5%"
 
 #. module: l10n_py_reports
 #: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__sequence
 msgid "Used to order the receiptbooks"
-msgstr ""
+msgstr "Usado para ordenar los talonarios de recibo"
 
 #. module: l10n_py_reports
 #: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
@@ -579,24 +599,17 @@ msgid "You have to define a sequence for %s in your company."
 msgstr "Debes definir una secuencia para %s en tu empresa."
 
 #. module: l10n_py_reports
-#: model:ir.model.fields,help:l10n_py_reports.field_account_payment_receiptbook__padding
-msgid ""
-"automatically adds some '0' on the left of the 'Number' to get the required "
-"padding size."
-msgstr ""
-
-#. module: l10n_py_reports
-#: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
-msgid "logo y demas datos de la empresa"
-msgstr ""
+#: model:ir.model,name:l10n_py_reports.model_report_receiptbook
+msgid "deprecated model"
+msgstr "modelo depreciado"
 
 #. module: l10n_py_reports
 #: code:addons/l10n_py_reports/models/l10n_latam_document_type.py:0
 #, python-format
-msgid "no es un valor valido para el documento"
-msgstr ""
+msgid "is not a valid value for the document"
+msgstr "no es un valor valido para el documento"
 
 #. module: l10n_py_reports
-#: model:ir.model,name:l10n_py_reports.model_report_receiptbook
-msgid "report.receiptbook"
+#: model_terms:ir.ui.view,arch_db:l10n_py_reports.py_invoice
+msgid "logo y demas datos de la empresa"
 msgstr ""

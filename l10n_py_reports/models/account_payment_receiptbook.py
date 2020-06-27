@@ -16,15 +16,6 @@ class AccountPaymentReceiptbook(models.Model):
     _description = 'Account payment Receiptbook'
     _order = 'sequence asc'
 
-    # TODO por ahora no usaremos esto
-    # mail_template_id = fields.Many2one(
-    #    'mail.template',
-    #    'Email Template',
-    #    domain=[('model', '=', 'account.payment.group')],
-    #    help="If set an email will be sent to the customer when the related"
-    #         " account.payment.group has been posted.",
-    # )
-
     sequence = fields.Integer(
         help="Used to order the receiptbooks",
         default=10,
