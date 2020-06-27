@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- La factura se separa en dos templates la preimpresa y la auto impresor
+        de esa forma se puede usar posicion absoluta en la preimpresa -->
     <data>
         <!-- Factura -->
         <template id="py_invoice">
@@ -295,8 +298,10 @@
 
         <!-- hacer dos facturas iguales en landscape en la hoja A4 -->
         <template id="_invoice_frame">
+
             <t t-call="web.internal_layout">
-                <div style="width: 100;">
+
+                <div style="width: 100;" t-if="o.timbrado_id.print_system == 'auto_printer'">
                         <div>
                             <t t-call="l10n_py_reports.py_invoice"/>
                         </div>
@@ -304,6 +309,21 @@
                         <div>
                             <t t-call="l10n_py_reports.py_invoice"/>
                         </div>
+                </div>
+
+                <div t-if="o.timbrado_id.print_system == 'pre_printed'">
+                    <!-- factura superior -->
+                    <div style="height:158mm">
+                        <t t-call="l10n_py_reports.py_preprinted_invoice"/>
+                    </div>
+
+                    <!-- separacion entre facturas -->
+                    <div style="height:29mm"/>
+
+                    <!-- factura inferior -->
+                    <div style="height:158mm">
+                        <t t-call="l10n_py_reports.py_preprinted_invoice"/>
+                    </div>
                 </div>
             </t>
         </template>

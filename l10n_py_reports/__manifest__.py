@@ -1,6 +1,6 @@
 {
     'name': 'Reportes Paraguay',
-    'version': '13.0.0.0.7',
+    'version': '13.0.0.0.8',
     'category': 'Localizacion',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
@@ -21,6 +21,7 @@
         'data/receipt_book_data.xml',
         'data/report_paperformat_data.xml',
         'security/ir.model.access.csv',
+        'templates/report_preprinted_invoice.xml',
         'templates/report_invoice.xml',
         'templates/report_payment_receipt_template.xml',
         'wizard/adjust_sequence_number_view.xml',
