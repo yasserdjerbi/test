@@ -27,13 +27,13 @@
         <div style="height:100%;">
 
             <!-- Encabezado nro de factura, ruc, etc -->
-            <div style="height:13%;">
-                <span style="position: relative; top:64%; left:52%;
-                    font-size: 10px" t-esc="o.document_number"/>
+            <div style="height:32mm;">
+                <span style="position: relative; top:76%; left:48%;
+                    font-size: 10px" t-esc="o.name"/>
             </div>
 
             <!-- datos del cliente y de la factura -->
-            <div style="height:12.5%; font-size:12px;">
+            <div style="height:18.48mm; font-size:12px;">
                 <table style="width:100%">
                     <colgroup>
                         <col style="width:65.78%;"/>
@@ -46,10 +46,10 @@
                         </td>
                         <td>
                             <t t-if="o.payment_cash">
-                                <span style="position: relative; left:20%;"><strong>X</strong></span>
+                                <span style="position: relative; left:13%;"><strong>X</strong></span>
                             </t>
                             <t t-if="o.payment_credit">
-                                <span style="position: relative; left:45%;"><strong>X</strong></span>
+                                <span style="position: relative; left:38%;"><strong>X</strong></span>
                             </t>
                         </td>
                     </tr>
@@ -81,23 +81,24 @@
             </div>
 
             <!-- encabezados de las lineas de factura -->
-            <div style="height:5.9%"/>
+            <div style="height:8.58mm"/>
 
             <!-- lineas de factura -->
-            <div style="height:49%; font-size:12px;">
+            <div style="height:72mm; font-size:12px;">
                 <table style="width:100%">
                     <colgroup>
-                        <col style="width:06.67%;"/>
-                        <col style="width:11.03%;"/>
-                        <col style="width:50.80%;"/>
-                        <col style="width:07.72%;"/>
-                        <col style="width:14.95%;"/>
-                        <col style="width:08.83%;"/>
+                        <col style="width:06.97%;"/>
+                        <col style="width:11.81%;"/>
+                        <col style="width:47.93%;"/>
+                        <col style="width:07.45%;"/>
+                        <col style="width:14.41%;"/>
+                        <col style="width:11.44%;"/>
                     </colgroup>
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
                             <td class="text-center">
-                                <span t-field="line.quantity"/>
+                                <t t-set="q" t-value="line.quantity"/>
+                                <span t-esc="'%.2f' % q if q % 1 else '%.0f' % q"/>
                                 <span t-field="line.product_uom_id"
                                       groups="uom.group_uom"/>
                             </td>
@@ -105,7 +106,7 @@
                                 <span t-field="line.product_id.barcode"/>
                             </td>
                             <td>
-                                <span t-field="line.product_id.display_name"/>
+                                <span t-field="line.product_id.display_name">---</span>
                             </td>
                             <td align="right">
                                 <span t-field="line.price_unit" t-options='{"widget": "monetary"}'/>
@@ -122,21 +123,35 @@
             </div>
 
             <!-- Subtotales y totales -->
-            <div style="height:13.5%; font-size:12px;">
-                <span style="position: relative; left:85%;" t-field="o.amount_tax_free_py" t-options='{"widget": "monetary"}'/>
-                <span style="position: relative; left:91%;" t-field="o.amount_tax_10_py" t-options='{"widget": "monetary"}'/>
-                <br/>
+            <div style="height:20mm; font-size:12px;">
+                <table width="100%">
+                    <clogroup>
+                        <col style="width:73.98%;"/>
+                        <col style="width:14.17%;"/>
+                        <col style="width:11.86%;"/>
+                    </clogroup>
+                    <tr>
+                        <td></td>
+                        <td align="right">
+                            <span t-field="o.amount_tax_free_py" t-options='{"widget": "monetary"}'/>
+                        </td>
+                        <td align="right">
+                            <span t-field="o.amount_tax_10_py" t-options='{"widget": "monetary"}'/>
+                        </td>
+                    </tr>
+                </table>
+
                 <table style="width:100%">
                     <colgroup>
-                        <col style="width:90%;"/>
-                        <col style="width:10%;"/>
+                        <col style="width:85%;"/>
+                        <col style="width:15%;"/>
                     </colgroup>
                     <tr>
                         <td>
-                            <span style="position: relative; left:13%;" t-field="o.amount_total_in_words"/>
+                            <span style="position: relative; left:10%;" t-field="o.amount_total_in_words"/>
                         </td>
                         <td align="right">
-                            <span style="position: relative; left:5%;" t-field="o.amount_total_py" t-options='{"widget": "monetary"}'/>
+                            <span style="position: relative; left:0%;" t-field="o.amount_total_py" t-options='{"widget": "monetary"}'/>
                         </td>
                     </tr>
                 </table>
