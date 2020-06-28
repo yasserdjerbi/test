@@ -1,6 +1,6 @@
 {
     'name': 'Paraguayan Invoice Documents',
-    'version': '13.0.0.0.9',
+    'version': '13.0.0.0.10',
     'category': 'Localization',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',

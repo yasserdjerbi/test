@@ -106,7 +106,7 @@
                                     <br/>
                                     <b class="font-125">FACTURA</b>
                                     <br/>
-                                    <span class="font-normal">001-001-</span><span class="font-normal visible" t-esc="o.document_number"/>
+                                    <span class="font-normal">001-001-</span><span class="font-normal visible" t-esc="o.last_document_number"/>
                                 </p>
                             </div>
                         </td>

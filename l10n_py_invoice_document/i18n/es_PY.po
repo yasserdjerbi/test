@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200613\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-27 23:40+0000\n"
-"PO-Revision-Date: 2020-06-27 23:40+0000\n"
+"POT-Creation-Date: 2020-06-28 03:45+0000\n"
+"PO-Revision-Date: 2020-06-28 03:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -66,16 +66,6 @@ msgid "CI"
 msgstr ""
 
 #. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__document_number
-msgid "Campo tecnico con la ultima parte del numero de factura"
-msgstr ""
-
-#. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__req_timbrado
-msgid "Campo tecnico para mostrar u ocultar el timbrado en las vistas"
-msgstr ""
-
-#. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__purchase_seq
 msgid ""
 "Campo tecnico para ocultar el campo Numero de documento cuando el documento "
@@ -115,7 +105,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__document_type_code
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__code
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__compra
@@ -140,7 +130,7 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: l10n_py_invoice_document
 #: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_timbrado
@@ -149,20 +139,20 @@ msgstr ""
 
 #. module: l10n_py_invoice_document
 #: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_partner_type
-msgid "Crear un nuevo tiopo de Socio de Negocio"
+msgid "Crear un nuevo tipo de Socio de Negocio"
 msgstr ""
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__create_uid
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__create_date
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__default_account
@@ -184,7 +174,7 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__l10n_latam_document_type__internal_type__customer_payment
 msgid "Customer Payment"
-msgstr ""
+msgstr "Pago a cliente"
 
 #. module: l10n_py_invoice_document
 #: code:addons/l10n_py_invoice_document/models/account_move.py:0
@@ -206,22 +196,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__display_name
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: l10n_py_invoice_document
-#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__document_number
-msgid "Document Number"
-msgstr ""
+msgstr "Nombre Mostrado"
 
 #. module: l10n_py_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_timbrado_form
 msgid "Document Type"
-msgstr ""
+msgstr "Tipo de documento"
 
 #. module: l10n_py_invoice_document
 #: model:ir.actions.act_window,name:l10n_py_invoice_document.action_document_type_paraguay
 msgid "Document Types"
-msgstr ""
+msgstr "Tipos de documento"
 
 #. module: l10n_py_invoice_document
 #: code:addons/l10n_py_invoice_document/models/res_partner.py:0
@@ -389,17 +374,17 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__internal_type
 msgid "Internal Type"
-msgstr ""
+msgstr "Tipo Interno"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_account_move
 msgid "Journal Entries"
-msgstr ""
+msgstr "Apuntes contables"
 
 #. module: l10n_py_invoice_document
 #: code:addons/l10n_py_invoice_document/models/partner_type.py:0
@@ -427,27 +412,32 @@ msgid "La longitud del timbrado debe ser de ocho digitos"
 msgstr ""
 
 #. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__last_document_number
+msgid "Last Document Number"
+msgstr "Ultimo numero de documento"
+
+#. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type____last_update
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modificación en"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__write_uid
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultima actualizacion por"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__write_date
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultima actualización en "
 
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_l10n_latam_document_type
 msgid "Latam Document Type"
-msgstr ""
+msgstr "Tipo de documento Latam"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__vat_enabled
@@ -473,17 +463,18 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__next_invoice_number
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__next_number
 msgid "Next Number"
-msgstr ""
+msgstr "Proximo numero"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__next_number
 msgid "Next number of this sequence"
-msgstr ""
+msgstr "Próximo numero de esta secuencia"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__state__no_active
@@ -542,17 +533,17 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_partner_type_form
 msgid "Partner Type"
-msgstr ""
+msgstr "Tipo de Empresa"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__payment_cash
 msgid "Payment Cash"
-msgstr ""
+msgstr "Pago Contado"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__payment_credit
 msgid "Payment Credit"
-msgstr ""
+msgstr "Pago a Crédito"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__print_system__pre_printed
@@ -567,12 +558,12 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_product_category
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de Producto"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model,name:l10n_py_invoice_document.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producto"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_journal__l10n_py_trade_code
@@ -583,7 +574,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__purchase_ruc
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__purchase_ruc
 msgid "Purchase Ruc"
-msgstr ""
+msgstr "RUC de Compras"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__ruc
@@ -617,7 +608,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__sale_ruc
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__sale_ruc
 msgid "Sale Ruc"
-msgstr ""
+msgstr "Ruc Ventas"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__sequence_id
@@ -640,7 +631,7 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__sequence_id
 msgid "Sequence"
-msgstr ""
+msgstr "Secuencia"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__purchase_seq
@@ -669,6 +660,21 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__l10n_latam_document_type__internal_type__supplier_payment
 msgid "Supplier Payment"
+msgstr "Pago proveedor"
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__req_timbrado
+msgid "Technical field to show or hide the stamped in the views."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__last_document_number
+msgid "Technical field with the last part of the invoice number."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__next_invoice_number
+msgid "This will be the next invoice number."
 msgstr ""
 
 #. module: l10n_py_invoice_document

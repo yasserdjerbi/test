@@ -10,7 +10,6 @@ class AccountJournal(models.Model):
     timbrado_id = fields.Many2one(
         'timbrado.data',
         help="Numero de timbrado que habilita la factura",
-        string='Timbrado'
     )
     l10n_py_trade_code = fields.Char(
         related='journal_id.l10n_py_trade_code',
@@ -48,20 +47,24 @@ class AccountJournal(models.Model):
     remision = fields.Char(
         string='Nro de remision'
     )
-    document_number = fields.Char(
-        compute='_compute_document_number',
-        help="Campo tecnico con la ultima parte del numero de factura"
+    last_document_number = fields.Char(
+        compute='_compute_last_document_number',
+        help="Technical field with the last part of the invoice number."
     )
     req_timbrado = fields.Boolean(
         related='l10n_latam_document_type_id.req_timbrado',
-        help='Campo tecnico para mostrar u ocultar el timbrado en las vistas'
+        help='Technical field to show or hide the stamped in the views.'
+    )
+    next_invoice_number = fields.Integer(
+        related='timbrado_id.next_number',
+        help='This will be the next invoice number.'
     )
 
-    def _compute_document_number(self):
+    def _compute_last_document_number(self):
         for reg in self:
             if reg.name:
                 j = reg.name.find('-', reg.name.find('-') + 1)
-                reg.document_number = reg.name[j + 1:]
+                reg.last_document_number = reg.name[j + 1:]
 
     def _compute_payment(self):
         for rec in self:
@@ -96,7 +99,7 @@ class AccountJournal(models.Model):
         if not self.timbrado_id.sequence_id:
             raise ValueError(_('Este docuento no tiene secuencia, verifique '
                                'la configuracion'))
-        next_number = self.timbrado_id.sequence_id.number_next
+        next_number = self.next_invoice_number
 
         # chequear numero a validar es mayor que el maximo
         if next_number > self.timbrado_id.end_number:

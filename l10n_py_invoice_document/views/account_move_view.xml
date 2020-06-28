@@ -22,6 +22,18 @@
                 <field name="purchase_seq" invisible="1"/>
             </field>
 
+            <!-- poner el proximo numero de documento despues del name visible
+                 en estado draft, si no tiene name y si el numero no es cero -->
+            <xpath expr="//h1[hasclass('mt0')]" position="before">
+                <div attrs="{'invisible': ['|','|',
+                                ('state', '!=', 'draft'),
+                                ('l10n_latam_document_number','!=',False),
+                                ('next_invoice_number','=',0)]}">
+                   <label for="next_invoice_number"/>
+                   <field name="next_invoice_number"/>
+                </div>
+            </xpath>
+
             <!-- poner invisible el numero de documento si no uso documentos,
                  si es venta o si es compra pero require secuencia. -->
             <field name="l10n_latam_document_number" position="attributes">

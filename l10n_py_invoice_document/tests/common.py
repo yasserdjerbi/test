@@ -58,9 +58,9 @@ class TestPy(SingleTransactionCase):
                 'document_type',
                 self.env.ref('l10n_py_invoice_document.dc_fac'))
 
-            if data.get('document_number'):
+            if data.get('last_document_number'):
                 invoice_form.l10n_latam_document_number = data.pop(
-                    'document_number')
+                    'last_document_number')
 
             if data.get('incoterm'):
                 invoice_form.invoice_incoterm_id = data.pop('incoterm')
