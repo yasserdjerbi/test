@@ -31,12 +31,10 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - pip install --upgrade python-magic
   - travis_install_nightly
-  - pip install coverage
 
 script:
   - travis_run_tests
-  - coverage run -m unittest discover
 
 after_success:
   - travis_after_tests_success
-  - bash <(curl -s https://codecov.io/bash)
+
