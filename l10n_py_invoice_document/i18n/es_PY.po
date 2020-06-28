@@ -1,0 +1,770 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_py_invoice_document
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200613\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-27 23:40+0000\n"
+"PO-Revision-Date: 2020-06-27 23:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_account_move_reversal
+msgid "Account Move Reversal"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_timbrado_form
+msgid "Activar el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__state__active
+msgid "Activo"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__applied_to
+msgid "Ambito de Aplicación"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__internal_type
+msgid ""
+"Analog to odoo account.move.type but with more options allowing to identify "
+"the kind of document we are working with. (not only related to account.move,"
+" could be for documents of other models like stock.picking)"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__print_system__auto_printer
+msgid "Auto Impresor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__purchase_seq
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__purchase_seq
+msgid "Autosecuencia"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__state__draft
+msgid "Borrador"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__ci
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__ci
+msgid "CI"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__document_number
+msgid "Campo tecnico con la ultima parte del numero de factura"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__req_timbrado
+msgid "Campo tecnico para mostrar u ocultar el timbrado en las vistas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__purchase_seq
+msgid ""
+"Campo tecnico para ocultar el campo Numero de documento cuando el documento "
+"de compra obtiene su numero de una secuencia y paragenerar el numero de doc "
+"a partir de la secuencia automaticamente"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__document_type_code
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_shipping_point
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_trade_code
+msgid "Campo tecnico para relacionar con el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__code
+msgid "Campo técnico para seleccionar el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__qty
+msgid "Cantidad"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__qty
+msgid "Cantidad de comprobantes autorizados en este timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_partner__ci
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_users__ci
+msgid "Cedula de Identidad"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__document_type_code
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__code
+msgid "Code"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__compra
+msgid "Compra"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__partner_type__applied_to__purchase
+msgid "Compras"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__end_number
+msgid "Comprobante Final"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__start_number
+msgid "Comprobante Inicial"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_timbrado
+msgid "Crear un nuevo documento de Timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_partner_type
+msgid "Crear un nuevo tiopo de Socio de Negocio"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__create_uid
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__create_date
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__default_account
+msgid "Cuenta Predeterminada"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__default_account
+msgid "Cuenta contable que se utilizará para este tipo de Cliente/Proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_product_category__property_account_income_categ_return_id
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_product_product__property_account_income_return_id
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_product_template__property_account_income_return_id
+msgid "Cuenta de Ingresos (devolución)"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__l10n_latam_document_type__internal_type__customer_payment
+msgid "Customer Payment"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "Debe definir el tipo de Cliente en el Formulario de Cliente"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_timbrado_form
+msgid "Debe ser un numero de ocho digitos"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_partner_type
+msgid "Definicion de tipos de Partners"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__display_name
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__document_number
+msgid "Document Number"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_timbrado_form
+msgid "Document Type"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.actions.act_window,name:l10n_py_invoice_document.action_document_type_paraguay
+msgid "Document Types"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/res_partner.py:0
+#, python-format
+msgid "El RUC es invalido"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "El RUC es requerido, en este caso no puede quedar en blanco"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#, python-format
+msgid "El Timbrado debe tener 8 digitos"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "El timbrado debe ser numerico"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid ""
+"El timbrado no es valido. Intenta validar un numero de documento que es menor al minimo valido para este timbrado.\n"
+"El proximo numero es %s mientras que el rango de validez del timbrado es [%s - %s]"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#, python-format
+msgid "El timbrado no se puede activar porque las fechas no son validas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid ""
+"El timbrado ya no es valido, el numero de documento que quiere validar esta mas alla del rango.\n"
+"El proximo numero es %s mientras que el rango de validez del timbrado es [%s - %s]"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "El tipo de cliente '%s' no esta habilitado para ventas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__consolidated_ruc
+msgid ""
+"En ciertos casos, cuando se permite tener el RUC en blanco se usara este RUC"
+" consolidado."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_journal__l10n_py_shipping_point
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__l10n_py_shipping_point
+msgid "Esablecimiento"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_journal.py:0
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#, python-format
+msgid "Esperabamos un numero"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_timbrado_form
+msgid "Establecer como Borrador"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__shipping_point
+msgid "Establecimiento"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__state
+msgid "Estado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "Este docuento no tiene secuencia, verifique la configuracion"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_journal__l10n_py_trade_code
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__l10n_py_trade_code
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__trade_code
+msgid "Expedición"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__validity_start
+msgid "Fecha a partir de la cual esta vigente el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_validity_end
+msgid "Fecha de caducidad del timbrado del proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__validity_end
+msgid "Fecha hasta la cual es válido el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__validity_end
+msgid "Fin Vigencia"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.actions.act_window,name:l10n_py_invoice_document.action_timbrado
+#: model:ir.ui.menu,name:l10n_py_invoice_document.menu_action_timbrado
+msgid "Gestion de Timbrados"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__id
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__document_type_id
+msgid "Indica el tipo de comprobante para el que aplica el timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__ruc_required_person
+msgid ""
+"Indica si el Cliente/Proveedor debe tener su RUC definido cuando es un individuo.\n"
+"Si no es obligatorio, entonces al facturar se tomará el RUC consolidado."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__ruc_required_company
+msgid ""
+"Indica si el Cliente/Proveedor debe tener su RUC definido cuando es una empresa.\n"
+"Si no es obligatorio, entonces al facturar se tomará el RUC consolidado."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__applied_to
+msgid ""
+"Indica si este tipo de Cliente/Proveedor aplica para venta o para compra"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__validity_start
+msgid "Inicio Vigencia"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__internal_type
+msgid "Internal Type"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/partner_type.py:0
+#, python-format
+msgid "La cuenta predeterminada debe ser conciliable."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "La fecha de la factura es posterior a la validez del timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid ""
+"La fecha de la factura no esta dentro del rango de validez del timbrado."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_move.py:0
+#, python-format
+msgid "La longitud del timbrado debe ser de ocho digitos"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type____last_update
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__write_uid
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__write_date
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_l10n_latam_document_type
+msgid "Latam Document Type"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__vat_enabled
+msgid "Libro IVA"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_product_category__property_account_income_categ_return_id
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_product_product__property_account_income_return_id
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_product_template__property_account_income_return_id
+msgid ""
+"Mantenga este campo vacio para usar el valor predeterminado de la categoria "
+"del producto."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_partner_type
+msgid ""
+"Mediante los Tipos de Socio de Negocio se definen las reglas\n"
+"                que permiten validar los documentos RUC"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__next_number
+msgid "Next Number"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__next_number
+msgid "Next number of this sequence"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__state__no_active
+msgid "No Activo"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#, python-format
+msgid "No puede agregar un timbrado que ya existe"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/account_journal.py:0
+#, python-format
+msgid ""
+"No puede cambiar la configuracion de un diario que ya tienefacturas validadas, mostramos algunas:\n"
+"- %s"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__remision
+msgid "Nro de remision"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_journal__l10n_py_shipping_point
+msgid "Numero de sucursal que representa este diario"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_timbrado
+msgid "Numero de timbrado de la factura del proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__timbrado_id
+msgid "Numero de timbrado que habilita la factura"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__name
+msgid "Número de Timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__ruc_required_company
+msgid "Obligatorio para empresas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__ruc_required_person
+msgid "Obligatorio para individuos"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_partner_type_form
+msgid "Partner Type"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__payment_cash
+msgid "Payment Cash"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__payment_credit
+msgid "Payment Credit"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__timbrado_data__print_system__pre_printed
+msgid "Pre Impreso"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.ui.view,arch_db:l10n_py_invoice_document.view_document_type_tree
+msgid "Prefijo"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_journal__l10n_py_trade_code
+msgid "Punto de expedición que representa este diario"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__purchase_ruc
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__purchase_ruc
+msgid "Purchase Ruc"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__ruc
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__ruc
+msgid "RUC"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_partner_type__consolidated_ruc
+msgid "RUC Consolidado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__range
+msgid "Rango"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_partner__ruc
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_users__ruc
+msgid "Registro Unico de Contribuyentes"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__req_timbrado
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__req_timbrado
+msgid "Req Timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__sale_ruc
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__sale_ruc
+msgid "Sale Ruc"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__sequence_id
+msgid "Secuencia"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__sequence_id
+msgid ""
+"Secuencia del timbrado.\n"
+"Al activar el timbrado se crea una secuencia y al desactivarlo\n"
+" o pasarlo a borrador se destruye."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__sequence_id
+msgid "Secuencia habilitada para este documento"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__sequence_id
+msgid "Sequence"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__purchase_seq
+msgid ""
+"Si esta tildado al usarlo para compra tomara un numero de secuencia unico y "
+"no dejara introducir numero de documento"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__vat_enabled
+msgid "Si esta tildado el documento aparece en el libro de IVA"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__req_timbrado
+msgid ""
+"Si esta tildado el documento requiere timbrado y ademas, en una compra se "
+"valida el numero ingresado contra una mascara."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__print_system
+msgid "Sistema de impresión"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__l10n_latam_document_type__internal_type__supplier_payment
+msgid "Supplier Payment"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__timbrado_id
+msgid "Timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__l10n_py_timbrado
+msgid "Timbrado Proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model,name:l10n_py_invoice_document.model_timbrado_data
+msgid "Timbrado que habilita las facturas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_partner_type__name
+msgid "Tipo de Cliente/Proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__document_type_id
+msgid "Tipo de Comprobante"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__partner_type_sale_id
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__partner_type_sale_id
+msgid "Tipo de cliente"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_partner__partner_type_purchase_id
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_res_users__partner_type_purchase_id
+msgid "Tipo de proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.actions.act_window,name:l10n_py_invoice_document.action_partner_type
+#: model:ir.ui.menu,name:l10n_py_invoice_document.menu_action_partner_type
+msgid "Tipos de Socios de Negocio"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model_terms:ir.actions.act_window,help:l10n_py_invoice_document.action_timbrado
+msgid ""
+"Un documento de timbrado permite emitir un conjunto de facturas\n"
+"                segun la normativa vigente en Paraguay."
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__l10n_py_validity_end
+msgid "Validez Timbrado"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,field_description:l10n_py_invoice_document.field_l10n_latam_document_type__venta
+msgid "Venta"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__partner_type__applied_to__sale
+msgid "Ventas"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.actions.server,name:l10n_py_invoice_document.ir_cron_valida_timbrado_ir_actions_server
+#: model:ir.cron,cron_name:l10n_py_invoice_document.ir_cron_valida_timbrado
+#: model:ir.cron,name:l10n_py_invoice_document.ir_cron_valida_timbrado
+msgid "Verificar la validez de los timbrados"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: code:addons/l10n_py_invoice_document/models/timbrado.py:0
+#, python-format
+msgid ""
+"Ya existe un timbrado activo para el mismo Establecimiento / Expedicion y "
+"Tipo de documento"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_partner__purchase_ruc
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_partner__sale_ruc
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_users__purchase_ruc
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_res_users__sale_ruc
+msgid "campo tecnico que contiene el ruc real para venta"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__compra
+msgid "si esta tildado el documento aplica para compras"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_l10n_latam_document_type__venta
+msgid "si esta tildado el documento aplica para ventas"
+msgstr ""

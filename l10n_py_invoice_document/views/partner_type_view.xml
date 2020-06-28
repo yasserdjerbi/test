@@ -45,7 +45,7 @@
         <field name="context">{"search_default_active":1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Crear un nuevo tiopo de Socio de Negocio
+                Crear un nuevo tipo de Socio de Negocio
             </p>
             <p>
                 Mediante los Tipos de Socio de Negocio se definen las reglas

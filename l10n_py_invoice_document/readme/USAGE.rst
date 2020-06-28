@@ -1,2 +1,0 @@
-- Agregar los timbrados para tener numeros de factura disponibles.
-- Al generar una factura seleccionar el tipo de documento y el timbrado.

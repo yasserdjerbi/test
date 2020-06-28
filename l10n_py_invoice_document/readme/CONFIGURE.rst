@@ -1,2 +1,7 @@
-- Se requiere cargar los timbrados correspondientes para los documentos a emitir en Contabilidad / Gestion de timbrados
-- En los diarios de compra y venta tildar "Usa Documentos"
+To configure this module:
+
+Go to Account / Stamped Management
+- Add the stamped provided by SAT
+
+Go to Accounting / Configuration / Invoices / Journals
+- On the Sales and Purchaces journals check "Use Documents"

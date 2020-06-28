@@ -45,17 +45,12 @@ class AccountJournal(models.Model):
     payment_credit = fields.Char(
         compute='_compute_payment'
     )
-    payment_days = fields.Char(
-        compute='_compute_payment'
-    )
     remision = fields.Char(
         string='Nro de remision'
     )
     document_number = fields.Char(
         compute='_compute_document_number',
-        help="Campo tecnico con la ultima parte del numero de factura, se usa"
-             "para mandar a imprimir cuando es preimpreso",
-        string='Ultima parte del Nro de Factura'
+        help="Campo tecnico con la ultima parte del numero de factura"
     )
     req_timbrado = fields.Boolean(
         related='l10n_latam_document_type_id.req_timbrado',
@@ -77,7 +72,6 @@ class AccountJournal(models.Model):
             else:
                 rec.payment_cash = ' '
                 rec.payment_credit = 'X'
-            rec.payment_days = ' '
 
     @api.onchange('l10n_latam_document_type_id')
     def _onchange_l10n_latam_document_type_id(self):
@@ -100,8 +94,8 @@ class AccountJournal(models.Model):
         """
         self.ensure_one()
         if not self.timbrado_id.sequence_id:
-            raise ValueError('Este docuento no tiene secuencia, verifique la '
-                             'configuracion')
+            raise ValueError(_('Este docuento no tiene secuencia, verifique '
+                               'la configuracion'))
         next_number = self.timbrado_id.sequence_id.number_next
 
         # chequear numero a validar es mayor que el maximo
@@ -148,9 +142,9 @@ class AccountJournal(models.Model):
             # verificar que el tipo de cliente se para ventas
             partner_type = self.partner_id.partner_type_sale_id
             if partner_type.applied_to != 'sale':
-                raise ValidationError(_('El tipo de cliente "%s" no esta '
-                                        'habilitado para '
-                                        'ventas') % partner_type.name)
+                raise ValidationError(_("El tipo de cliente '%s' no esta "
+                                        "habilitado para "
+                                        "ventas") % partner_type.name)
 
             # verificar si el ruc del cliente es requerido
             chk = self.partner_id.partner_type_sale_id.ruc_required
@@ -158,12 +152,14 @@ class AccountJournal(models.Model):
                 raise ValidationError(_('El RUC es requerido, en este caso no '
                                         'puede quedar en blanco'))
 
-            # obtener la secuencia definida en el timbrado chequeando que este
-            # dentro de la validez del timbrado
-            number = self.next_sequence_number()
-
-            # poner el numero de documento
-            self.l10n_latam_document_number = number
+            if not self.l10n_latam_document_number:
+                # hay que verificar que la factura no tenga numero ya asignado,
+                # si ya lo tiene es porque pasamos la factura a borrador y la
+                # volvemos a validar.
+                # Obtener la secuencia definida en el timbrado chequeando que
+                # este dentro de la validez del timbrado.
+                _number = self.next_sequence_number()
+                self.l10n_latam_document_number = _number
 
             # llamar al metodo original aqui porque si dejaron la fecha de la
             # factura en blanco lo que sigue va a fallar
@@ -193,8 +189,8 @@ class AccountJournal(models.Model):
 
         if self.req_timbrado and self.type in ['in_invoice', 'in_refund']:
             # chequear solo si el timbrado es requerido:
-            #   longitud del timbrado y que sea numerico
-            #   validez del timbrado posterior a la fecha de la factura
+            #  -longitud del timbrado y que sea numerico
+            #  -validez del timbrado posterior a la fecha de la factura
 
             if len(self.l10n_py_timbrado) != 8:
                 raise ValidationError(_('La longitud del timbrado debe ser de '

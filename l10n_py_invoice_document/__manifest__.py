@@ -1,11 +1,11 @@
 {
-    'name': 'Tipos de documentos (facturacion) Paraguay',
+    'name': 'Paraguayan Invoice Documents',
     'version': '13.0.0.0.9',
-    'category': 'Localizacion',
+    'category': 'Localization',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',
     'license': 'AGPL-3',
-    'summary': 'Definicion de tipos de documento',
+    'summary': 'Invoices, Credit notes, Stamped management',
     "development_status": "Beta",  # "Alpha|Beta|Production/Stable|Mature"
     'depends': [
         'base',
