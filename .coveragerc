@@ -2,7 +2,7 @@
 
 [report]
 include =
-    */jobiols/odoo-paraguay/*
+    */jobiols/test/*
 
 omit =
     */scenario/*
