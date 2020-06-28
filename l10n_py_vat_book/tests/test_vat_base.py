@@ -36,10 +36,10 @@ class VatBase(VatTransactionCase):
         iva_10 = self.get_tax(10, 'sale')
         p1 = self.create_product(tax_ids=iva_5.ids)
         p2 = self.create_product(tax_ids=iva_10.ids)
-        inv = self.create_invoice(products=[p1, p2], auto_validate=True)
+        self.create_invoice(products=[p1, p2], auto_validate=True)
 
     def test_01_base5(self):
         avl = self.env['account.py.vat.line'].search([])
-        base5 = sum(avl.mapped('base_5'))
+        # base5 = sum(avl.mapped('base_5'))
         # no anda el libro de iva
-        #self.assertAlmostEqual(base5, -169.524, places=1)
+        # self.assertAlmostEqual(base5, -169.524, places=1)

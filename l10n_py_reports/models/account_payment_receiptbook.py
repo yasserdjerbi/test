@@ -5,10 +5,11 @@ from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
 
-# TODO elimiar este modelo en algun momento
-class ReportReceiptbook(models.Model):
-    _name = 'report.receiptbook'
-    _description = 'deprecated model'
+
+#class ReportReceiptbook(models.Model):
+#    """ TODO Eliminar este modelo en algun momento"""
+#    _name = 'report.receiptbook'
+#    _description = 'deprecated model'
 
 
 class AccountPaymentReceiptbook(models.Model):

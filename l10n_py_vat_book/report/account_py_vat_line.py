@@ -201,7 +201,7 @@ class AccountPyVatLine(models.Model):
         LEFT JOIN
             res_partner AS rp
             ON rp.id = am.partner_id
-        LEFT JOIN 
+        LEFT JOIN
             l10n_latam_document_type AS l10nldt
             ON l10nldt.id = am.l10n_latam_document_type_id
         WHERE

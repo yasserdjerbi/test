@@ -11,7 +11,8 @@ class ResCurrency(models.Model):
     inverse_rate = fields.Float(
         'Current Inverse Rate', digits=(12, 4),
         compute='_compute_inverse_rate',
-        help='The rate of the currency from the currency of rate 1 (0 if no rate defined).'
+        help='The rate of the currency from the currency of rate 1 (0 if no '
+             'rate defined).'
     )
 
     @api.depends('rate')
