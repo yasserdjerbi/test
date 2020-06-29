@@ -135,8 +135,8 @@ class Partner(models.Model):
             # si el resto es mayor que uno, entonces el valor de basemax
             # es restado por el resultado de la operación anterior
             return basemax - resto
-        else:
-            return 0
+
+        return 0
 
     @api.onchange('partner_type_sale_id')
     def onchange_partner_type_sale_id(self):
