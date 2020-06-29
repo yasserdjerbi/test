@@ -9,7 +9,8 @@ class Partner(models.Model):
 
     ci = fields.Char(
         help='Cedula de Identidad',
-        string='CI'
+        string='CI',
+        copy=False
     )
     ruc = fields.Char(
         help="Registro Unico de Contribuyentes",

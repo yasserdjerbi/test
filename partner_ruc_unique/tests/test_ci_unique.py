@@ -22,11 +22,11 @@ from odoo.tests.common import SavepointCase
 from odoo.exceptions import ValidationError
 
 
-class TestRUCUnique(SavepointCase):
+class TestCIUnique(SavepointCase):
 
     @classmethod
     def setUpClass(cls):
-        super(TestRUCUnique, cls).setUpClass()
+        super().setUpClass()
 
         # crear partner con ruc valido
         cls.partner = cls.env['res.partner'].create({
@@ -38,28 +38,31 @@ class TestRUCUnique(SavepointCase):
             'name': 'Second partner',
             'ruc': '88888801-5'
         })
+        # crear partner ci
+        cls.partner2 = cls.env['res.partner'].create({
+            'name': 'Test partner',
+            'ci': '123456789'
+        })
 
-    def test_duplicated_ruc_creation(self):
-        """ Intento crear otro partner con ruc existente, debe fallar
+    def test_duplicated_ci_creation(self):
+        """ Intento crear otro partner con ci existente, debe fallar
         """
-        # ruc valido
         with self.assertRaises(ValidationError):
             self.env['res.partner'].with_context(test_ruc=True).create({
                 'name': 'Second partner',
-                'ruc': '80025405-8'
+                'ci': '123456789'
             })
 
-    def test_duplicate_partner(self):
-        """ Si duplico el partner no debe copiar el ruc
+    def test_no_duplicated_ci_creation(self):
+        """ Intento crear otro partner con ci existente, debe fallar
         """
-        partner_copied = self.partner.copy()
-        self.assertFalse(partner_copied.ruc)
-
-    def test_consolidated_ruc(self):
-        """ Creo un partner con un ruc consolidado lo debe dejar duplicar
-        """
-        # creo otro partner con ruc consolidado y no falla
         self.env['res.partner'].with_context(test_ruc=True).create({
-            'name': 'Second partner',
-            'ruc': '88888801-5'
+            'name': 'Third partner',
+            'ci': '123456780'
         })
+
+    def test_duplicate_partner(self):
+        """ Si duplico el partner no debe copiar el ci
+        """
+        partner_copied = self.partner2.copy()
+        self.assertFalse(partner_copied.ci)

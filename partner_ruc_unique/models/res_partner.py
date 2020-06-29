@@ -7,6 +7,20 @@ from odoo.tools import config
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    @api.constrains('ci')
+    def _check_ci_unique(self):
+        for record in self:
+            # verificar si la ci ya existe
+            results = self.env['res.partner'].search_count([
+                ('parent_id', '=', False),
+                ('ci', '=', record.ci),
+                ('id', '!=', record.id)
+            ])
+            if results:
+                raise ValidationError(_(
+                    "The CI %s already exists in another "
+                    "partner.") % record.ci)
+
     @api.constrains('ruc')
     def _check_ruc_unique(self):
 
@@ -38,4 +52,5 @@ class ResPartner(models.Model):
             ])
             if results:
                 raise ValidationError(_(
-                    "El RUC %s ya existe en otro partner.") % record.ruc)
+                    "The RUC %s already exists in another "
+                    "partner.") % record.ruc)

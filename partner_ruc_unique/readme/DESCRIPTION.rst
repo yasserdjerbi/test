@@ -1,3 +1,7 @@
-**Evita la duplicacion de RUC**
+Avoids contact duplication
+--------------------------
 
-Si el ruc esta en blanco o es un ruc consolidado no lo tiene en cuenta.
+- Does not allow duplicating CI
+- Does not allow duplicating RUC
+
+  Note: If the ruc is blank or is a consolidated ruc it does not take it into account.

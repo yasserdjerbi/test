@@ -15,7 +15,7 @@ sudo docker run --rm -it \
     -v /odoo_ar/odoo-13.0e/tatakua/sources:/opt/odoo/custom-addons \
     --link pg-tatakua:db \
     jobiols/odoo-ent:13.0e -- \
-       -i  l10n_bo \
+       -i  partner_ruc_unique \
    --stop-after-init -d tatakua_test --test-enable
 
 # br falla
