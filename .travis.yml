@@ -31,6 +31,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - pip install --upgrade python-magic
   - travis_install_nightly
+  - - sed  -i  "s/'installable': True/'installable': False/" l10n_py_vat_book/__manifest__.py
 
 script:
   - travis_run_tests
