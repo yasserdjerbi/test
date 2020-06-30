@@ -70,11 +70,11 @@ class AccountJournal(models.Model):
         for rec in self:
             inm_ref = 'account.account_payment_term_immediate'
             if rec.invoice_payment_term_id == self.env.ref(inm_ref):
-                rec.payment_cash = 'X'
-                rec.payment_credit = ' '
+                rec.payment_cash = True
+                rec.payment_credit = False
             else:
-                rec.payment_cash = ' '
-                rec.payment_credit = 'X'
+                rec.payment_cash = False
+                rec.payment_credit = True
 
     @api.onchange('l10n_latam_document_type_id')
     def _onchange_l10n_latam_document_type_id(self):
