@@ -25,6 +25,8 @@ env:
 git:
   depth: 1
 
+# Deshabilitamos el l10n_py_vat_book porque es enterprise y no lo puedo testear
+# con travis CE
 install:
   - pip install -r requirements.txt
   - git clone --depth=1 https://github.com/jobiols/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
