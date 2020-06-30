@@ -1,6 +1,6 @@
 {
     'name': 'Libros de IVA Paraguay',
-    'version': '13.0.0.0.6',
+    'version': '13.0.0.0.7',
     'category': 'Localizacion',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',

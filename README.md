@@ -15,5 +15,5 @@ Localizacion de Odoo - Paraguay
 - **l10n_py_invoice_document** : Definicion de tipos de documento facturas, notas de credito, recibos, etc
 - **l10n_py_check_printing** : Diseño de cheques Paraguay
 - **l10n_py_reports** : Reportes para facturas y recibos
-- **l10n_py_vat_book** : Libros de IVA
+- **l10n_py_vat_book** : Libros de IVA (enterprise)
 - **partner_ruc_unique** : adicional, evita la duplicacion de RUC que no son consolidados.

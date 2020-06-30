@@ -12,7 +12,7 @@ addons:
       - libcups2-dev # para que instale cups
 
 python:
-  - "3.6"
+  - "3.7"
 
 env:
   global:
@@ -20,7 +20,7 @@ env:
 
   matrix:
   - LINT_CHECK="1"
-
+  - TESTS="1" ODOO_REPO="odoo/odoo"
 
 git:
   depth: 1
@@ -31,10 +31,10 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - pip install --upgrade python-magic
   - travis_install_nightly
+  - sed  -i  "s/'installable': True/'installable': False/" l10n_py_vat_book/__manifest__.py
 
 script:
   - travis_run_tests
 
 after_success:
   - travis_after_tests_success
-

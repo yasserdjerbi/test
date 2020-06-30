@@ -161,7 +161,10 @@ class AccountPyVatLine(models.Model):
                 THEN rp.sale_ruc
                 ELSE rp.purchase_ruc END as ruc,
             am.name as move_name,
-            rp.name as partner_name,
+            CASE 
+                WHEN rp.commercial_company_name is not null
+                THEN rp.commercial_company_name
+                ELSE rp.name END as partner_name,
             am.id as move_id,
             am.type,
             am.date,

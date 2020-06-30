@@ -18,7 +18,6 @@
                 border:2px solid black;
                 border-radius: 20px;
                 }
-
             </style>
 
             <div class="page">
@@ -35,7 +34,7 @@
                             <t t-if="o.partner_type == 'supplier'">
                                 <strong>Orden de pago para: </strong>
                             </t>
-                            <span t-field="o.partner_id"
+                            <span t-esc="o.partner_id"
                                   t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": False}'/>
                         </div>
                     </div>

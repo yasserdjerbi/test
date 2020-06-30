@@ -142,7 +142,7 @@ class AccountJournal(models.Model):
                 raise ValidationError(_('Debe definir el tipo de Cliente '
                                         'en el Formulario de Cliente'))
 
-            # verificar que el tipo de cliente se para ventas
+            # verificar que el tipo de cliente este habilitado para ventas
             partner_type = self.partner_id.partner_type_sale_id
             if partner_type.applied_to != 'sale':
                 raise ValidationError(_("El tipo de cliente '%s' no esta "
