@@ -14,6 +14,7 @@ class ResPartner(models.Model):
             results = self.env['res.partner'].search_count([
                 ('parent_id', '=', False),
                 ('ci', '=', record.ci),
+                ('ci', '!=', False),
                 ('id', '!=', record.id)
             ])
             if results:

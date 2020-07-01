@@ -9,19 +9,19 @@ class AccountJournal(models.Model):
 
     timbrado_id = fields.Many2one(
         'timbrado.data',
-        help="Numero de timbrado que habilita la factura",
+        help="Stamp number that enables the invoice.",
     )
     l10n_py_trade_code = fields.Char(
         related='journal_id.l10n_py_trade_code',
-        help='Campo tecnico para relacionar con el timbrado'
+        help='Technical field to relate to the stamp.'
     )
     l10n_py_shipping_point = fields.Char(
         related='journal_id.l10n_py_shipping_point',
-        help='Campo tecnico para relacionar con el timbrado'
+        help='Technical field to relate to the stamp.'
     )
     document_type_code = fields.Char(
         related='l10n_latam_document_type_id.code',
-        help='Campo tecnico para relacionar con el timbrado'
+        help='Technical field to relate to the stamp.'
     )
     purchase_seq = fields.Boolean(
         related='l10n_latam_document_type_id.purchase_seq',
@@ -32,11 +32,11 @@ class AccountJournal(models.Model):
     )
     l10n_py_timbrado = fields.Char(
         string='Timbrado Proveedor',
-        help='Numero de timbrado de la factura del proveedor'
+        help='Supplier invoice stamp number.'
     )
     l10n_py_validity_end = fields.Date(
         string='Validez Timbrado',
-        help='Fecha de caducidad del timbrado del proveedor'
+        help="Expiration date of the provider's stamp."
     )
     payment_cash = fields.Char(
         compute='_compute_payment'
@@ -55,7 +55,10 @@ class AccountJournal(models.Model):
         related='l10n_latam_document_type_id.req_timbrado',
         help='Technical field to show or hide the stamped in the views.'
     )
+    # TODO: quitar en algun momento este string, se puso porque confundia el
+    #       nombre
     next_invoice_number = fields.Integer(
+        string="Next Invoice Number",
         related='timbrado_id.next_number',
         help='This will be the next invoice number.'
     )

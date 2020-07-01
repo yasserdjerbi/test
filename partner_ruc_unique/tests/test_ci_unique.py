@@ -28,41 +28,32 @@ class TestCIUnique(SavepointCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        # crear partner con ruc valido
-        cls.partner = cls.env['res.partner'].create({
-            'name': 'Test partner',
-            'ruc': '80025405-8'
-        })
-        # crear partner con ruc consolidado
-        cls.partner1 = cls.env['res.partner'].create({
-            'name': 'Second partner',
-            'ruc': '88888801-5'
-        })
-        # crear partner ci
-        cls.partner2 = cls.env['res.partner'].create({
-            'name': 'Test partner',
-            'ci': '123456789'
-        })
+    def _create_partner(self, vals):
+        if not vals.get('name'):
+            vals['name'] = 'Test Partner'
+        return self.env['res.partner'].create(vals)
 
     def test_duplicated_ci_creation(self):
-        """ Intento crear otro partner con ci existente, debe fallar
+        """ Intento crear partner con ci duplicado
         """
+        self._create_partner({'ci': '123456789'})
         with self.assertRaises(ValidationError):
-            self.env['res.partner'].with_context(test_ruc=True).create({
-                'name': 'Second partner',
-                'ci': '123456789'
-            })
-
-    def test_no_duplicated_ci_creation(self):
-        """ Intento crear otro partner con ci existente, debe fallar
-        """
-        self.env['res.partner'].with_context(test_ruc=True).create({
-            'name': 'Third partner',
-            'ci': '123456780'
-        })
+            self._create_partner({'ci': '123456789'})
 
     def test_duplicate_partner(self):
         """ Si duplico el partner no debe copiar el ci
         """
-        partner_copied = self.partner2.copy()
+        partner_1 = self._create_partner({'ci': '123456789'})
+        partner_copied = partner_1.copy()
         self.assertFalse(partner_copied.ci)
+
+    def test_no_duplicated_ci_creation(self):
+        """ Creacion de partner sin ci
+        """
+        self._create_partner({})
+
+    def test_no_ci_multiple_partners(self):
+        """ Creacion de varios partners con ci=False
+        """
+        self._create_partner({'ci': False})
+        self._create_partner({'ci': False})

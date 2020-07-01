@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200613\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-28 03:45+0000\n"
-"PO-Revision-Date: 2020-06-28 03:45+0000\n"
+"POT-Creation-Date: 2020-07-01 19:20+0000\n"
+"PO-Revision-Date: 2020-07-01 19:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -71,13 +71,6 @@ msgid ""
 "Campo tecnico para ocultar el campo Numero de documento cuando el documento "
 "de compra obtiene su numero de una secuencia y paragenerar el numero de doc "
 "a partir de la secuencia automaticamente"
-msgstr ""
-
-#. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__document_type_code
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_shipping_point
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_trade_code
-msgid "Campo tecnico para relacionar con el timbrado"
 msgstr ""
 
 #. module: l10n_py_invoice_document
@@ -310,13 +303,13 @@ msgid "Expedición"
 msgstr ""
 
 #. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__validity_start
-msgid "Fecha a partir de la cual esta vigente el timbrado"
-msgstr ""
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_validity_end
+msgid "Expiration date of the provider's stamp."
+msgstr "Fecha de caducidad del timbrado del proveedor"
 
 #. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_validity_end
-msgid "Fecha de caducidad del timbrado del proveedor"
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__validity_start
+msgid "Fecha a partir de la cual esta vigente el timbrado"
 msgstr ""
 
 #. module: l10n_py_invoice_document
@@ -467,9 +460,13 @@ msgstr "Nombre"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__next_invoice_number
+msgid "Next Invoice Number"
+msgstr "Proximo numero de factura"
+
+#. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_timbrado_data__next_number
 msgid "Next Number"
-msgstr "Proximo numero"
+msgstr ""
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_timbrado_data__next_number
@@ -503,16 +500,6 @@ msgstr ""
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_journal__l10n_py_shipping_point
 msgid "Numero de sucursal que representa este diario"
-msgstr ""
-
-#. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_timbrado
-msgid "Numero de timbrado de la factura del proveedor"
-msgstr ""
-
-#. module: l10n_py_invoice_document
-#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__timbrado_id
-msgid "Numero de timbrado que habilita la factura"
 msgstr ""
 
 #. module: l10n_py_invoice_document
@@ -658,24 +645,41 @@ msgid "Sistema de impresión"
 msgstr ""
 
 #. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__timbrado_id
+msgid "Stamp number that enables the invoice."
+msgstr "Numero de timbrado que habilita la factura."
+
+#. module: l10n_py_invoice_document
 #: model:ir.model.fields.selection,name:l10n_py_invoice_document.selection__l10n_latam_document_type__internal_type__supplier_payment
 msgid "Supplier Payment"
-msgstr "Pago proveedor"
+msgstr ""
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_timbrado
+msgid "Supplier invoice stamp number."
+msgstr "Numero de timbrado de la factura del proveedor."
+
+#. module: l10n_py_invoice_document
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__document_type_code
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_shipping_point
+#: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__l10n_py_trade_code
+msgid "Technical field to relate to the stamp."
+msgstr "Campo tecnico para relacionar con el timbrado."
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__req_timbrado
 msgid "Technical field to show or hide the stamped in the views."
-msgstr ""
+msgstr "Campo tecnico para mostrar u ocultar el timbrado en las vistas"
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__last_document_number
 msgid "Technical field with the last part of the invoice number."
-msgstr ""
+msgstr "Campo tecnico con la ultima parte del numero de factura."
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,help:l10n_py_invoice_document.field_account_move__next_invoice_number
 msgid "This will be the next invoice number."
-msgstr ""
+msgstr "Este sera el proximo numero de factura."
 
 #. module: l10n_py_invoice_document
 #: model:ir.model.fields,field_description:l10n_py_invoice_document.field_account_move__timbrado_id
