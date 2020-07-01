@@ -1,6 +1,6 @@
 {
     'name': 'Paraguayan Reports',
-    'version': '13.0.0.0.10',
+    'version': '13.0.0.0.11',
     'category': 'Localization',
     'author': 'Tecnopro',
     'website': 'http://tecnopro.com.py',

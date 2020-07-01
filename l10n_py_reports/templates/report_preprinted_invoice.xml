@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <span style="position: relative; left:30%;" t-esc="o.partner_id.commercial_company_name or o.partner_id.name"/>
+                            <span style="position: relative; left:30%;" t-field="o.partner_id.display_name"/>
                         </td>
                         <td>
                             <span style="position: relative; left:40%; " t-field="o.partner_id.ruc"/>
@@ -148,7 +148,7 @@
                     </colgroup>
                     <tr>
                         <td>
-                            <span style="position: relative; left:10%;" t-field="o.amount_total_in_words"/>
+                            <span style="position: relative; left:13%;" t-field="o.amount_total_in_words"/>
                         </td>
                         <td align="right">
                             <span style="position: relative; left:0%;" t-field="o.amount_total_py" t-options='{"widget": "monetary"}'/>
