@@ -165,22 +165,22 @@ class TimbradoData(models.Model):
         """
         for rec in self:
             # verificar la vigencia del timbrado
-            if not rec.validity_start < today < rec.validity_end:
-                raise ValidationError(_('El timbrado no se puede activar '
-                                        'porque las fechas no son validas'))
+#            if not rec.validity_start < today < rec.validity_end:
+#                raise ValidationError(_('El timbrado no se puede activar '
+#                                        'porque las fechas no son validas'))
 
             # verificar que no haya otro timbrado activo para el mismo
             # shiping_point / trade_code / document_type_id
-            duplicate = self.env['timbrado.data'].search([
-                ('shipping_point', '=', rec.shipping_point),
-                ('trade_code', '=', rec.trade_code),
-                ('document_type_id', '=', rec.document_type_id.id),
-                ('state', '=', 'active')
-            ])
-            if duplicate:
-                raise ValidationError(_('Ya existe un timbrado activo para el '
-                                        'mismo Establecimiento / Expedicion y '
-                                        'Tipo de documento'))
+#            duplicate = self.env['timbrado.data'].search([
+#                ('shipping_point', '=', rec.shipping_point),
+#                ('trade_code', '=', rec.trade_code),
+#                ('document_type_id', '=', rec.document_type_id.id),
+#                ('state', '=', 'active')
+#            ])
+#            if duplicate:
+#                raise ValidationError(_('Ya existe un timbrado activo para el '
+#                                        'mismo Establecimiento / Expedicion y '
+#                                        'Tipo de documento'))
 
             # ponerle la secuencia al timbrado
             seq = self.get_sequence()
